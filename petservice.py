@@ -14,12 +14,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1165, 670)
+        MainWindow.resize(1166, 670)
+        MainWindow.setToolTipDuration(1)
         MainWindow.setStyleSheet("background-color: #f9f9fe")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setToolTipDuration(1)
         self.centralwidget.setObjectName("centralwidget")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         self.stackedWidget.setGeometry(QtCore.QRect(0, 0, 1161, 661))
+        self.stackedWidget.setToolTipDuration(1)
         self.stackedWidget.setStyleSheet("QStackedWidget {\n"
 "    background-color:  #dddff8;\n"
 "    border-style: outset;\n"
@@ -31,9 +34,11 @@ class Ui_MainWindow(object):
 "}")
         self.stackedWidget.setObjectName("stackedWidget")
         self.AppHistorypage = QtWidgets.QWidget()
+        self.AppHistorypage.setToolTipDuration(1)
         self.AppHistorypage.setObjectName("AppHistorypage")
         self.frame_6 = QtWidgets.QFrame(self.AppHistorypage)
         self.frame_6.setGeometry(QtCore.QRect(20, 20, 1131, 621))
+        self.frame_6.setToolTipDuration(1)
         self.frame_6.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
 "    border-style: outset;\n"
@@ -59,6 +64,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.backPetServiceButton.setFont(font)
+        self.backPetServiceButton.setToolTipDuration(1)
         self.backPetServiceButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -89,6 +95,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         self.historyTable.setFont(font)
+        self.historyTable.setToolTipDuration(1)
         self.historyTable.setStyleSheet("QTableView {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
@@ -173,6 +180,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.deleteAppButton.setFont(font)
+        self.deleteAppButton.setToolTipDuration(1)
         self.deleteAppButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -211,11 +219,12 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.searchInputApp.setFont(font)
+        self.searchInputApp.setToolTipDuration(1)
         self.searchInputApp.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
 "    padding: 2px 10px;\n"
-"    background-color: #white;\n"
+"    background-color: white;\n"
 "    font: 14px;\n"
 "    color: #353fb0;\n"
 "}\n"
@@ -231,6 +240,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.searchAppButton.setFont(font)
+        self.searchAppButton.setToolTipDuration(1)
         self.searchAppButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -262,13 +272,16 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(18)
         self.label_AppHistory.setFont(font)
+        self.label_AppHistory.setToolTipDuration(1)
         self.label_AppHistory.setStyleSheet("color: #353fb0")
         self.label_AppHistory.setObjectName("label_AppHistory")
         self.stackedWidget.addWidget(self.AppHistorypage)
         self.page = QtWidgets.QWidget()
+        self.page.setToolTipDuration(1)
         self.page.setObjectName("page")
         self.frame_7 = QtWidgets.QFrame(self.page)
         self.frame_7.setGeometry(QtCore.QRect(20, 20, 1131, 621))
+        self.frame_7.setToolTipDuration(1)
         self.frame_7.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
 "    border-style: outset;\n"
@@ -294,6 +307,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.backPetServiceButton_2.setFont(font)
+        self.backPetServiceButton_2.setToolTipDuration(1)
         self.backPetServiceButton_2.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -324,6 +338,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         self.serviceTable.setFont(font)
+        self.serviceTable.setToolTipDuration(1)
         self.serviceTable.setStyleSheet("QTableView {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
@@ -408,6 +423,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.deleteServButton.setFont(font)
+        self.deleteServButton.setToolTipDuration(1)
         self.deleteServButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -446,11 +462,12 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.searchInputService.setFont(font)
+        self.searchInputService.setToolTipDuration(1)
         self.searchInputService.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
 "    padding: 2px 10px;\n"
-"    background-color: #white;\n"
+"    background-color: white;\n"
 "    font: 14px;\n"
 "    color: #353fb0;\n"
 "}\n"
@@ -466,6 +483,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.searchServiceButton.setFont(font)
+        self.searchServiceButton.setToolTipDuration(1)
         self.searchServiceButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -493,6 +511,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.addWidget(self.searchServiceButton)
         self.frame_8 = QtWidgets.QFrame(self.frame_7)
         self.frame_8.setGeometry(QtCore.QRect(20, 100, 341, 471))
+        self.frame_8.setToolTipDuration(1)
         self.frame_8.setStyleSheet("QFrame {\n"
 "    background-color:  #f9f9fe;\n"
 "    border-style: outset;\n"
@@ -512,6 +531,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.addAppButton_2.setFont(font)
+        self.addAppButton_2.setToolTipDuration(1)
         self.addAppButton_2.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -548,6 +568,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_servID.setFont(font)
+        self.label_servID.setToolTipDuration(1)
         self.label_servID.setStyleSheet("color: #353fb0")
         self.label_servID.setObjectName("label_servID")
         self.horizontalLayout_12.addWidget(self.label_servID)
@@ -558,6 +579,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterservIDName.setFont(font)
+        self.enterservIDName.setToolTipDuration(1)
         self.enterservIDName.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -582,6 +604,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_Sname.setFont(font)
+        self.label_Sname.setToolTipDuration(1)
         self.label_Sname.setStyleSheet("color: #353fb0")
         self.label_Sname.setObjectName("label_Sname")
         self.horizontalLayout_11.addWidget(self.label_Sname)
@@ -592,6 +615,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterSName.setFont(font)
+        self.enterSName.setToolTipDuration(1)
         self.enterSName.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -610,13 +634,16 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(18)
         self.label_service.setFont(font)
+        self.label_service.setToolTipDuration(1)
         self.label_service.setStyleSheet("color: #353fb0")
         self.label_service.setObjectName("label_service")
         self.stackedWidget.addWidget(self.page)
         self.PSSpage = QtWidgets.QWidget()
+        self.PSSpage.setToolTipDuration(1)
         self.PSSpage.setObjectName("PSSpage")
         self.pendingTabFrame = QtWidgets.QFrame(self.PSSpage)
         self.pendingTabFrame.setGeometry(QtCore.QRect(780, 40, 371, 601))
+        self.pendingTabFrame.setToolTipDuration(1)
         self.pendingTabFrame.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
 "    border-style: outset;\n"
@@ -642,6 +669,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.deletePendingAppButton.setFont(font)
+        self.deletePendingAppButton.setToolTipDuration(1)
         self.deletePendingAppButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -672,6 +700,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(14)
         self.label_ownerInfo_3.setFont(font)
+        self.label_ownerInfo_3.setToolTipDuration(1)
         self.label_ownerInfo_3.setStyleSheet("color: #353fb0")
         self.label_ownerInfo_3.setObjectName("label_ownerInfo_3")
         self.StudentTable = QtWidgets.QTableView(self.pendingTabFrame)
@@ -680,6 +709,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         self.StudentTable.setFont(font)
+        self.StudentTable.setToolTipDuration(1)
         self.StudentTable.setStyleSheet("QTableView {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
@@ -759,6 +789,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.historyButton.setFont(font)
+        self.historyButton.setToolTipDuration(1)
         self.historyButton.setStyleSheet("QPushButton {\n"
 "    background-color: #929ae9;\n"
 "    border-style: outset;\n"
@@ -789,10 +820,12 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(18)
         self.label_StudentInformation.setFont(font)
+        self.label_StudentInformation.setToolTipDuration(1)
         self.label_StudentInformation.setStyleSheet("color: #353fb0")
         self.label_StudentInformation.setObjectName("label_StudentInformation")
         self.infoFrame = QtWidgets.QFrame(self.PSSpage)
         self.infoFrame.setGeometry(QtCore.QRect(20, 130, 751, 491))
+        self.infoFrame.setToolTipDuration(1)
         self.infoFrame.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
 "    border-style: outset;\n"
@@ -807,6 +840,7 @@ class Ui_MainWindow(object):
         self.infoFrame.setObjectName("infoFrame")
         self.frame = QtWidgets.QFrame(self.infoFrame)
         self.frame.setGeometry(QtCore.QRect(20, 30, 351, 201))
+        self.frame.setToolTipDuration(1)
         self.frame.setStyleSheet("QFrame {\n"
 "    background-color:  #f9f9fe;\n"
 "    border-style: outset;\n"
@@ -830,6 +864,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_Pname.setFont(font)
+        self.label_Pname.setToolTipDuration(1)
         self.label_Pname.setStyleSheet("color: #353fb0")
         self.label_Pname.setObjectName("label_Pname")
         self.horizontalLayout.addWidget(self.label_Pname)
@@ -840,6 +875,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterPName.setFont(font)
+        self.enterPName.setToolTipDuration(1)
         self.enterPName.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -864,6 +900,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_species.setFont(font)
+        self.label_species.setToolTipDuration(1)
         self.label_species.setStyleSheet("color: #353fb0")
         self.label_species.setObjectName("label_species")
         self.horizontalLayout_3.addWidget(self.label_species)
@@ -874,6 +911,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterSpecies.setFont(font)
+        self.enterSpecies.setToolTipDuration(1)
         self.enterSpecies.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -898,6 +936,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_breed.setFont(font)
+        self.label_breed.setToolTipDuration(1)
         self.label_breed.setStyleSheet("color: #353fb0\n"
 "")
         self.label_breed.setObjectName("label_breed")
@@ -909,6 +948,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterBreed.setFont(font)
+        self.enterBreed.setToolTipDuration(1)
         self.enterBreed.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -927,6 +967,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(14)
         self.label_petInfo.setFont(font)
+        self.label_petInfo.setToolTipDuration(1)
         self.label_petInfo.setStyleSheet("color: #353fb0")
         self.label_petInfo.setObjectName("label_petInfo")
         self.frame_2 = QtWidgets.QFrame(self.infoFrame)
@@ -948,6 +989,8 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(14)
         self.label_ownerInfo.setFont(font)
+        self.label_ownerInfo.setToolTip("")
+        self.label_ownerInfo.setToolTipDuration(1)
         self.label_ownerInfo.setStyleSheet("color: #353fb0")
         self.label_ownerInfo.setObjectName("label_ownerInfo")
         self.horizontalLayoutWidget_2 = QtWidgets.QWidget(self.frame_2)
@@ -962,6 +1005,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_Pname_2.setFont(font)
+        self.label_Pname_2.setToolTipDuration(1)
         self.label_Pname_2.setStyleSheet("color: #353fb0")
         self.label_Pname_2.setObjectName("label_Pname_2")
         self.horizontalLayout_2.addWidget(self.label_Pname_2)
@@ -972,6 +1016,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterOName.setFont(font)
+        self.enterOName.setToolTipDuration(1)
         self.enterOName.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -996,6 +1041,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_Pname_3.setFont(font)
+        self.label_Pname_3.setToolTipDuration(1)
         self.label_Pname_3.setStyleSheet("color: #353fb0")
         self.label_Pname_3.setObjectName("label_Pname_3")
         self.horizontalLayout_5.addWidget(self.label_Pname_3)
@@ -1006,6 +1052,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.enterOName_2.setFont(font)
+        self.enterOName_2.setToolTipDuration(1)
         self.enterOName_2.setStyleSheet("QLineEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -1020,6 +1067,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.enterOName_2)
         self.frame_5 = QtWidgets.QFrame(self.infoFrame)
         self.frame_5.setGeometry(QtCore.QRect(20, 250, 711, 151))
+        self.frame_5.setToolTipDuration(1)
         self.frame_5.setStyleSheet("QFrame {\n"
 "    background-color:  #f9f9fe;\n"
 "    border-style: outset;\n"
@@ -1043,11 +1091,13 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_date.setFont(font)
+        self.label_date.setToolTipDuration(1)
         self.label_date.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_date.setStyleSheet("color: #353fb0")
         self.label_date.setObjectName("label_date")
         self.horizontalLayout_6.addWidget(self.label_date)
         self.dateEdit = QtWidgets.QDateEdit(self.horizontalLayoutWidget_6)
+        self.dateEdit.setToolTipDuration(1)
         self.dateEdit.setStyleSheet("QDateEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -1095,11 +1145,13 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_date_2.setFont(font)
+        self.label_date_2.setToolTipDuration(1)
         self.label_date_2.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.label_date_2.setStyleSheet("color: #353fb0")
         self.label_date_2.setObjectName("label_date_2")
         self.horizontalLayout_7.addWidget(self.label_date_2)
         self.timeEdit = QtWidgets.QTimeEdit(self.horizontalLayoutWidget_7)
+        self.timeEdit.setToolTipDuration(1)
         self.timeEdit.setStyleSheet("QTimeEdit {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -1134,7 +1186,7 @@ class Ui_MainWindow(object):
         self.timeEdit.setObjectName("timeEdit")
         self.horizontalLayout_7.addWidget(self.timeEdit)
         self.horizontalLayoutWidget_8 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(220, 50, 241, 41))
+        self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(210, 50, 261, 41))
         self.horizontalLayoutWidget_8.setObjectName("horizontalLayoutWidget_8")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_8)
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -1145,6 +1197,7 @@ class Ui_MainWindow(object):
         font.setFamily("Helvetica")
         font.setPointSize(10)
         self.label_availType.setFont(font)
+        self.label_availType.setToolTipDuration(1)
         self.label_availType.setStyleSheet("color: #353fb0")
         self.label_availType.setObjectName("label_availType")
         self.horizontalLayout_8.addWidget(self.label_availType)
@@ -1155,6 +1208,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.chooseAvailType.setFont(font)
+        self.chooseAvailType.setToolTipDuration(1)
         self.chooseAvailType.setStyleSheet("QComboBox {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -1179,7 +1233,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QComboBox::down-arrow {\n"
-"    image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);\n"
+"    image: url(D:/Documents/codes/python/Pet Service/CCC151-Pet-Service-System/down-arrow.png);\n"
 "    width: 15px;  \n"
 "    height: 15px;\n"
 "}\n"
@@ -1196,20 +1250,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.chooseAvailType)
         self.horizontalLayout_8.setStretch(1, 1)
         self.horizontalLayoutWidget_9 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(480, 50, 211, 41))
+        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(210, 90, 261, 41))
         self.horizontalLayoutWidget_9.setObjectName("horizontalLayoutWidget_9")
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_9)
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_9.setSpacing(5)
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.label_staturs = QtWidgets.QLabel(self.horizontalLayoutWidget_9)
+        self.label_status = QtWidgets.QLabel(self.horizontalLayoutWidget_9)
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(10)
-        self.label_staturs.setFont(font)
-        self.label_staturs.setStyleSheet("color: #353fb0")
-        self.label_staturs.setObjectName("label_staturs")
-        self.horizontalLayout_9.addWidget(self.label_staturs)
+        self.label_status.setFont(font)
+        self.label_status.setToolTipDuration(1)
+        self.label_status.setStyleSheet("color: #353fb0")
+        self.label_status.setObjectName("label_status")
+        self.horizontalLayout_9.addWidget(self.label_status)
         self.chooseStatus = QtWidgets.QComboBox(self.horizontalLayoutWidget_9)
         font = QtGui.QFont()
         font.setPointSize(-1)
@@ -1217,6 +1272,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(50)
         self.chooseStatus.setFont(font)
+        self.chooseStatus.setToolTipDuration(1)
         self.chooseStatus.setStyleSheet("QComboBox {\n"
 "    border: 1px solid #dddff8;\n"
 "    border-radius: 6px;\n"
@@ -1241,7 +1297,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QComboBox::down-arrow {\n"
-"    image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);\n"
+"    image: url(D:/Documents/codes/python/Pet Service/CCC151-Pet-Service-System/down-arrow.png);\n"
 "    width: 15px;  \n"
 "    height: 15px;\n"
 "}\n"
@@ -1257,76 +1313,121 @@ class Ui_MainWindow(object):
         self.chooseStatus.addItem("")
         self.horizontalLayout_9.addWidget(self.chooseStatus)
         self.horizontalLayout_9.setStretch(1, 1)
-        self.horizontalLayoutWidget_10 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_10.setGeometry(QtCore.QRect(220, 90, 391, 41))
-        self.horizontalLayoutWidget_10.setObjectName("horizontalLayoutWidget_10")
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_10)
-        self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_10.setSpacing(5)
-        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.label_course_3 = QtWidgets.QLabel(self.horizontalLayoutWidget_10)
-        font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(10)
-        self.label_course_3.setFont(font)
-        self.label_course_3.setStyleSheet("color: #353fb0")
-        self.label_course_3.setObjectName("label_course_3")
-        self.horizontalLayout_10.addWidget(self.label_course_3)
-        self.chooseCourse_3 = QtWidgets.QComboBox(self.horizontalLayoutWidget_10)
-        font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        self.chooseCourse_3.setFont(font)
-        self.chooseCourse_3.setStyleSheet("QComboBox {\n"
-"    border: 1px solid #dddff8;\n"
-"    border-radius: 6px;\n"
-"    padding: 2px 10px;\n"
-"    background-color: #ebedfb;\n"
-"    font: 14px;\n"
-"    color: #353fb0;\n"
-"    font: Helvetica;\n"
-"}\n"
-"\n"
-"QComboBox::drop-down {\n"
-"    width: 20px;\n"
-"    height: 20px;\n"
-"    subcontrol-origin: padding;\n"
-"    subcontrol-position: right;\n"
-"    border-left-width: 0px;\n"
-"    border-left-color: #dddff8;\n"
-"    border-left-style: solid;\n"
-"    border-top-right-radius: 6px;\n"
-"    border-bottom-right-radius: 6px;\n"
-"    background-color: #ebedfb;\n"
-"}\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"    image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);\n"
-"    width: 15px;  \n"
-"    height: 15px;\n"
-"}\n"
-"\n"
-"QComboBox::item {\n"
-"    background-color: #ebedfb;\n"
-"    color:  #353fb0;\n"
-"}\n"
-"\n"
-"")
-        self.chooseCourse_3.setObjectName("chooseCourse_3")
-        self.chooseCourse_3.addItem("")
-        self.chooseCourse_3.addItem("")
-        self.horizontalLayout_10.addWidget(self.chooseCourse_3)
-        self.horizontalLayout_10.setStretch(1, 1)
         self.label_appDetails = QtWidgets.QLabel(self.frame_5)
         self.label_appDetails.setGeometry(QtCore.QRect(10, 10, 281, 41))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(14)
         self.label_appDetails.setFont(font)
+        self.label_appDetails.setToolTipDuration(1)
         self.label_appDetails.setStyleSheet("color: #353fb0")
         self.label_appDetails.setObjectName("label_appDetails")
+        self.horizontalLayoutWidget_10 = QtWidgets.QWidget(self.frame_5)
+        self.horizontalLayoutWidget_10.setGeometry(QtCore.QRect(480, 10, 221, 121))
+        self.horizontalLayoutWidget_10.setObjectName("horizontalLayoutWidget_10")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.horizontalLayoutWidget_10)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_course_3 = QtWidgets.QLabel(self.horizontalLayoutWidget_10)
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.label_course_3.setFont(font)
+        self.label_course_3.setToolTipDuration(1)
+        self.label_course_3.setStyleSheet("color: #353fb0")
+        self.label_course_3.setObjectName("label_course_3")
+        self.verticalLayout.addWidget(self.label_course_3)
+        self.listWidget = QtWidgets.QListWidget(self.horizontalLayoutWidget_10)
+        self.listWidget.setToolTipDuration(1)
+        self.listWidget.setStyleSheet("QListWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border: 1px solid #dddff8;\n"
+"    font: Helvetica;\n"
+"    color: #353fb0;\n"
+"    border-radius: 8px;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected {\n"
+"    background-color:  #ebedfb; /* Background color of selected item */\n"
+"    color: #353fb0;\n"
+"}\n"
+"\n"
+"QListWidget::item:hover {\n"
+"    background-color: #dddff8; /* Background color on hover */\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    color: #dddff8;\n"
+"    font-weight: bold;\n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background-color:  #ebedfb;\n"
+"    width: 12px;\n"
+"    margin: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    background-color: #cdd1f5;\n"
+"    border-radius: 6px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
+"    background-color: #dddff8;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical {\n"
+"    height: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
+"    background-color: none;\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"    border: none;\n"
+"    background-color:  #ebedfb;\n"
+"    height: 12px;\n"
+"    margin: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    background-color: #cdd1f5;\n"
+"    border-radius: 6px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal:hover {\n"
+"    background-color: #b5d8f0;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal,\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    width: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:horizontal,\n"
+"QScrollBar::sub-page:horizontal {\n"
+"    background-color: none;\n"
+"}\n"
+"")
+        self.listWidget.setObjectName("listWidget")
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtWidgets.QListWidgetItem()
+        self.listWidget.addItem(item)
+        self.verticalLayout.addWidget(self.listWidget)
         self.addAppButton = QtWidgets.QPushButton(self.infoFrame)
         self.addAppButton.setGeometry(QtCore.QRect(290, 420, 161, 41))
         font = QtGui.QFont()
@@ -1335,6 +1436,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.addAppButton.setFont(font)
+        self.addAppButton.setToolTipDuration(1)
         self.addAppButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
@@ -1367,6 +1469,7 @@ class Ui_MainWindow(object):
         font.setItalic(False)
         font.setWeight(75)
         self.ServicesButton.setFont(font)
+        self.ServicesButton.setToolTipDuration(1)
         self.ServicesButton.setStyleSheet("QPushButton {\n"
 "    background-color: #929ae9;\n"
 "    border-style: outset;\n"
@@ -1394,6 +1497,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.PSSpage)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setToolTipDuration(1)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
@@ -1442,14 +1546,26 @@ class Ui_MainWindow(object):
         self.chooseAvailType.setCurrentText(_translate("MainWindow", "rwe"))
         self.chooseAvailType.setItemText(0, _translate("MainWindow", "rwe"))
         self.chooseAvailType.setItemText(1, _translate("MainWindow", "fewf"))
-        self.label_staturs.setText(_translate("MainWindow", "Status:"))
+        self.label_status.setText(_translate("MainWindow", "Status:"))
         self.chooseStatus.setCurrentText(_translate("MainWindow", "rwe"))
         self.chooseStatus.setItemText(0, _translate("MainWindow", "rwe"))
         self.chooseStatus.setItemText(1, _translate("MainWindow", "fewf"))
-        self.label_course_3.setText(_translate("MainWindow", "Avail Service:"))
-        self.chooseCourse_3.setCurrentText(_translate("MainWindow", "rwe"))
-        self.chooseCourse_3.setItemText(0, _translate("MainWindow", "rwe"))
-        self.chooseCourse_3.setItemText(1, _translate("MainWindow", "fewf"))
         self.label_appDetails.setText(_translate("MainWindow", "Appointment Details"))
+        self.label_course_3.setText(_translate("MainWindow", "Avail Service:"))
+        __sortingEnabled = self.listWidget.isSortingEnabled()
+        self.listWidget.setSortingEnabled(False)
+        item = self.listWidget.item(0)
+        item.setText(_translate("MainWindow", "a"))
+        item = self.listWidget.item(1)
+        item.setText(_translate("MainWindow", "d"))
+        item = self.listWidget.item(2)
+        item.setText(_translate("MainWindow", "s"))
+        item = self.listWidget.item(3)
+        item.setText(_translate("MainWindow", "d"))
+        item = self.listWidget.item(4)
+        item.setText(_translate("MainWindow", "f"))
+        item = self.listWidget.item(5)
+        item.setText(_translate("MainWindow", "New Item"))
+        self.listWidget.setSortingEnabled(__sortingEnabled)
         self.addAppButton.setText(_translate("MainWindow", "Add Appointment"))
         self.ServicesButton.setText(_translate("MainWindow", "Services"))
