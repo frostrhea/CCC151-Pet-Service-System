@@ -1,0 +1,2170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1165</width>
+    <height>670</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #f9f9fe</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1161</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QStackedWidget {
+    background-color:  #dddff8;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 14px;
+    border-color: beige;
+
+
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>2</number>
+    </property>
+    <widget class="QWidget" name="AppHistorypage">
+     <widget class="QFrame" name="frame_6">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>1131</width>
+        <height>621</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color:  #dddff8;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 14px;
+    border-color: beige;
+
+
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="backPetServiceButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 4em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="historyTable">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>100</y>
+         <width>1111</width>
+         <height>471</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableView {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #cce4f5;
+	font: Helvetica;
+	color: #006fbe;
+	border-radius: 8px;
+}
+
+QTableView::item:selected {
+    background-color: #b5d8f0; /* Background color of selected item */
+
+}
+
+QHeaderView::section {
+	color: #006fbe;
+    font-weight: bold; 
+}
+
+QScrollBar:vertical {
+    border: none;
+    background-color: #e2eff9;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background-color: none;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background-color: #e2eff9;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background-color: none;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="deleteAppButton">
+       <property name="geometry">
+        <rect>
+         <x>1010</x>
+         <y>580</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 4em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>800</x>
+         <y>66</y>
+         <width>318</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_14">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="searchInputApp">
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>  Search student...</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="searchAppButton">
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 6em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QLabel" name="label_AppHistory">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>60</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #353fb0</string>
+       </property>
+       <property name="text">
+        <string>Appointment History</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page">
+     <widget class="QFrame" name="frame_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>1131</width>
+        <height>621</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color:  #dddff8;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 14px;
+    border-color: beige;
+
+
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="backPetServiceButton_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>81</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 4em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Back</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="serviceTable">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>100</y>
+         <width>751</width>
+         <height>471</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableView {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #cce4f5;
+	font: Helvetica;
+	color: #006fbe;
+	border-radius: 8px;
+}
+
+QTableView::item:selected {
+    background-color: #b5d8f0; /* Background color of selected item */
+
+}
+
+QHeaderView::section {
+	color: #006fbe;
+    font-weight: bold; 
+}
+
+QScrollBar:vertical {
+    border: none;
+    background-color: #e2eff9;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background-color: none;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background-color: #e2eff9;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background-color: none;
+}
+</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="deleteServButton">
+       <property name="geometry">
+        <rect>
+         <x>1010</x>
+         <y>580</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 4em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>800</x>
+         <y>70</y>
+         <width>318</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_15">
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item>
+         <widget class="QLineEdit" name="searchInputService">
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <weight>50</weight>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>  Search service...</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="searchServiceButton">
+          <property name="font">
+           <font>
+            <pointsize>-1</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 6em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+          </property>
+          <property name="text">
+           <string>Search</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QFrame" name="frame_8">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>100</y>
+         <width>341</width>
+         <height>471</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame {
+    background-color:  #f9f9fe;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 12px;
+    border-color: beige;
+	padding: 4px;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QPushButton" name="addAppButton_2">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>200</y>
+          <width>144</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 8em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+        </property>
+        <property name="text">
+         <string>Add Service</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>100</y>
+          <width>281</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_12">
+         <property name="spacing">
+          <number>36</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_servID">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>ID:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterservIDName">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter service ID</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_11">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>140</y>
+          <width>281</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_Sname">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterSName">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter name of service</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_service">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>40</y>
+          <width>131</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>18</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #353fb0</string>
+        </property>
+        <property name="text">
+         <string>Services</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="PSSpage">
+     <widget class="QFrame" name="pendingTabFrame">
+      <property name="geometry">
+       <rect>
+        <x>780</x>
+        <y>40</y>
+        <width>371</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color:  #dddff8;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 14px;
+    border-color: beige;
+
+
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="deletePendingAppButton">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>560</y>
+         <width>111</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 4em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Delete</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_ownerInfo_3">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>0</y>
+         <width>131</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #353fb0</string>
+       </property>
+       <property name="text">
+        <string>Pending Tab</string>
+       </property>
+      </widget>
+      <widget class="QTableView" name="StudentTable">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>40</y>
+         <width>351</width>
+         <height>511</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Helvetica</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTableView {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #cce4f5;
+	font: Helvetica;
+	color: #006fbe;
+	border-radius: 8px;
+}
+
+QTableView::item:selected {
+    background-color: #b5d8f0; /* Background color of selected item */
+
+}
+
+QHeaderView::section {
+	color: #006fbe;
+    font-weight: bold; 
+}
+
+QScrollBar:vertical {
+    border: none;
+    background-color: #e2eff9;
+    width: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background-color: none;
+}
+
+QScrollBar:horizontal {
+    border: none;
+    background-color: #e2eff9;
+    height: 12px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #b5d8f0;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #b5d8f0;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+QScrollBar::add-page:horizontal,
+QScrollBar::sub-page:horizontal {
+    background-color: none;
+}
+</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="historyButton">
+      <property name="geometry">
+       <rect>
+        <x>590</x>
+        <y>80</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #929ae9;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 8em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+      </property>
+      <property name="text">
+       <string>History</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_StudentInformation">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>80</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Helvetica</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: #353fb0</string>
+      </property>
+      <property name="text">
+       <string>Pet Service System</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="infoFrame">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>751</width>
+        <height>491</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QFrame {
+    background-color:  #dddff8;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 14px;
+    border-color: beige;
+
+
+}</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QFrame" name="frame">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>351</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame {
+    background-color:  #f9f9fe;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 12px;
+    border-color: beige;
+	padding: 4px;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QWidget" name="horizontalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>60</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>36</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_Pname">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterPName">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter name of pet</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>100</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="spacing">
+          <number>20</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_species">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Species:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterSpecies">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter species of pet</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>140</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <property name="spacing">
+          <number>35</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_breed">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0
+</string>
+           </property>
+           <property name="text">
+            <string>Breed:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterBreed">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter species of pet</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_petInfo">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>291</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #353fb0</string>
+        </property>
+        <property name="text">
+         <string>Pet Information</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frame_2">
+       <property name="geometry">
+        <rect>
+         <x>390</x>
+         <y>30</y>
+         <width>341</width>
+         <height>201</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame {
+    background-color:  #f9f9fe;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 12px;
+    border-color: beige;
+	padding: 4px;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QLabel" name="label_ownerInfo">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>281</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #353fb0</string>
+        </property>
+        <property name="text">
+         <string>Owner Information</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>70</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>36</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_Pname_2">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterOName">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter name of owner</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_5">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="spacing">
+          <number>10</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_Pname_3">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Phone Number:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="enterOName_2">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: white;
+	font: 14px;
+	color: #353fb0;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>  Enter phone number</string>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QFrame" name="frame_5">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>250</y>
+         <width>711</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QFrame {
+    background-color:  #f9f9fe;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 12px;
+    border-color: beige;
+	padding: 4px;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QWidget" name="horizontalLayoutWidget_6">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>174</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_date">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Date:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDateEdit" name="dateEdit">
+           <property name="styleSheet">
+            <string notr="true">QDateEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+    background-color: white;
+    font: 14px;
+    color: #353fb0;
+}
+
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 20px;
+    border-left: 1px solid #dddff8;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #f6faff,
+                                stop:1 #e9f1fe);
+    margin-right: 2px;
+}
+
+QDateEdit::down-arrow {
+    image: url(path/to/down_arrow_icon.png); #need change
+    width: 16px;
+    height: 16px;
+}
+
+
+
+
+
+</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_7">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>171</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_date_2">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Time:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTimeEdit" name="timeEdit">
+           <property name="styleSheet">
+            <string notr="true">QTimeEdit {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+    background-color: white;
+    font: 14px;
+    color: #353fb0;
+}
+
+QTimeEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 20px;
+    border-left: 1px solid #dddff8;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #f6faff,
+                                stop:1 #e9f1fe);
+    margin-right: 2px;
+}
+
+QTimeEdit::down-arrow {
+    image: url(path/to/down_arrow_icon.png);
+    width: 16px;
+    height: 16px;
+}
+
+QTimeEdit::down-arrow:hover {
+    image: url(path/to/down_arrow_icon_hover.png);
+}</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_8">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>50</y>
+          <width>241</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,1">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_availType">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Avail Type:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="chooseAvailType">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #ebedfb;
+	font: 14px;
+	color: #353fb0;
+	font: Helvetica;
+}
+
+QComboBox::drop-down {
+    width: 20px;
+    height: 20px;
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    border-left-width: 0px;
+    border-left-color: #dddff8;
+    border-left-style: solid;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #ebedfb;
+}
+
+QComboBox::down-arrow {
+	image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);
+	width: 15px;  
+    height: 15px;
+}
+
+QComboBox::item {
+    background-color: #ebedfb;
+	color:  #353fb0;
+}
+
+</string>
+           </property>
+           <property name="currentText">
+            <string>rwe</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>rwe</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fewf</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_9">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>50</y>
+          <width>211</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,1">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_staturs">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Status:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="chooseStatus">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #ebedfb;
+	font: 14px;
+	color: #353fb0;
+	font: Helvetica;
+}
+
+QComboBox::drop-down {
+    width: 20px;
+    height: 20px;
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    border-left-width: 0px;
+    border-left-color: #dddff8;
+    border-left-style: solid;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #ebedfb;
+}
+
+QComboBox::down-arrow {
+	image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);
+	width: 15px;  
+    height: 15px;
+}
+
+QComboBox::item {
+    background-color: #ebedfb;
+	color:  #353fb0;
+}
+
+</string>
+           </property>
+           <property name="currentText">
+            <string>rwe</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>rwe</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fewf</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_10">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>90</y>
+          <width>391</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="0,1">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_course_3">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Avail Service:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="chooseCourse_3">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #ebedfb;
+	font: 14px;
+	color: #353fb0;
+	font: Helvetica;
+}
+
+QComboBox::drop-down {
+    width: 20px;
+    height: 20px;
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    border-left-width: 0px;
+    border-left-color: #dddff8;
+    border-left-style: solid;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #ebedfb;
+}
+
+QComboBox::down-arrow {
+	image: url(D:/Documents/codes/python/CCC151-V1 Simple-Student-Information-System/down-arrow.png);
+	width: 15px;  
+    height: 15px;
+}
+
+QComboBox::item {
+    background-color: #ebedfb;
+	color:  #353fb0;
+}
+
+</string>
+           </property>
+           <property name="currentText">
+            <string>rwe</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>rwe</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fewf</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_appDetails">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>281</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Helvetica</family>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #353fb0</string>
+        </property>
+        <property name="text">
+         <string>Appointment Details</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="addAppButton">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>420</y>
+         <width>161</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color:  #7780e4;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 8em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+       </property>
+       <property name="text">
+        <string>Add Appointment</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="ServicesButton">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>80</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>-1</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: #929ae9;
+    border-style: outset;
+    border-width: 0px;
+    border-radius: 8px;
+    border-color: beige;
+    font: bold 14px;
+	color: white;
+    min-width: 8em;
+    padding: 4px;
+}
+
+QPushButton:pressed {
+    background-color: #525edc;
+    border-style: inset;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+QPushButton:hover {
+    background-color: #525edc;
+    border-style: outset;
+}</string>
+      </property>
+      <property name="text">
+       <string>Services</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>historyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>stackedWidget</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>648</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>365</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
