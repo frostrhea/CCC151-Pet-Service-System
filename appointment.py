@@ -268,7 +268,7 @@ class Appointment:
         #generate appointmentID
         id = self.generateID() #?
 
-        petObject.addPet(petID, petName, petSpecies, petBreed)
+        petObject.addPet(petID, petName, petSpecies, petBreed, ownerID)
         ownerObject.addOwner(ownerID, ownerName, phoneNum)
 
         #if inserted blank values
