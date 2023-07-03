@@ -312,7 +312,7 @@ class Appointment:
 
         #loop display service names by appointment ID
         #servappObject.displayServiceByAppointment(id)
-        
+
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
         self.cursor.execute(query, values)
@@ -422,7 +422,7 @@ class Appointment_Service:
         print("Appointment Service added.")
 
     #loop display service name by appointmentID
-    def displayAppointment_Service (self, appointmentID):
+    def displayServiceByAppointment (self, appointmentID):
         query = "SELECT tblservice.name FROM tblservice INNER JOIN tblappointment_service ON tblservice.serviceID = tblappointment_service.serviceID WHERE tblappointment_service.appointmentID = %s"
         values = (appointmentID)
         self.cursor.execute(query, values)
