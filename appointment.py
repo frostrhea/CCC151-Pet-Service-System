@@ -264,15 +264,19 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, id, date, time, availType, status, petID, ownerID):
+    def addAppointment (self, id, date, time, availType, status, petID, petName, petSpecies, petBreed, ownerID, ownerName, phoneNum):
         #generate appointmentID
         id = self.generateID() #?
+
+        petObject.addPet(petID, petName, petSpecies, petBreed)
+        ownerObject.addOwner(ownerID, ownerName, phoneNum)
 
         #if inserted blank values
         if petID == '':
             petID = petObject.generateID()
         if ownerID == '':
             ownerID = ownerObject.generateID()
+
 
         #if ownerID and petID does not exists
         if petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID) == False:
@@ -305,8 +309,8 @@ class Appointment:
             self.cursor.execute(query, values)
             connection.commit()
         
-        #if ownerID does not exists but petObjectID exists
-        elif petObject.checkPetID(petID) & ownerObject.checkOwnerID(ownerID) == False:
+        #if ownerID does not exists but petID exists
+        elif petobj.checkPetID(petID) & ownerobj.checkOwnerID(ownerID) == False:
             # generate serviceID
             idOwner = ownerObject.generateID()
             ownerID = idOwner
@@ -429,5 +433,6 @@ class Appointment_Service:
         print("Appointment Service added.")
 
 #new
-petObject = Pet()
-ownerObject = Owner()
+
+ownerobj = Owner()
+petobj = Pet()
