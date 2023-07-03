@@ -264,9 +264,12 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, id, date, time, availType, status, petID, ownerID):
+    def addAppointment (self, id, date, time, availType, status, petID, petName, petSpecies, petBreed, ownerID, ownerName, phoneNum):
         #generate appointmentID
         id = self.generateID() #?
+
+        petObject.addPet(petID, petName, petSpecies, petBreed)
+        ownerObject.addOwner(ownerID, ownerName, phoneNum)
 
         #if inserted blank values
         if petID == '':
@@ -274,10 +277,6 @@ class Appointment:
         if ownerID == '':
             ownerID = ownerObject.generateID()
 
-        query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        values = (id, date, time, availType, status, petID, ownerID)
-        self.cursor.execute(query, values)
-        connection.commit()
 
         #if ownerID and petID does not exists
         if petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID) == False:
@@ -325,6 +324,10 @@ class Appointment:
         else:
             pass
 
+        query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        values = (id, date, time, availType, status, petID, ownerID)
+        self.cursor.execute(query, values)
+        connection.commit()
         print("Appointment added.")
 
     #delete (delete information then delete from appHistory)
