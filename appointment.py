@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="0927867Frosty",
+        password="gag0p1n4s",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -51,13 +51,16 @@ class Owner:
         return False
     
     #add 
-    def addOwner (self, id, name, phoneNum):
+    def addOwner (self, name, phoneNum):
         id = self.generateID() #?
-        query = "INSERT INTO tblowner (ownerID, name, phoneNum) VALUES (%s, %s, %s)"
+  
+        query = "INSERT INTO tblowner (ownerID, name, phoneNumber) VALUES (%s, %s, %s)"
         values = (id, name, phoneNum)
         self.cursor.execute(query, values)
         connection.commit()
         print("Owner added.")
+
+        return id
     
 
     #delete
@@ -123,15 +126,19 @@ class Pet:
         if self.cursor.fetchone:
                 return True
         return False
-    
+
+
     #add
-    def addPet (self, id, name, species, breed, ownerID):
+    def addPet (self, name, species, breed, ownerID):
         id = self.generateID() #?
+    
         query = "INSERT INTO tblpet (petID, name, species, breed, ownerID) VALUES (%s, %s, %s, %s, %s)"
         values = (id, name, species, breed, ownerID)
         self.cursor.execute(query, values)
         connection.commit()
         print("Pet added.")
+
+        return id
 
     #delete
     def deletePet (self, id):
@@ -198,13 +205,15 @@ class Service:
         return False
     
     #add
-    def addService (self, id, name, cost): 
+    def addService (self, name, cost): 
         id = self.generateID() #?
         query = "INSERT INTO tblservice (serviceID, name, cost) VALUES (%s, %s, %s)"
         values = (id, name, cost)
         self.cursor.execute(query, values)
         connection.commit()
         print("Service added.")
+        return id
+
 
     #delete
     def deleteService (self, id):
@@ -227,7 +236,7 @@ class Service:
         self.cursor.execute("SELECT * FROM tblservice")
         result = self.cursor.fetchall()
         for x in result:
-            print(x)
+            print(x)  
 
     #search
     def searchService (self, id):
@@ -244,6 +253,21 @@ class Service:
         result = self.cursor.fetchall()
         return result
     
+    #return service cost
+    def returnCost (self, id):
+        query = "SELECT cost FROM tblservice WHERE serviceID = %s"
+        values = (id)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
+    
+    #return service id when given service name
+    def returnID (self, name):
+        query = "SELECT serviceID FROM tblservice WHERE name = %s"
+        values = (name)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
 
 class Appointment:
 
@@ -264,65 +288,30 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, id, date, time, availType, status, petID, petName, petSpecies, petBreed, ownerID, ownerName, phoneNum):
+    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceName):
         #generate appointmentID
         id = self.generateID() #?
-
-        petObject.addPet(petID, petName, petSpecies, petBreed, ownerID)
-        ownerObject.addOwner(ownerID, ownerName, phoneNum)
-
-        #if inserted blank values
-        if petID == '':
-            petID = petObject.generateID()
-        if ownerID == '':
-            ownerID = ownerObject.generateID()
-
-
-        #if ownerID and petID does not exists
-        if petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID) == False:
-            # generate petID
-            idPet = petObject.generateID()
-            petID = idPet
-            # insert idPet to tblpet petID
-            query = "INSERT INTO tblpet (petID) VALUES (%s)"
-            values = (petID)
-            self.cursor.execute(query, values)
-            connection.commit() 
-
-            # generate serviceID
-            idOwner = ownerObject.generateID()
-            ownerID = idOwner
-            # insert idService to tblservice serviceID
-            query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
-            values = (ownerID)
-            self.cursor.execute(query, values)
-            connection.commit()
-
-        #if ownerID exists but petID does not exists
-        elif petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID):
-            # generate petID
-            idPet = petObject.generateID()
-            petID = idPet
-            # insert idPet to tblpet petID
-            query = "INSERT INTO tblpet (petID) VALUES (%s)"
-            values = (petID)
-            self.cursor.execute(query, values)
-            connection.commit()
         
-        #if ownerID does not exists but petID exists
-        elif petobj.checkPetID(petID) & ownerobj.checkOwnerID(ownerID) == False:
-            # generate serviceID
-            idOwner = ownerObject.generateID()
-            ownerID = idOwner
-            # insert idService to tblservice serviceID
-            query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
-            values = (ownerID)
+        #add owner and pet; retrieve ownerID and petID
+        ownerID = ownerObject.addOwner(ownerName, phoneNum)
+        petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+
+        #get serviceID
+        serviceIDs = []
+        for serviceName in serviceName:
+            serviceID = serviceObject.returnID(serviceName)
+            serviceIDs.append(serviceID)
+
+        #add to tblappointment_service
+        for x in serviceID:
+            query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
+            values = (id, x)
             self.cursor.execute(query, values)
             connection.commit()
+            print("Appointment_Service added.")
 
-        #if ownerID and petID exists
-        else:
-            pass
+        #loop display service names by appointment ID
+        #servappObject.displayServiceByAppointment(id)
 
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
@@ -432,7 +421,15 @@ class Appointment_Service:
         connection.commit()
         print("Appointment Service added.")
 
+    #loop display service name by appointmentID
+    def displayServiceByAppointment (self, appointmentID):
+        query = "SELECT tblservice.name FROM tblservice INNER JOIN tblappointment_service ON tblservice.serviceID = tblappointment_service.serviceID WHERE tblappointment_service.appointmentID = %s"
+        values = (appointmentID)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
 
-
-ownerobj = Owner()
-petobj = Pet()
+ownerObject = Owner()
+petObject = Pet()
+serviceObject = Service()
+servappObject = Appointment_Service()
