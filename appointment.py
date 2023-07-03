@@ -270,14 +270,19 @@ class Appointment:
 
         #if inserted blank values
         if petID == '':
-            petID = Pet.generateID()
+            petID = petobj.generateID()
         if ownerID == '':
-            ownerID = Owner.generateID()
+            ownerID = ownerobj.generateID()
 
+        query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+        values = (id, date, time, availType, status, petID, ownerID)
+        self.cursor.execute(query, values)
+        connection.commit()
+        
         #if ownerID and petID does not exists
-        if Pet.checkPetID(petID) == False & Owner.checkOwnerID(ownerID) == False:
+        if petobj.checkPetID(petID) == False & ownerobj.checkOwnerID(ownerID) == False:
             # generate petID
-            idPet = Pet.generateID()
+            idPet = petobj.generateID()
             petID = idPet
             # insert idPet to tblpet petID
             query = "INSERT INTO tblpet (petID) VALUES (%s)"
@@ -286,7 +291,7 @@ class Appointment:
             connection.commit() 
 
             # generate serviceID
-            idOwner = Owner.generateID()
+            idOwner = ownerobj.generateID()
             ownerID = idOwner
             # insert idService to tblservice serviceID
             query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
@@ -295,9 +300,9 @@ class Appointment:
             connection.commit()
 
         #if ownerID exists but petID does not exists
-        elif Pet.checkPetID(petID) == False & Owner.checkOwnerID(ownerID):
+        elif petobj.checkPetID(petID) == False & ownerobj.checkOwnerID(ownerID):
             # generate petID
-            idPet = Pet.generateID()
+            idPet = petobj.generateID()
             petID = idPet
             # insert idPet to tblpet petID
             query = "INSERT INTO tblpet (petID) VALUES (%s)"
@@ -306,9 +311,9 @@ class Appointment:
             connection.commit()
         
         #if ownerID does not exists but petID exists
-        elif Pet.checkPetID(petID) & Owner.checkOwnerID(ownerID) == False:
+        elif petobj.checkPetID(petID) & ownerobj.checkOwnerID(ownerID) == False:
             # generate serviceID
-            idOwner = Owner.generateID()
+            idOwner = ownerobj.generateID()
             ownerID = idOwner
             # insert idService to tblservice serviceID
             query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
@@ -320,10 +325,6 @@ class Appointment:
         else:
             pass
 
-        query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        values = (id, date, time, availType, status, petID, ownerID)
-        self.cursor.execute(query, values)
-        connection.commit()
         print("Appointment added.")
 
     #delete (delete information then delete from appHistory)
@@ -429,3 +430,6 @@ class Appointment_Service:
         print("Appointment Service added.")
 
 #new
+
+ownerobj = Owner()
+petobj = Pet()
