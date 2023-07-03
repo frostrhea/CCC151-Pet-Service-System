@@ -347,7 +347,7 @@ class Ui_MainWindow(object):
 "    border: 1px solid #cce4f5;\n"
 "    font: Helvetica;\n"
 "    color: #353fb0;\n"
-"    border-radius: 8px;\n"
+"    border-radius: 12px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
@@ -725,9 +725,9 @@ class Ui_MainWindow(object):
 "                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
 "    border-top-left-radius: 6px;\n"
 "    border-top-right-radius: 6px;\n"
-"    width: 187px;\n"
+"    width: 195px;\n"
 "    min-width: 10ex;\n"
-"    padding: 8px;\n"
+"    padding: 4px;\n"
 "    background-color: #7780e4;\n"
 "    color: white;\n"
 "    font: Bold 14px;\n"
@@ -1155,7 +1155,7 @@ class Ui_MainWindow(object):
         self.label_StudentInformation.setStyleSheet("color: #353fb0")
         self.label_StudentInformation.setObjectName("label_StudentInformation")
         self.infoFrame = QtWidgets.QFrame(self.PSSpage)
-        self.infoFrame.setGeometry(QtCore.QRect(20, 130, 751, 491))
+        self.infoFrame.setGeometry(QtCore.QRect(20, 130, 751, 511))
         self.infoFrame.setToolTipDuration(1)
         self.infoFrame.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
@@ -1397,7 +1397,7 @@ class Ui_MainWindow(object):
         self.enterOName_2.setObjectName("enterOName_2")
         self.horizontalLayout_5.addWidget(self.enterOName_2)
         self.frame_5 = QtWidgets.QFrame(self.infoFrame)
-        self.frame_5.setGeometry(QtCore.QRect(20, 250, 711, 151))
+        self.frame_5.setGeometry(QtCore.QRect(20, 250, 711, 181))
         self.frame_5.setToolTipDuration(1)
         self.frame_5.setStyleSheet("QFrame {\n"
 "    background-color:  #f9f9fe;\n"
@@ -1411,7 +1411,7 @@ class Ui_MainWindow(object):
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
         self.horizontalLayoutWidget_6 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_6.setGeometry(QtCore.QRect(20, 50, 174, 41))
+        self.horizontalLayoutWidget_6.setGeometry(QtCore.QRect(20, 60, 174, 41))
         self.horizontalLayoutWidget_6.setObjectName("horizontalLayoutWidget_6")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_6)
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -1465,7 +1465,7 @@ class Ui_MainWindow(object):
         self.dateEdit.setObjectName("dateEdit")
         self.horizontalLayout_6.addWidget(self.dateEdit)
         self.horizontalLayoutWidget_7 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_7.setGeometry(QtCore.QRect(20, 90, 171, 41))
+        self.horizontalLayoutWidget_7.setGeometry(QtCore.QRect(20, 100, 171, 41))
         self.horizontalLayoutWidget_7.setObjectName("horizontalLayoutWidget_7")
         self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_7)
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
@@ -1517,7 +1517,7 @@ class Ui_MainWindow(object):
         self.timeEdit.setObjectName("timeEdit")
         self.horizontalLayout_7.addWidget(self.timeEdit)
         self.horizontalLayoutWidget_8 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(210, 50, 261, 41))
+        self.horizontalLayoutWidget_8.setGeometry(QtCore.QRect(210, 60, 261, 41))
         self.horizontalLayoutWidget_8.setObjectName("horizontalLayoutWidget_8")
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_8)
         self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
@@ -1581,7 +1581,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_8.addWidget(self.chooseAvailType)
         self.horizontalLayout_8.setStretch(1, 1)
         self.horizontalLayoutWidget_9 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(210, 90, 261, 41))
+        self.horizontalLayoutWidget_9.setGeometry(QtCore.QRect(210, 100, 261, 41))
         self.horizontalLayoutWidget_9.setObjectName("horizontalLayoutWidget_9")
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_9)
         self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
@@ -1654,24 +1654,24 @@ class Ui_MainWindow(object):
         self.label_appDetails.setStyleSheet("color: #353fb0")
         self.label_appDetails.setObjectName("label_appDetails")
         self.horizontalLayoutWidget_10 = QtWidgets.QWidget(self.frame_5)
-        self.horizontalLayoutWidget_10.setGeometry(QtCore.QRect(480, 10, 221, 121))
+        self.horizontalLayoutWidget_10.setGeometry(QtCore.QRect(480, 10, 221, 161))
         self.horizontalLayoutWidget_10.setObjectName("horizontalLayoutWidget_10")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.horizontalLayoutWidget_10)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label_course_3 = QtWidgets.QLabel(self.horizontalLayoutWidget_10)
+        self.label_availService = QtWidgets.QLabel(self.horizontalLayoutWidget_10)
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(10)
-        self.label_course_3.setFont(font)
-        self.label_course_3.setToolTipDuration(1)
-        self.label_course_3.setStyleSheet("color: #353fb0")
-        self.label_course_3.setObjectName("label_course_3")
-        self.verticalLayout.addWidget(self.label_course_3)
-        self.listWidget = QtWidgets.QListWidget(self.horizontalLayoutWidget_10)
-        self.listWidget.setToolTipDuration(1)
-        self.listWidget.setStyleSheet("QListWidget {\n"
+        self.label_availService.setFont(font)
+        self.label_availService.setToolTipDuration(1)
+        self.label_availService.setStyleSheet("color: #353fb0")
+        self.label_availService.setObjectName("label_availService")
+        self.verticalLayout.addWidget(self.label_availService)
+        self.serviceList = QtWidgets.QListWidget(self.horizontalLayoutWidget_10)
+        self.serviceList.setToolTipDuration(1)
+        self.serviceList.setStyleSheet("QListWidget {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #dddff8;\n"
 "    font: Helvetica;\n"
@@ -1745,22 +1745,22 @@ class Ui_MainWindow(object):
 "    background-color: none;\n"
 "}\n"
 "")
-        self.listWidget.setObjectName("listWidget")
+        self.serviceList.setObjectName("serviceList")
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.serviceList.addItem(item)
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.serviceList.addItem(item)
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.serviceList.addItem(item)
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.serviceList.addItem(item)
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
+        self.serviceList.addItem(item)
         item = QtWidgets.QListWidgetItem()
-        self.listWidget.addItem(item)
-        self.verticalLayout.addWidget(self.listWidget)
+        self.serviceList.addItem(item)
+        self.verticalLayout.addWidget(self.serviceList)
         self.addAppButton = QtWidgets.QPushButton(self.infoFrame)
-        self.addAppButton.setGeometry(QtCore.QRect(290, 420, 161, 41))
+        self.addAppButton.setGeometry(QtCore.QRect(280, 440, 161, 41))
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(True)
@@ -1833,7 +1833,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
         self.tabWidget.setCurrentIndex(1)
         self.historyButton.clicked.connect(self.stackedWidget.show) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -1892,21 +1892,21 @@ class Ui_MainWindow(object):
         self.chooseStatus.setItemText(0, _translate("MainWindow", "rwe"))
         self.chooseStatus.setItemText(1, _translate("MainWindow", "fewf"))
         self.label_appDetails.setText(_translate("MainWindow", "Appointment Details"))
-        self.label_course_3.setText(_translate("MainWindow", "Avail Service:"))
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        item = self.listWidget.item(0)
+        self.label_availService.setText(_translate("MainWindow", "Avail Service:"))
+        __sortingEnabled = self.serviceList.isSortingEnabled()
+        self.serviceList.setSortingEnabled(False)
+        item = self.serviceList.item(0)
         item.setText(_translate("MainWindow", "a"))
-        item = self.listWidget.item(1)
+        item = self.serviceList.item(1)
         item.setText(_translate("MainWindow", "d"))
-        item = self.listWidget.item(2)
+        item = self.serviceList.item(2)
         item.setText(_translate("MainWindow", "s"))
-        item = self.listWidget.item(3)
+        item = self.serviceList.item(3)
         item.setText(_translate("MainWindow", "d"))
-        item = self.listWidget.item(4)
+        item = self.serviceList.item(4)
         item.setText(_translate("MainWindow", "f"))
-        item = self.listWidget.item(5)
+        item = self.serviceList.item(5)
         item.setText(_translate("MainWindow", "New Item"))
-        self.listWidget.setSortingEnabled(__sortingEnabled)
+        self.serviceList.setSortingEnabled(__sortingEnabled)
         self.addAppButton.setText(_translate("MainWindow", "Add Appointment"))
         self.ServicesButton.setText(_translate("MainWindow", "Services"))

@@ -35,7 +35,7 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum):
+    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceNames):
         #generate appointmentID
         id = self.generateID() #?
 
@@ -124,7 +124,7 @@ class Owner:
     #delete
     def deleteOwner (self, id):
         query = "DELETE FROM tblowner WHERE ownerID = %s"
-        values = (id)
+        values = (id, )
         self.cursor.execute(query, values)
         connection.commit()
         print("Owner deleted.")
@@ -144,12 +144,15 @@ class Owner:
         return result
 
     #search
-    def searchOwner (self, id):
-        query = "SELECT * FROM tblowner WHERE ownerID = %s"
-        values = (id)
-        self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        return result
+    def searchOwner(self, value):
+        value = str(value).lower() + '%'
+        self.cursor.execute("SELECT * FROM tblowner WHERE LOWER(`ownerID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`phoneNumber`) LIKE %s", 
+                    (f"%{value}", f"%{value}", f"%{value}"))
+        searchResults = self.cursor.fetchall()
+        
+        for x in searchResults:
+            print(x)
+        return searchResults 
 
     #return Owner name
     def returnOwnerName (self, id):
@@ -206,7 +209,7 @@ class Pet:
     #delete
     def deletePet (self, id):
         query = "DELETE FROM tblpet WHERE petID = %s"
-        values = (id)
+        values = (id, )
         self.cursor.execute(query, values)
         connection.commit()
         print("Pet deleted.")
@@ -226,12 +229,15 @@ class Pet:
         return result
 
     #search
-    def searchPet (self, id):
-        query = "SELECT * FROM tblpet WHERE petID = %s"
-        values = (id)
-        self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        return result
+    def searchPet (self, value):
+        value = str(value).lower() + '%'
+        self.cursor.execute("SELECT * FROM tblpet WHERE LOWER(`petID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`species`) LIKE %s OR LOWER(`breed`) LIKE %s OR LOWER(`ownerID`) LIKE %s", 
+                    (f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}"))
+        searchResults = self.cursor.fetchall()
+        
+        for x in searchResults:
+            print(x)
+        return searchResults
 
     #return pet name
     def returnPetName (self, id):

@@ -1,5 +1,6 @@
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5.QtWidgets import  QListWidgetItem, QAbstractItemView
 from petservice import Ui_MainWindow
 import systemClasses as classObject  #set file here
 
@@ -34,9 +35,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setAvailTypeSelection()
         self.setStatusSelection()
         self.setServiceSelection()
+        self.gui_pet.serviceList.setSelectionMode(QAbstractItemView.ExtendedSelection)
         
         self.gui_pet.addAppButton.clicked.connect(self.add_appointment_button_clicked)
         self.gui_pet.deleteAppButton.clicked.connect(self.delete_appointment_row)
+        
+        #INFORMATION TAB
+        self.gui_pet.deletePetButton.clicked.connect(self.delete_pet_row)
+        self.gui_pet.deleteOwnerButton.clicked.connect(self.delete_owner_row)
+        self.gui_pet.searchPetButton.clicked.connect(self.search_pet_button_clicked)
+        self.gui_pet.searchOwnerButton.clicked.connect(self.search_owner_button_clicked)
         
     
     def history_button_clicked(self):
@@ -139,12 +147,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.chooseStatus.addItems(self.appObject.status) 
     
     def setServiceSelection(self):
-        self.gui_pet.listWidget.clear()
-        self.gui_pet.listWidget.addItems(self.servObject.returnServiceNames()) 
+        self.gui_pet.serviceList.clear()
+        self.gui_pet.serviceList.addItems(self.servObject.returnServiceNames()) 
         
     def handle_service_selection(self):
         selected_items = []
-        for item in self.listWidget.selectedItems():
+        for item in self.gui_pet.serviceList.selectedItems():
             selected_items.append(item.text())
       
     #SERVICE PAGE ---------------------------------------------------------------------------------------- 
@@ -221,7 +229,12 @@ class MainWindow(QtWidgets.QMainWindow):
         app_availtype = self.gui_pet.chooseAvailType.currentText()
         app_status = self.gui_pet.chooseStatus.currentText()
         
-        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
+         # Get the selected service names
+        service_names = []
+        selected_items = self.gui_pet.serviceList.selectedItems()
+        for item in selected_items:
+            service_names.append(item.text())
+        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status, service_names, selected_items)
         
         self.setStandardItemModel()
         self.gui_ssis.historyTable.model().layoutChanged.emit()
@@ -232,7 +245,88 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_ssis.enterBreed.clear()
         self.gui_ssis.enterOName.clear()
         self.gui_ssis.enterOName_2.clear()
+      
+    def delete_appointment_row(self):
+        selected_rows = self.gui_pet.historyTable.currentIndex().row()
+        column_index = 0
+        appointment = self.gui_pet.historyTable.model().index(selected_rows, column_index).data()
+        reply = QtWidgets.QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this appointment?",
+                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.appObject.deleteAppointment(appointment)
+
+        self.historyModel = self.setSModel(self.appObject.returnAppointmentData(), self.historyModel)
+        self.setStandardItemModel()
+        self.gui_pet.historyTable.model().layoutChanged.emit()  
         
+        
+        # not done
+    def search_appointment_button_clicked(self):
+        search_appointment = self.gui_pet.searchInputApp.text()
+        SResults = self.servObject.searchAppointment(search_appointment)
+        if SResults:
+            self.clearModel(self.appModel)
+            self.appModel = self.setSModel(SResults, self.appModel)
+            self.appModel.setHorizontalHeaderLabels(self.appObject.columns)
+            self.gui_pet.historyTable.setModel(self.appModel)
+            self.adjustTableColumns(self.gui_pet.historyTable)
+            self.gui_pet.historyTable.model().layoutChanged.emit()
+        else:
+            QtWidgets.QMessageBox.information(self, "No Results", f"No results found for appointment'{search_appointment}'.")
+
+
+    #INFORMATION TAB --------------------------------------------------------------------------------
+    def delete_pet_row(self):
+        selected_rows = self.gui_pet.petTable.currentIndex().row()
+        column_index = 0
+        pet = self.gui_pet.petTable.model().index(selected_rows, column_index).data()
+        reply = QtWidgets.QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this pet?",
+                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.petObject.deletePet(pet)
+
+        self.historyModel = self.setSModel(self.petObject.returnPetData(), self.petModel)
+        self.setStandardItemModel()
+        self.gui_pet.petTable.model().layoutChanged.emit()  
+
+    def delete_owner_row(self):
+        selected_rows = self.gui_pet.ownerTable.currentIndex().row()
+        column_index = 0
+        owner = self.gui_pet.ownerTable.model().index(selected_rows, column_index).data()
+        reply = QtWidgets.QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this pet owner?",
+                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.ownerObject.deleteOwner(owner)
+
+        self.ownerModel = self.setSModel(self.ownerObject.returnOwnerData(), self.ownerModel)
+        self.setStandardItemModel()
+        self.gui_pet.ownerTable.model().layoutChanged.emit()  
+
+    def search_pet_button_clicked(self):
+        search_pet = self.gui_pet.searchInputPet.text()
+        SResults = self.petObject.searchPet(search_pet)
+        if SResults:
+            self.clearModel(self.petModel)
+            self.petModel = self.setSModel(SResults, self.petModel)
+            self.petModel.setHorizontalHeaderLabels(self.petObject.columns)
+            self.gui_pet.petTable.setModel(self.petModel)
+            self.adjustTableColumns(self.gui_pet.petTable)
+            self.gui_pet.petTable.model().layoutChanged.emit()
+        else:
+            QtWidgets.QMessageBox.information(self, "No Results", f"No results found for pet'{search_pet}'.")
+
+    def search_owner_button_clicked(self):
+        search_owner = self.gui_pet.searchInputOwner.text()
+        SResults = self.ownerObject.searchOwner(search_owner)
+        if SResults:
+            self.clearModel(self.ownerModel)
+            self.ownerModel = self.setSModel(SResults, self.ownerModel)
+            self.ownerModel.setHorizontalHeaderLabels(self.ownerObject.columns)
+            self.gui_pet.ownerTable.setModel(self.ownerModel)
+            self.adjustTableColumns(self.gui_pet.ownerTable)
+            self.gui_pet.ownerTable.model().layoutChanged.emit()
+        else:
+            QtWidgets.QMessageBox.information(self, "No Results", f"No results found for pet'{search_owner}'.")
 
 
 if __name__ == '__main__':
