@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="0927867Frosty",
+        password="gag0p1n4s",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -212,6 +212,8 @@ class Service:
         self.cursor.execute(query, values)
         connection.commit()
         print("Service added.")
+        return id
+
 
     #delete
     def deleteService (self, id):
@@ -251,6 +253,21 @@ class Service:
         result = self.cursor.fetchall()
         return result
     
+    #return service cost
+    def returnCost (self, id):
+        query = "SELECT cost FROM tblservice WHERE serviceID = %s"
+        values = (id)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
+    
+    #return service id when given service name
+    def returnID (self, name):
+        query = "SELECT serviceID FROM tblservice WHERE name = %s"
+        values = (name)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
 
 class Appointment:
 
@@ -271,13 +288,27 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum):
+    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceName):
         #generate appointmentID
         id = self.generateID() #?
-
-        ownerID =ownerObject.addOwner(ownerName, phoneNum)
-        petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
         
+        #add owner and pet; retrieve ownerID and petID
+        ownerID = ownerObject.addOwner(ownerName, phoneNum)
+        petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+
+        #get serviceID
+        serviceIDs = []
+        for serviceName in serviceName:
+            serviceID = serviceObject.returnID(serviceName)
+            serviceIDs.append(serviceID)
+
+        #add to tblappointment_service
+        for x in serviceID:
+            query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
+            values = (id, x)
+            self.cursor.execute(query, values)
+            connection.commit()
+            print("Appointment_Service added.")
 
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
@@ -391,3 +422,4 @@ class Appointment_Service:
 
 ownerObject = Owner()
 petObject = Pet()
+serviceObject = Service()
