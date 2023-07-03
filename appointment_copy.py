@@ -209,7 +209,7 @@ class Service:
     #delete
     def deleteService (self, id):
         query = "DELETE FROM tblservice WHERE serviceID = %s"
-        values = (id)
+        values = (id,)
         self.cursor.execute(query, values)
         connection.commit()
         print("Service deleted.")
@@ -230,12 +230,12 @@ class Service:
             print(x)
 
     #search
-    def searchService (self, id):
-        query = "SELECT * FROM tblservice WHERE serviceID = %s"
-        values = (id)
-        self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        for x in result:
+    def searchService (self, value):
+        value = str(value).lower() + '%'
+        self.cursor.execute("SELECT * FROM tblservice WHERE LOWER(`serviceID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`cost`)", 
+                    (f"%{value}", f"%{value}", f"%{value}"))
+        searchResults = self.cursor.fetchall()
+        for x in searchResults:
             print(x)
 
     #return service data

@@ -19,6 +19,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.ServicesButton.clicked.connect(self.service_button_clicked)
         self.gui_pet.backPetServiceButton.clicked.connect(self.back_button_clicked)
         self.gui_pet.backPetServiceButton_2.clicked.connect(self.back_button_clicked)
+        
+        self.gui_pet.addServiceButton.clicked.connect(self.add_service_button_clicked)
+        self.gui_pet.deleteServButton.clicked.connect(self.delete_service_row)
+        self.gui_pet.searchServiceButton.clicked.connect(self.search_service_button_clicked)
     
     def history_button_clicked(self):
         self.gui_pet.stackedWidget.setCurrentIndex(0)
@@ -51,9 +55,9 @@ class MainWindow(QtWidgets.QMainWindow):
         header = table.horizontalHeader()
         header.setSectionResizeMode(QtWidgets.QHeaderView.Interactive)
         if table == self.gui_pet.serviceTable: 
-                header.resizeSection(0, 180)  
-                header.resizeSection(1, 350)  
-                header.resizeSection(2, 200)  
+                header.resizeSection(0, 190)  
+                header.resizeSection(1, 390)  
+                header.resizeSection(2, 220)  
         elif table == self.gui_pet.historyTable:
                 header.resizeSection(0, 240)  
                 header.resizeSection(1, 459)  
@@ -77,6 +81,45 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.adjustTableColumns(self.gui_pet.serviceTable)
         #self.adjustTableColumns(self.gui_pet.CourseTable)
+        
+    def add_service_button_clicked(self):
+        service_id = self.gui_pet.enterservIDName.text()
+        service_name = self.gui_pet.enterSName.text()
+        service_cost = self.gui_pet.enterCost.text()
+        self.servObject.addService(service_id, service_name, service_cost)
+        
+        self.setStandardItemModel()
+        self.gui_pet.serviceTable.model().layoutChanged.emit()
+        self.gui_pet.enterservIDName.clear()
+        self.gui_pet.enterSName.clear()
+        self.gui_pet.enterCost.clear()
+        
+    def delete_service_row(self):
+        selected_rows = self.gui_pet.serviceTable.currentIndex().row()
+        column_index = 0
+        service = self.gui_pet.serviceTable.model().index(selected_rows, column_index).data()
+        reply = QtWidgets.QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this service?",
+                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+        if reply == QtWidgets.QMessageBox.Yes:
+            self.servObject.deleteService(service)
+
+        self.serviceModel = self.setSModel(self.servObject.returnService(), self.serviceModel)
+        self.setStandardItemModel()
+        self.gui_pet.serviceTable.model().layoutChanged.emit()
+
+    def search_service_button_clicked(self):
+        search_service = self.gui_pet.searchInputService.text()
+        SResults = self.servObject.searchService(search_service)
+        if SResults:
+            self.clearModel(self.serviceModel)
+            self.serviceModel = self.setSModel(SResults, self.serviceModel)
+            self.serviceModel.setHorizontalHeaderLabels(self.servObject.columns)
+            self.gui_pet.serviceTable.setModel(self.serviceModel)
+            self.adjustTableColumns(self.gui_pet.serviceTable)
+            self.gui_pet.serviceTable.model().layoutChanged.emit()
+        else:
+            QtWidgets.QMessageBox.information(self, "No Results", f"No results found for service '{search_service}'.")
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

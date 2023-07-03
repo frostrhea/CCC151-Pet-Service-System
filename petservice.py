@@ -14,22 +14,22 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1166, 670)
+        MainWindow.resize(1233, 676)
         MainWindow.setToolTipDuration(1)
-        MainWindow.setStyleSheet("background-color: #f9f9fe")
+        MainWindow.setStyleSheet("background-color: #f9f9fe;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setToolTipDuration(1)
         self.centralwidget.setObjectName("centralwidget")
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
-        self.stackedWidget.setGeometry(QtCore.QRect(0, 0, 1161, 661))
+        self.stackedWidget.setGeometry(QtCore.QRect(0, 0, 1231, 661))
         self.stackedWidget.setToolTipDuration(1)
         self.stackedWidget.setStyleSheet("QStackedWidget {\n"
-"    background-color:  #dddff8;\n"
+"    background-color:  #525edc;\n"
 "    border-style: outset;\n"
 "    border-width: 0px;\n"
 "    border-radius: 14px;\n"
 "    border-color: beige;\n"
-"\n"
+"    color:#525edc;\n"
 "\n"
 "}")
         self.stackedWidget.setObjectName("stackedWidget")
@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.AppHistorypage.setToolTipDuration(1)
         self.AppHistorypage.setObjectName("AppHistorypage")
         self.frame_6 = QtWidgets.QFrame(self.AppHistorypage)
-        self.frame_6.setGeometry(QtCore.QRect(20, 20, 1131, 621))
+        self.frame_6.setGeometry(QtCore.QRect(20, 20, 1201, 621))
         self.frame_6.setToolTipDuration(1)
         self.frame_6.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
@@ -91,7 +91,7 @@ class Ui_MainWindow(object):
         self.backPetServiceButton.setObjectName("backPetServiceButton")
         self.historyTable = QtWidgets.QTableView(self.frame_6)
         self.historyTable.setEnabled(True)
-        self.historyTable.setGeometry(QtCore.QRect(10, 100, 1111, 471))
+        self.historyTable.setGeometry(QtCore.QRect(10, 100, 1181, 471))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         self.historyTable.setFont(font)
@@ -100,34 +100,34 @@ class Ui_MainWindow(object):
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
 "    font: Helvetica;\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    border-radius: 8px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
-"    background-color: #b5d8f0; /* Background color of selected item */\n"
+"    background-color: #ebedfb; /* Background color of selected item */\n"
 "\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    font-weight: bold; \n"
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    width: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
@@ -142,18 +142,18 @@ class Ui_MainWindow(object):
 "\n"
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    height: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal,\n"
@@ -167,52 +167,25 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.historyTable.setObjectName("historyTable")
-        self.deleteAppButton = QtWidgets.QPushButton(self.frame_6)
-        self.deleteAppButton.setGeometry(QtCore.QRect(1010, 580, 111, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deleteAppButton.sizePolicy().hasHeightForWidth())
-        self.deleteAppButton.setSizePolicy(sizePolicy)
+        self.label_AppHistory = QtWidgets.QLabel(self.frame_6)
+        self.label_AppHistory.setGeometry(QtCore.QRect(20, 60, 281, 41))
         font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
-        self.deleteAppButton.setFont(font)
-        self.deleteAppButton.setToolTipDuration(1)
-        self.deleteAppButton.setStyleSheet("QPushButton {\n"
-"    background-color:  #7780e4;\n"
-"    border-style: outset;\n"
-"    border-width: 0px;\n"
-"    border-radius: 8px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    color: white;\n"
-"    min-width: 4em;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #525edc;\n"
-"    border-style: inset;\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #525edc;\n"
-"    border-style: outset;\n"
-"}")
-        self.deleteAppButton.setObjectName("deleteAppButton")
-        self.layoutWidget = QtWidgets.QWidget(self.frame_6)
-        self.layoutWidget.setGeometry(QtCore.QRect(800, 66, 318, 31))
-        self.layoutWidget.setObjectName("layoutWidget")
-        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.layoutWidget)
-        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
+        font.setFamily("Helvetica")
+        font.setPointSize(18)
+        self.label_AppHistory.setFont(font)
+        self.label_AppHistory.setToolTipDuration(1)
+        self.label_AppHistory.setStyleSheet("color: #353fb0")
+        self.label_AppHistory.setObjectName("label_AppHistory")
+        self.widget = QtWidgets.QWidget(self.frame_6)
+        self.widget.setGeometry(QtCore.QRect(760, 70, 431, 29))
+        self.widget.setObjectName("widget")
+        self.horizontalLayout_17 = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout_17.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_17.setObjectName("horizontalLayout_17")
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_14.setSpacing(10)
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        self.searchInputApp = QtWidgets.QLineEdit(self.layoutWidget)
+        self.searchInputApp = QtWidgets.QLineEdit(self.widget)
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(False)
@@ -233,7 +206,7 @@ class Ui_MainWindow(object):
         self.searchInputApp.setClearButtonEnabled(False)
         self.searchInputApp.setObjectName("searchInputApp")
         self.horizontalLayout_14.addWidget(self.searchInputApp)
-        self.searchAppButton = QtWidgets.QPushButton(self.layoutWidget)
+        self.searchAppButton = QtWidgets.QPushButton(self.widget)
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(True)
@@ -266,21 +239,51 @@ class Ui_MainWindow(object):
 "}")
         self.searchAppButton.setObjectName("searchAppButton")
         self.horizontalLayout_14.addWidget(self.searchAppButton)
-        self.label_AppHistory = QtWidgets.QLabel(self.frame_6)
-        self.label_AppHistory.setGeometry(QtCore.QRect(20, 60, 281, 41))
+        self.horizontalLayout_17.addLayout(self.horizontalLayout_14)
+        self.deleteAppButton = QtWidgets.QPushButton(self.widget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.deleteAppButton.sizePolicy().hasHeightForWidth())
+        self.deleteAppButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(18)
-        self.label_AppHistory.setFont(font)
-        self.label_AppHistory.setToolTipDuration(1)
-        self.label_AppHistory.setStyleSheet("color: #353fb0")
-        self.label_AppHistory.setObjectName("label_AppHistory")
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.deleteAppButton.setFont(font)
+        self.deleteAppButton.setToolTipDuration(1)
+        self.deleteAppButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #ec9ea5;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 4em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #d2202f;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #d2202f;\n"
+"    border-style: outset;\n"
+"}")
+        self.deleteAppButton.setObjectName("deleteAppButton")
+        self.horizontalLayout_17.addWidget(self.deleteAppButton)
         self.stackedWidget.addWidget(self.AppHistorypage)
         self.page = QtWidgets.QWidget()
         self.page.setToolTipDuration(1)
         self.page.setObjectName("page")
         self.frame_7 = QtWidgets.QFrame(self.page)
-        self.frame_7.setGeometry(QtCore.QRect(20, 20, 1131, 621))
+        self.frame_7.setGeometry(QtCore.QRect(20, 20, 1201, 621))
         self.frame_7.setToolTipDuration(1)
         self.frame_7.setStyleSheet("QFrame {\n"
 "    background-color:  #dddff8;\n"
@@ -334,7 +337,7 @@ class Ui_MainWindow(object):
         self.backPetServiceButton_2.setObjectName("backPetServiceButton_2")
         self.serviceTable = QtWidgets.QTableView(self.frame_7)
         self.serviceTable.setEnabled(True)
-        self.serviceTable.setGeometry(QtCore.QRect(370, 100, 751, 471))
+        self.serviceTable.setGeometry(QtCore.QRect(370, 100, 821, 501))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         self.serviceTable.setFont(font)
@@ -343,34 +346,34 @@ class Ui_MainWindow(object):
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
 "    font: Helvetica;\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    border-radius: 8px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
-"    background-color: #b5d8f0; /* Background color of selected item */\n"
+"    background-color: #ebedfb; /* Background color of selected item */\n"
 "\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    font-weight: bold; \n"
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    width: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
@@ -385,18 +388,18 @@ class Ui_MainWindow(object):
 "\n"
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    height: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal,\n"
@@ -410,107 +413,8 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.serviceTable.setObjectName("serviceTable")
-        self.deleteServButton = QtWidgets.QPushButton(self.frame_7)
-        self.deleteServButton.setGeometry(QtCore.QRect(1010, 580, 111, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deleteServButton.sizePolicy().hasHeightForWidth())
-        self.deleteServButton.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
-        self.deleteServButton.setFont(font)
-        self.deleteServButton.setToolTipDuration(1)
-        self.deleteServButton.setStyleSheet("QPushButton {\n"
-"    background-color:  #7780e4;\n"
-"    border-style: outset;\n"
-"    border-width: 0px;\n"
-"    border-radius: 8px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    color: white;\n"
-"    min-width: 4em;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #525edc;\n"
-"    border-style: inset;\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #525edc;\n"
-"    border-style: outset;\n"
-"}")
-        self.deleteServButton.setObjectName("deleteServButton")
-        self.layoutWidget_2 = QtWidgets.QWidget(self.frame_7)
-        self.layoutWidget_2.setGeometry(QtCore.QRect(800, 70, 318, 31))
-        self.layoutWidget_2.setObjectName("layoutWidget_2")
-        self.horizontalLayout_15 = QtWidgets.QHBoxLayout(self.layoutWidget_2)
-        self.horizontalLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_15.setSpacing(10)
-        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        self.searchInputService = QtWidgets.QLineEdit(self.layoutWidget_2)
-        font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        self.searchInputService.setFont(font)
-        self.searchInputService.setToolTipDuration(1)
-        self.searchInputService.setStyleSheet("QLineEdit {\n"
-"    border: 1px solid #dddff8;\n"
-"    border-radius: 6px;\n"
-"    padding: 2px 10px;\n"
-"    background-color: white;\n"
-"    font: 14px;\n"
-"    color: #353fb0;\n"
-"}\n"
-"")
-        self.searchInputService.setText("")
-        self.searchInputService.setClearButtonEnabled(False)
-        self.searchInputService.setObjectName("searchInputService")
-        self.horizontalLayout_15.addWidget(self.searchInputService)
-        self.searchServiceButton = QtWidgets.QPushButton(self.layoutWidget_2)
-        font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(True)
-        font.setItalic(False)
-        font.setWeight(75)
-        self.searchServiceButton.setFont(font)
-        self.searchServiceButton.setToolTipDuration(1)
-        self.searchServiceButton.setStyleSheet("QPushButton {\n"
-"    background-color:  #7780e4;\n"
-"    border-style: outset;\n"
-"    border-width: 0px;\n"
-"    border-radius: 8px;\n"
-"    border-color: beige;\n"
-"    font: bold 14px;\n"
-"    color: white;\n"
-"    min-width: 6em;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #525edc;\n"
-"    border-style: inset;\n"
-"    padding-left: 5px;\n"
-"    padding-top: 5px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #525edc;\n"
-"    border-style: outset;\n"
-"}")
-        self.searchServiceButton.setObjectName("searchServiceButton")
-        self.horizontalLayout_15.addWidget(self.searchServiceButton)
         self.frame_8 = QtWidgets.QFrame(self.frame_7)
-        self.frame_8.setGeometry(QtCore.QRect(20, 100, 341, 471))
+        self.frame_8.setGeometry(QtCore.QRect(20, 100, 341, 501))
         self.frame_8.setToolTipDuration(1)
         self.frame_8.setStyleSheet("QFrame {\n"
 "    background-color:  #f9f9fe;\n"
@@ -523,16 +427,16 @@ class Ui_MainWindow(object):
         self.frame_8.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
-        self.addAppButton_2 = QtWidgets.QPushButton(self.frame_8)
-        self.addAppButton_2.setGeometry(QtCore.QRect(110, 200, 144, 25))
+        self.addServiceButton = QtWidgets.QPushButton(self.frame_8)
+        self.addServiceButton.setGeometry(QtCore.QRect(110, 240, 144, 25))
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.addAppButton_2.setFont(font)
-        self.addAppButton_2.setToolTipDuration(1)
-        self.addAppButton_2.setStyleSheet("QPushButton {\n"
+        self.addServiceButton.setFont(font)
+        self.addServiceButton.setToolTipDuration(1)
+        self.addServiceButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
 "    border-width: 0px;\n"
@@ -555,7 +459,7 @@ class Ui_MainWindow(object):
 "    background-color: #525edc;\n"
 "    border-style: outset;\n"
 "}")
-        self.addAppButton_2.setObjectName("addAppButton_2")
+        self.addServiceButton.setObjectName("addServiceButton")
         self.horizontalLayoutWidget_12 = QtWidgets.QWidget(self.frame_8)
         self.horizontalLayoutWidget_12.setGeometry(QtCore.QRect(30, 100, 281, 41))
         self.horizontalLayoutWidget_12.setObjectName("horizontalLayoutWidget_12")
@@ -637,40 +541,82 @@ class Ui_MainWindow(object):
         self.label_service.setToolTipDuration(1)
         self.label_service.setStyleSheet("color: #353fb0")
         self.label_service.setObjectName("label_service")
-        self.stackedWidget.addWidget(self.page)
-        self.PSSpage = QtWidgets.QWidget()
-        self.PSSpage.setToolTipDuration(1)
-        self.PSSpage.setObjectName("PSSpage")
-        self.pendingTabFrame = QtWidgets.QFrame(self.PSSpage)
-        self.pendingTabFrame.setGeometry(QtCore.QRect(780, 40, 371, 601))
-        self.pendingTabFrame.setToolTipDuration(1)
-        self.pendingTabFrame.setStyleSheet("QFrame {\n"
-"    background-color:  #dddff8;\n"
-"    border-style: outset;\n"
-"    border-width: 0px;\n"
-"    border-radius: 14px;\n"
-"    border-color: beige;\n"
-"\n"
-"\n"
-"}")
-        self.pendingTabFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.pendingTabFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.pendingTabFrame.setObjectName("pendingTabFrame")
-        self.deletePendingAppButton = QtWidgets.QPushButton(self.pendingTabFrame)
-        self.deletePendingAppButton.setGeometry(QtCore.QRect(250, 560, 111, 31))
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deletePendingAppButton.sizePolicy().hasHeightForWidth())
-        self.deletePendingAppButton.setSizePolicy(sizePolicy)
+        self.horizontalLayoutWidget_13 = QtWidgets.QWidget(self.frame_8)
+        self.horizontalLayoutWidget_13.setGeometry(QtCore.QRect(30, 180, 281, 41))
+        self.horizontalLayoutWidget_13.setObjectName("horizontalLayoutWidget_13")
+        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_13)
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_13.setSpacing(20)
+        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
+        self.label_cost = QtWidgets.QLabel(self.horizontalLayoutWidget_13)
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.label_cost.setFont(font)
+        self.label_cost.setToolTipDuration(1)
+        self.label_cost.setStyleSheet("color: #353fb0")
+        self.label_cost.setObjectName("label_cost")
+        self.horizontalLayout_13.addWidget(self.label_cost)
+        self.enterCost = QtWidgets.QLineEdit(self.horizontalLayoutWidget_13)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.enterCost.setFont(font)
+        self.enterCost.setToolTipDuration(1)
+        self.enterCost.setStyleSheet("QLineEdit {\n"
+"    border: 1px solid #dddff8;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 10px;\n"
+"    background-color: white;\n"
+"    font: 14px;\n"
+"    color: #353fb0;\n"
+"}\n"
+"")
+        self.enterCost.setReadOnly(False)
+        self.enterCost.setClearButtonEnabled(False)
+        self.enterCost.setObjectName("enterCost")
+        self.horizontalLayout_13.addWidget(self.enterCost)
+        self.widget1 = QtWidgets.QWidget(self.frame_7)
+        self.widget1.setGeometry(QtCore.QRect(760, 70, 431, 29))
+        self.widget1.setObjectName("widget1")
+        self.horizontalLayout_18 = QtWidgets.QHBoxLayout(self.widget1)
+        self.horizontalLayout_18.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        self.horizontalLayout_15 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_15.setSpacing(10)
+        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+        self.searchInputService = QtWidgets.QLineEdit(self.widget1)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.searchInputService.setFont(font)
+        self.searchInputService.setToolTipDuration(1)
+        self.searchInputService.setStyleSheet("QLineEdit {\n"
+"    border: 1px solid #dddff8;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 10px;\n"
+"    background-color: white;\n"
+"    font: 14px;\n"
+"    color: #353fb0;\n"
+"}\n"
+"")
+        self.searchInputService.setText("")
+        self.searchInputService.setClearButtonEnabled(False)
+        self.searchInputService.setObjectName("searchInputService")
+        self.horizontalLayout_15.addWidget(self.searchInputService)
+        self.searchServiceButton = QtWidgets.QPushButton(self.widget1)
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(True)
         font.setItalic(False)
         font.setWeight(75)
-        self.deletePendingAppButton.setFont(font)
-        self.deletePendingAppButton.setToolTipDuration(1)
-        self.deletePendingAppButton.setStyleSheet("QPushButton {\n"
+        self.searchServiceButton.setFont(font)
+        self.searchServiceButton.setToolTipDuration(1)
+        self.searchServiceButton.setStyleSheet("QPushButton {\n"
 "    background-color:  #7780e4;\n"
 "    border-style: outset;\n"
 "    border-width: 0px;\n"
@@ -678,7 +624,7 @@ class Ui_MainWindow(object):
 "    border-color: beige;\n"
 "    font: bold 14px;\n"
 "    color: white;\n"
-"    min-width: 4em;\n"
+"    min-width: 6em;\n"
 "    padding: 4px;\n"
 "}\n"
 "\n"
@@ -693,9 +639,68 @@ class Ui_MainWindow(object):
 "    background-color: #525edc;\n"
 "    border-style: outset;\n"
 "}")
-        self.deletePendingAppButton.setObjectName("deletePendingAppButton")
+        self.searchServiceButton.setObjectName("searchServiceButton")
+        self.horizontalLayout_15.addWidget(self.searchServiceButton)
+        self.horizontalLayout_18.addLayout(self.horizontalLayout_15)
+        self.deleteServButton = QtWidgets.QPushButton(self.widget1)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.deleteServButton.sizePolicy().hasHeightForWidth())
+        self.deleteServButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.deleteServButton.setFont(font)
+        self.deleteServButton.setToolTipDuration(1)
+        self.deleteServButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #ec9ea5;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 4em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #d2202f;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #d2202f;\n"
+"    border-style: outset;\n"
+"}")
+        self.deleteServButton.setObjectName("deleteServButton")
+        self.horizontalLayout_18.addWidget(self.deleteServButton)
+        self.stackedWidget.addWidget(self.page)
+        self.PSSpage = QtWidgets.QWidget()
+        self.PSSpage.setToolTipDuration(1)
+        self.PSSpage.setObjectName("PSSpage")
+        self.pendingTabFrame = QtWidgets.QFrame(self.PSSpage)
+        self.pendingTabFrame.setGeometry(QtCore.QRect(780, 40, 441, 611))
+        self.pendingTabFrame.setToolTipDuration(1)
+        self.pendingTabFrame.setStyleSheet("QFrame {\n"
+"    background-color:  #dddff8;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 14px;\n"
+"    border-color: beige;\n"
+"\n"
+"\n"
+"}")
+        self.pendingTabFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.pendingTabFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.pendingTabFrame.setObjectName("pendingTabFrame")
         self.label_ownerInfo_3 = QtWidgets.QLabel(self.pendingTabFrame)
-        self.label_ownerInfo_3.setGeometry(QtCore.QRect(130, 0, 131, 41))
+        self.label_ownerInfo_3.setGeometry(QtCore.QRect(150, 0, 171, 41))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(14)
@@ -703,45 +708,190 @@ class Ui_MainWindow(object):
         self.label_ownerInfo_3.setToolTipDuration(1)
         self.label_ownerInfo_3.setStyleSheet("color: #353fb0")
         self.label_ownerInfo_3.setObjectName("label_ownerInfo_3")
-        self.StudentTable = QtWidgets.QTableView(self.pendingTabFrame)
-        self.StudentTable.setEnabled(True)
-        self.StudentTable.setGeometry(QtCore.QRect(10, 40, 351, 511))
+        self.tabWidget = QtWidgets.QTabWidget(self.pendingTabFrame)
+        self.tabWidget.setGeometry(QtCore.QRect(10, 40, 421, 561))
+        self.tabWidget.setStyleSheet("QTabWidget::pane {\n"
+"    border-top: 2px solid #7780e4;\n"
+"    background: #a9aeee;\n"
+"}\n"
+"\n"
+"QTabWidget::tab-bar {\n"
+"    left: 5px; \n"
+"}\n"
+"\n"
+"QTabBar::tab {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,\n"
+"                                stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
+"    border-top-left-radius: 6px;\n"
+"    border-top-right-radius: 6px;\n"
+"    width: 187px;\n"
+"    min-width: 10ex;\n"
+"    padding: 8px;\n"
+"    background-color: #7780e4;\n"
+"    color: white;\n"
+"    font: Bold 14px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    border: 2px solid #7780e4;\n"
+"    border-bottom-color: #7780e4;\n"
+"    background-color: #7780e4;\n"
+"\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected {\n"
+"    margin-top: 3px;\n"
+"    background-color:#a9aeee;\n"
+"    margin-background: #dddff8;\n"
+"}\n"
+"\n"
+"QTabBar::tab:hover {\n"
+"    background-color: #7780e4;\n"
+"    border-top-left-radius: 6px;\n"
+"    border-top-right-radius: 6px;\n"
+"}\n"
+"\n"
+"")
+        self.tabWidget.setObjectName("tabWidget")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.tab)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.horizontalLayout_16 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_16.setSpacing(10)
+        self.horizontalLayout_16.setObjectName("horizontalLayout_16")
+        self.searchInputPet = QtWidgets.QLineEdit(self.tab)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.searchInputPet.setFont(font)
+        self.searchInputPet.setToolTipDuration(1)
+        self.searchInputPet.setStyleSheet("QLineEdit {\n"
+"    border: 1px solid #dddff8;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 10px;\n"
+"    background-color: white;\n"
+"    font: 14px;\n"
+"    color: #353fb0;\n"
+"}\n"
+"")
+        self.searchInputPet.setText("")
+        self.searchInputPet.setClearButtonEnabled(False)
+        self.searchInputPet.setObjectName("searchInputPet")
+        self.horizontalLayout_16.addWidget(self.searchInputPet)
+        self.searchPetButton = QtWidgets.QPushButton(self.tab)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.searchPetButton.setFont(font)
+        self.searchPetButton.setToolTipDuration(1)
+        self.searchPetButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #7780e4;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 5em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #525edc;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #525edc;\n"
+"    border-style: outset;\n"
+"}")
+        self.searchPetButton.setObjectName("searchPetButton")
+        self.horizontalLayout_16.addWidget(self.searchPetButton)
+        self.deletePetButton = QtWidgets.QPushButton(self.tab)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.deletePetButton.sizePolicy().hasHeightForWidth())
+        self.deletePetButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.deletePetButton.setFont(font)
+        self.deletePetButton.setToolTipDuration(1)
+        self.deletePetButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #ec9ea5;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 4em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #d2202f;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #d2202f;\n"
+"    border-style: outset;\n"
+"}")
+        self.deletePetButton.setObjectName("deletePetButton")
+        self.horizontalLayout_16.addWidget(self.deletePetButton)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_16)
+        self.petTable = QtWidgets.QTableView(self.tab)
+        self.petTable.setEnabled(True)
         font = QtGui.QFont()
         font.setFamily("Helvetica")
-        self.StudentTable.setFont(font)
-        self.StudentTable.setToolTipDuration(1)
-        self.StudentTable.setStyleSheet("QTableView {\n"
+        self.petTable.setFont(font)
+        self.petTable.setToolTipDuration(1)
+        self.petTable.setStyleSheet("QTableView {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 1px solid #cce4f5;\n"
 "    font: Helvetica;\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    border-radius: 8px;\n"
 "}\n"
 "\n"
 "QTableView::item:selected {\n"
-"    background-color: #b5d8f0; /* Background color of selected item */\n"
+"    background-color: #ebedfb; /* Background color of selected item */\n"
 "\n"
 "}\n"
 "\n"
 "QHeaderView::section {\n"
-"    color: #006fbe;\n"
+"    color: #353fb0;\n"
 "    font-weight: bold; \n"
 "}\n"
 "\n"
 "QScrollBar:vertical {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    width: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
@@ -756,18 +906,18 @@ class Ui_MainWindow(object):
 "\n"
 "QScrollBar:horizontal {\n"
 "    border: none;\n"
-"    background-color: #e2eff9;\n"
+"    background-color: #cdd1f5;\n"
 "    height: 12px;\n"
 "    margin: 0px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #cdd1f5;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #b5d8f0;\n"
+"    background-color: #dddff8;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal,\n"
@@ -780,7 +930,188 @@ class Ui_MainWindow(object):
 "    background-color: none;\n"
 "}\n"
 "")
-        self.StudentTable.setObjectName("StudentTable")
+        self.petTable.setObjectName("petTable")
+        self.verticalLayout_2.addWidget(self.petTable)
+        self.tabWidget.addTab(self.tab, "")
+        self.tab_2 = QtWidgets.QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.tab_2)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_10.setSpacing(10)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.searchInputOwner = QtWidgets.QLineEdit(self.tab_2)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.searchInputOwner.setFont(font)
+        self.searchInputOwner.setToolTipDuration(1)
+        self.searchInputOwner.setStyleSheet("QLineEdit {\n"
+"    border: 1px solid #dddff8;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 10px;\n"
+"    background-color: white;\n"
+"    font: 14px;\n"
+"    color: #353fb0;\n"
+"}\n"
+"")
+        self.searchInputOwner.setText("")
+        self.searchInputOwner.setClearButtonEnabled(False)
+        self.searchInputOwner.setObjectName("searchInputOwner")
+        self.horizontalLayout_10.addWidget(self.searchInputOwner)
+        self.searchOwnerButton = QtWidgets.QPushButton(self.tab_2)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.searchOwnerButton.setFont(font)
+        self.searchOwnerButton.setToolTipDuration(1)
+        self.searchOwnerButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #7780e4;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 5em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #525edc;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #525edc;\n"
+"    border-style: outset;\n"
+"}")
+        self.searchOwnerButton.setObjectName("searchOwnerButton")
+        self.horizontalLayout_10.addWidget(self.searchOwnerButton)
+        self.deleteOwnerButton = QtWidgets.QPushButton(self.tab_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.deleteOwnerButton.sizePolicy().hasHeightForWidth())
+        self.deleteOwnerButton.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(True)
+        font.setItalic(False)
+        font.setWeight(75)
+        self.deleteOwnerButton.setFont(font)
+        self.deleteOwnerButton.setToolTipDuration(1)
+        self.deleteOwnerButton.setStyleSheet("QPushButton {\n"
+"    background-color:  #ec9ea5;\n"
+"    border-style: outset;\n"
+"    border-width: 0px;\n"
+"    border-radius: 8px;\n"
+"    border-color: beige;\n"
+"    font: bold 14px;\n"
+"    color: white;\n"
+"    min-width: 4em;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #d2202f;\n"
+"    border-style: inset;\n"
+"    padding-left: 5px;\n"
+"    padding-top: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #d2202f;\n"
+"    border-style: outset;\n"
+"}")
+        self.deleteOwnerButton.setObjectName("deleteOwnerButton")
+        self.horizontalLayout_10.addWidget(self.deleteOwnerButton)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.ownerTable = QtWidgets.QTableView(self.tab_2)
+        self.ownerTable.setEnabled(True)
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        self.ownerTable.setFont(font)
+        self.ownerTable.setToolTipDuration(1)
+        self.ownerTable.setStyleSheet("QTableView {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border: 1px solid #cce4f5;\n"
+"    font: Helvetica;\n"
+"    color: #353fb0;\n"
+"    border-radius: 8px;\n"
+"}\n"
+"\n"
+"QTableView::item:selected {\n"
+"    background-color: #ebedfb; /* Background color of selected item */\n"
+"\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    color: #353fb0;\n"
+"    font-weight: bold; \n"
+"}\n"
+"\n"
+"QScrollBar:vertical {\n"
+"    border: none;\n"
+"    background-color: #cdd1f5;\n"
+"    width: 12px;\n"
+"    margin: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical {\n"
+"    background-color: #cdd1f5;\n"
+"    border-radius: 6px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover {\n"
+"    background-color: #dddff8;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:vertical,\n"
+"QScrollBar::sub-line:vertical {\n"
+"    height: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:vertical,\n"
+"QScrollBar::sub-page:vertical {\n"
+"    background-color: none;\n"
+"}\n"
+"\n"
+"QScrollBar:horizontal {\n"
+"    border: none;\n"
+"    background-color: #cdd1f5;\n"
+"    height: 12px;\n"
+"    margin: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal {\n"
+"    background-color: #cdd1f5;\n"
+"    border-radius: 6px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:horizontal:hover {\n"
+"    background-color: #dddff8;\n"
+"}\n"
+"\n"
+"QScrollBar::add-line:horizontal,\n"
+"QScrollBar::sub-line:horizontal {\n"
+"    width: 0px;\n"
+"}\n"
+"\n"
+"QScrollBar::add-page:horizontal,\n"
+"QScrollBar::sub-page:horizontal {\n"
+"    background-color: none;\n"
+"}\n"
+"")
+        self.ownerTable.setObjectName("ownerTable")
+        self.verticalLayout_3.addWidget(self.ownerTable)
+        self.tabWidget.addTab(self.tab_2, "")
         self.historyButton = QtWidgets.QPushButton(self.PSSpage)
         self.historyButton.setGeometry(QtCore.QRect(590, 80, 161, 41))
         font = QtGui.QFont()
@@ -1502,7 +1833,8 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(1)
         self.historyButton.clicked.connect(self.stackedWidget.show) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1510,22 +1842,31 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.backPetServiceButton.setText(_translate("MainWindow", "Back"))
-        self.deleteAppButton.setText(_translate("MainWindow", "Delete"))
-        self.searchInputApp.setPlaceholderText(_translate("MainWindow", "  Search student..."))
-        self.searchAppButton.setText(_translate("MainWindow", "Search"))
         self.label_AppHistory.setText(_translate("MainWindow", "Appointment History"))
+        self.searchInputApp.setPlaceholderText(_translate("MainWindow", "  Search appointment..."))
+        self.searchAppButton.setText(_translate("MainWindow", "Search"))
+        self.deleteAppButton.setText(_translate("MainWindow", "Delete"))
         self.backPetServiceButton_2.setText(_translate("MainWindow", "Back"))
-        self.deleteServButton.setText(_translate("MainWindow", "Delete"))
-        self.searchInputService.setPlaceholderText(_translate("MainWindow", "  Search service..."))
-        self.searchServiceButton.setText(_translate("MainWindow", "Search"))
-        self.addAppButton_2.setText(_translate("MainWindow", "Add Service"))
+        self.addServiceButton.setText(_translate("MainWindow", "Add Service"))
         self.label_servID.setText(_translate("MainWindow", "ID:"))
         self.enterservIDName.setPlaceholderText(_translate("MainWindow", "  Enter service ID"))
         self.label_Sname.setText(_translate("MainWindow", "Name:"))
         self.enterSName.setPlaceholderText(_translate("MainWindow", "  Enter name of service"))
         self.label_service.setText(_translate("MainWindow", "Services"))
-        self.deletePendingAppButton.setText(_translate("MainWindow", "Delete"))
-        self.label_ownerInfo_3.setText(_translate("MainWindow", "Pending Tab"))
+        self.label_cost.setText(_translate("MainWindow", "Cost:"))
+        self.enterCost.setPlaceholderText(_translate("MainWindow", "  Enter cost of service"))
+        self.searchInputService.setPlaceholderText(_translate("MainWindow", "  Search service..."))
+        self.searchServiceButton.setText(_translate("MainWindow", "Search"))
+        self.deleteServButton.setText(_translate("MainWindow", "Delete"))
+        self.label_ownerInfo_3.setText(_translate("MainWindow", "Information Tab"))
+        self.searchInputPet.setPlaceholderText(_translate("MainWindow", "  Search pet..."))
+        self.searchPetButton.setText(_translate("MainWindow", "Search"))
+        self.deletePetButton.setText(_translate("MainWindow", "Delete"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Pet"))
+        self.searchInputOwner.setPlaceholderText(_translate("MainWindow", "  Search owner..."))
+        self.searchOwnerButton.setText(_translate("MainWindow", "Search"))
+        self.deleteOwnerButton.setText(_translate("MainWindow", "Delete"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", " Owner"))
         self.historyButton.setText(_translate("MainWindow", "History"))
         self.label_StudentInformation.setText(_translate("MainWindow", "Pet Service System"))
         self.label_Pname.setText(_translate("MainWindow", "Name:"))
