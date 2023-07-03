@@ -1,7 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
 from petservice import Ui_MainWindow
-import appointment_copy as classObject  #set file here
+import systemClasses as classObject  #set file here
 
 class MainWindow(QtWidgets.QMainWindow):
     
@@ -9,6 +9,9 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self, ui):
         super().__init__()
         self.servObject = classObject.servObject
+        self.appObject = classObject.appObject
+        self.petObject = classObject.petObject
+        self.ownerObject = classObject.ownerObject
         
         self.gui_pet = ui
         self.gui_pet.setupUi(self)     
@@ -26,6 +29,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.searchServiceButton.clicked.connect(self.search_service_button_clicked)
         self.gui_pet.searchInputService.returnPressed.connect(self.search_service_button_clicked)
         self.gui_pet.serviceTable.doubleClicked.connect(self.service_table_cell_edit)
+        
+        #APPOINTMENT PAGE
+        self.setAvailTypeSelection()
+        self.setStatusSelection()
+        self.setServiceSelection()
+        
+        self.gui_pet.addAppButton.clicked.connect(self.add_appointment_button_clicked)
+        self.gui_pet.deleteAppButton.clicked.connect(self.delete_appointment_row)
+        
     
     def history_button_clicked(self):
         self.gui_pet.stackedWidget.setCurrentIndex(0)
@@ -47,7 +59,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 #print(f"text: {text}")
                 if col_id in [0, 1, 2, 3, 4]:
                     item.setEditable(False)
-                if col_id in [0, 1, 2, 3, 4]:
+                if col_id in [0, 1, 2, 3, 4, 5, 6]:
                     item.setTextAlignment(QtCore.Qt.AlignCenter)
                 else:
                     item.setTextAlignment(QtCore.Qt.AlignLeft)
@@ -62,8 +74,24 @@ class MainWindow(QtWidgets.QMainWindow):
                 header.resizeSection(1, 390)  
                 header.resizeSection(2, 220)  
         elif table == self.gui_pet.historyTable:
-                header.resizeSection(0, 240)  
-                header.resizeSection(1, 459)  
+                header.resizeSection(0, 100)  
+                header.resizeSection(1, 120)
+                header.resizeSection(2, 100)
+                header.resizeSection(3, 120)
+                header.resizeSection(4, 120)
+                header.resizeSection(5, 150)
+                header.resizeSection(6, 150)
+                
+        elif table == self.gui_pet.petTable:
+                header.resizeSection(0, 50)  
+                header.resizeSection(1, 100)
+                header.resizeSection(2, 70)
+                header.resizeSection(3, 100)
+                header.resizeSection(4, 70)
+        elif table == self.gui_pet.ownerTable:
+                header.resizeSection(0, 70)  
+                header.resizeSection(1, 180)
+                header.resizeSection(2, 120)
 
 
     def clearModel(self, model, rows=0, cols=0):
@@ -72,18 +100,52 @@ class MainWindow(QtWidgets.QMainWindow):
         model.setColumnCount(cols)
         
     def setStandardItemModel(self): #change all
+        #SERVICE
         self.serviceModel = QtGui.QStandardItemModel()
-        #self.historyModel = QtGui.QStandardItemModel()
-        self.serviceModel = self.setSModel(self.servObject.returnService(), self.serviceModel)
-        #self.historyModel = self.setSModel(self.appObject.returnAppointment(), self.historyModel)
-        
         self.serviceModel.setHorizontalHeaderLabels(self.servObject.columns) 
         self.gui_pet.serviceTable.setModel(self.serviceModel)
-        #self.historyModel.setHorizontalHeaderLabels(self.appObject.columns)
-        #self.gui_ssis.historyTable.setModel(self.historyModel)
+        self.serviceModel = self.setSModel(self.servObject.returnServiceData(), self.serviceModel)
+        
+        #HISTORY
+        self.historyModel = QtGui.QStandardItemModel()
+        self.historyModel.setHorizontalHeaderLabels(self.appObject.columns)
+        self.gui_pet.historyTable.setModel(self.historyModel)
+        self.historyModel = self.setSModel(self.appObject.returnAppointmentData(), self.historyModel)
+        
+        #PET
+        self.petModel = QtGui.QStandardItemModel()
+        self.petModel.setHorizontalHeaderLabels(self.petObject.columns)
+        self.gui_pet.petTable.setModel(self.petModel)
+        self.petModel = self.setSModel(self.petObject.returnPetData(), self.petModel)
+        
+        #OWNER
+        self.ownerModel = QtGui.QStandardItemModel()
+        self.ownerModel.setHorizontalHeaderLabels(self.ownerObject.columns) 
+        self.gui_pet.ownerTable.setModel(self.ownerModel)
+        self.ownerModel = self.setSModel(self.ownerObject.returnOwnerData(), self.ownerModel)
         
         self.adjustTableColumns(self.gui_pet.serviceTable)
-        #self.adjustTableColumns(self.gui_pet.CourseTable)
+        self.adjustTableColumns(self.gui_pet.historyTable)
+        self.adjustTableColumns(self.gui_pet.petTable)
+        self.adjustTableColumns(self.gui_pet.ownerTable)
+      
+    #SELECTIONS 
+    def setAvailTypeSelection(self):
+        self.gui_pet.chooseAvailType.clear() 
+        self.gui_pet.chooseAvailType.addItems(self.appObject.availType)
+        
+    def setStatusSelection(self):
+        self.gui_pet.chooseStatus.clear()
+        self.gui_pet.chooseStatus.addItems(self.appObject.status) 
+    
+    def setServiceSelection(self):
+        self.gui_pet.listWidget.clear()
+        self.gui_pet.listWidget.addItems(self.servObject.returnServiceNames()) 
+        
+    def handle_service_selection(self):
+        selected_items = []
+        for item in self.listWidget.selectedItems():
+            selected_items.append(item.text())
       
     #SERVICE PAGE ---------------------------------------------------------------------------------------- 
     def add_service_button_clicked(self):
@@ -97,6 +159,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.enterservIDName.clear()
         self.gui_pet.enterSName.clear()
         self.gui_pet.enterCost.clear()
+        self.setServiceSelection()
         
     def delete_service_row(self):
         selected_rows = self.gui_pet.serviceTable.currentIndex().row()
@@ -144,8 +207,32 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 pass
 
-    #SERVICE PAGE ---------------------------------------------------------------------------------------- 
-
+    #APPOINTMENT PAGE ---------------------------------------------------------------------------------------- 
+    def add_appointment_button_clicked(self):
+        pet_name = self.gui_pet.enterPName.text()
+        pet_species = self.gui_pet.enterSpecies.text()
+        pet_breed = self.gui_pet.enterBreed.text()
+        
+        owner_name = self.gui_pet.enterOName.text()
+        owner_number = self.gui_pet.enterOName_2.text()
+        
+        app_date = self.gui_pet.dateEdit.text()
+        app_time = self.gui_pet.timeEdit.text()
+        app_availtype = self.gui_pet.chooseAvailType.currentText()
+        app_status = self.gui_pet.chooseStatus.currentText()
+        
+        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
+        
+        self.setStandardItemModel()
+        self.gui_ssis.historyTable.model().layoutChanged.emit()
+        self.gui_ssis.ownerTable.model().layoutChanged.emit()
+        self.gui_ssis.petTable.model().layoutChanged.emit()
+        self.gui_ssis.enterPName.clear()
+        self.gui_ssis.enterSpecies.clear()
+        self.gui_ssis.enterBreed.clear()
+        self.gui_ssis.enterOName.clear()
+        self.gui_ssis.enterOName_2.clear()
+        
 
 
 if __name__ == '__main__':
