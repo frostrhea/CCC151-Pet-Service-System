@@ -283,7 +283,7 @@ class Appointment:
             query = "INSERT INTO tblpet (petID) VALUES (%s)"
             values = (petID)
             self.cursor.execute(query, values)
-            connection.commit()
+            connection.commit() 
 
             # generate serviceID
             idOwner = Owner.generateID()
@@ -427,3 +427,4 @@ class Appointment_Service:
         self.cursor.execute(query, values)
         connection.commit()
         print("Appointment Service added.")
+
