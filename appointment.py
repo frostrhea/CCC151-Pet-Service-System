@@ -432,7 +432,7 @@ class Appointment_Service:
         connection.commit()
         print("Appointment Service added.")
 
-#new
+
 
 ownerObject = Owner()
 petObject = Pet()
