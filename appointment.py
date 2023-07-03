@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="gag0p1n4s",
+        password="0927867Frosty",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -278,6 +278,7 @@ class Appointment:
         ownerID =ownerObject.addOwner(ownerName, phoneNum)
         petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
         
+
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
         self.cursor.execute(query, values)
@@ -385,6 +386,7 @@ class Appointment_Service:
         self.cursor.execute(query, values)
         connection.commit()
         print("Appointment Service added.")
+
 
 
 ownerObject = Owner()
