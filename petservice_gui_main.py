@@ -20,9 +20,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.backPetServiceButton.clicked.connect(self.back_button_clicked)
         self.gui_pet.backPetServiceButton_2.clicked.connect(self.back_button_clicked)
         
+        #SERVICE PAGE
         self.gui_pet.addServiceButton.clicked.connect(self.add_service_button_clicked)
         self.gui_pet.deleteServButton.clicked.connect(self.delete_service_row)
         self.gui_pet.searchServiceButton.clicked.connect(self.search_service_button_clicked)
+        self.gui_pet.searchInputService.returnPressed.connect(self.search_service_button_clicked)
+        self.gui_pet.serviceTable.doubleClicked.connect(self.service_table_cell_edit)
     
     def history_button_clicked(self):
         self.gui_pet.stackedWidget.setCurrentIndex(0)
@@ -81,7 +84,8 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.adjustTableColumns(self.gui_pet.serviceTable)
         #self.adjustTableColumns(self.gui_pet.CourseTable)
-        
+      
+    #SERVICE PAGE ---------------------------------------------------------------------------------------- 
     def add_service_button_clicked(self):
         service_id = self.gui_pet.enterservIDName.text()
         service_name = self.gui_pet.enterSName.text()
@@ -119,6 +123,29 @@ class MainWindow(QtWidgets.QMainWindow):
             self.gui_pet.serviceTable.model().layoutChanged.emit()
         else:
             QtWidgets.QMessageBox.information(self, "No Results", f"No results found for service '{search_service}'.")
+
+    def service_table_cell_edit(self, index):
+        row = index.row()
+        column = index.column()
+        columnName = self.serviceModel.horizontalHeaderItem(column).text()
+        item = self.gui_pet.serviceTable.model().item(row, column)
+        current_value = item.text()
+        unique_key = self.gui_pet.serviceTable.model().item(row, 0).text() 
+        new_value, ok = QtWidgets.QInputDialog.getText(self, "Update Service", "Enter new text:", text=current_value)
+        
+        if ok and new_value and new_value != current_value:
+            reply = QtWidgets.QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
+                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            if reply == QtWidgets.QMessageBox.Yes:
+                if column in [0,1,2]:
+                    self.servObject.updateService(unique_key, columnName, new_value)
+                    self.setStandardItemModel()
+                    self.gui_pet.serviceTable.model().layoutChanged.emit()
+            else:
+                pass
+
+    #SERVICE PAGE ---------------------------------------------------------------------------------------- 
+
 
 
 if __name__ == '__main__':

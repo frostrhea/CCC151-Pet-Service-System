@@ -98,7 +98,7 @@ class Owner:
         result = self.cursor.fetchall()
         return result
     
-  
+# -----------------------------------------------------------------------------------------   
 class Pet:
 
     def __init__(self):
@@ -170,7 +170,8 @@ class Pet:
         self.cursor.execute(query, values)
         result = self.cursor.fetchall()
         return result
-    
+ 
+# -----------------------------------------------------------------------------------------   
 class Service:
 
     def __init__(self):
@@ -215,28 +216,23 @@ class Service:
         print("Service deleted.")
 
     #update
-    def updateService (self, id, name, cost):
-        query = "UPDATE tblservice SET name = %s, cost = %s WHERE serviceID = %s"
-        values = (name, cost, id)
-        self.cursor.execute(query, values)
+    def updateService (self, unique_key, column, new_value):
+        update_query = f"UPDATE tblservice SET `{column}`= %s where `serviceID` = %s"
+        print (column)
+        self.cursor.execute(update_query, (new_value, unique_key))
         connection.commit()
-        print("Service updated.")
-
-    #display  
-    def displayService (self):    
-        self.cursor.execute("SELECT * FROM tblservice")
-        result = self.cursor.fetchall()
-        for x in result:
-            print(x)
-
+        print(f"Row updated successfully: {unique_key} with new change: {new_value}")
+    
     #search
     def searchService (self, value):
         value = str(value).lower() + '%'
-        self.cursor.execute("SELECT * FROM tblservice WHERE LOWER(`serviceID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`cost`)", 
+        self.cursor.execute("SELECT * FROM tblservice WHERE LOWER(`serviceID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`cost`) LIKE %s", 
                     (f"%{value}", f"%{value}", f"%{value}"))
         searchResults = self.cursor.fetchall()
+        
         for x in searchResults:
             print(x)
+        return searchResults
 
     #return service data
     def returnService (self):
@@ -244,7 +240,7 @@ class Service:
         result = self.cursor.fetchall()
         return result
     
-
+# -----------------------------------------------------------------------------------------   
 class Appointment:
 
     def __init__(self):
@@ -394,7 +390,7 @@ class Appointment:
         result = self.cursor.fetchall()
         return result
 
-
+# -----------------------------------------------------------------------------------------   
 class Appointment_Service:
     def __init__(self):
         self.columns = ['Appointment ID','Service ID'] #Appointment ID and Service ID are foreign keys
