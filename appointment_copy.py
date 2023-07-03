@@ -115,6 +115,7 @@ class Pet:
         return False
 
 
+
     #delete
     def deletePet (self, id):
         query = "DELETE FROM tblpet WHERE petID = %s"
