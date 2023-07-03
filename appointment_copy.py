@@ -49,16 +49,6 @@ class Owner:
         if self.cursor.fetchone:
                 return True
         return False
-    
-    #add 
-    def addOwner (self, id, name, phoneNum):
-        id = self.generateID() #?
-        query = "INSERT INTO tblowner (ownerID, name, phoneNum) VALUES (%s, %s, %s)"
-        values = (id, name, phoneNum)
-        self.cursor.execute(query, values)
-        connection.commit()
-        print("Owner added.")
-    
 
     #delete
     def deleteOwner (self, id):
@@ -123,15 +113,7 @@ class Pet:
         if self.cursor.fetchone:
                 return True
         return False
-    
-    #add
-    def addPet (self, id, name, species, breed, ownerID):
-        id = self.generateID() #?
-        query = "INSERT INTO tblpet (petID, name, species, breed, ownerID) VALUES (%s, %s, %s, %s, %s)"
-        values = (id, name, species, breed, ownerID)
-        self.cursor.execute(query, values)
-        connection.commit()
-        print("Pet added.")
+
 
     #delete
     def deletePet (self, id):
