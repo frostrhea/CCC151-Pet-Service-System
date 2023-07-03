@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="gag0p1n4s",
+        password="",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -300,7 +300,7 @@ class Appointment:
         serviceIDs = []
         for serviceName in serviceName:
             serviceID = serviceObject.returnID(serviceName)
-            serviceIDs.append(serviceID)
+            serviceIDs.append(serviceID) 
 
         #add to tblappointment_service
         for x in serviceIDs:

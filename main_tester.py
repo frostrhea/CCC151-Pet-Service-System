@@ -14,7 +14,7 @@ def main():
     #service.addService('Fur Cleaning','100')
     services = [('Fur Cleaning'), ('Trim'), ('Ear Cleaning')]
     appointment.addAppointment('2023-07-04','12:05','Reservation','Pending','Rango','Dog', 'Aspin', 'Gel', '09978101451', services)
- 
+
 
 main()
  
