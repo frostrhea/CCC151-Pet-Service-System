@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="gag0p1n4s",
+        password="0927867Frosty",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -270,14 +270,14 @@ class Appointment:
 
         #if inserted blank values
         if petID == '':
-            petID = Pet.generateID()
+            petID = petObject.generateID()
         if ownerID == '':
-            ownerID = Owner.generateID()
+            ownerID = ownerObject.generateID()
 
         #if ownerID and petID does not exists
-        if Pet.checkPetID(petID) == False & Owner.checkOwnerID(ownerID) == False:
+        if petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID) == False:
             # generate petID
-            idPet = Pet.generateID()
+            idPet = petObject.generateID()
             petID = idPet
             # insert idPet to tblpet petID
             query = "INSERT INTO tblpet (petID) VALUES (%s)"
@@ -286,7 +286,7 @@ class Appointment:
             connection.commit() 
 
             # generate serviceID
-            idOwner = Owner.generateID()
+            idOwner = ownerObject.generateID()
             ownerID = idOwner
             # insert idService to tblservice serviceID
             query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
@@ -295,9 +295,9 @@ class Appointment:
             connection.commit()
 
         #if ownerID exists but petID does not exists
-        elif Pet.checkPetID(petID) == False & Owner.checkOwnerID(ownerID):
+        elif petObject.checkPetID(petID) == False & ownerObject.checkOwnerID(ownerID):
             # generate petID
-            idPet = Pet.generateID()
+            idPet = petObject.generateID()
             petID = idPet
             # insert idPet to tblpet petID
             query = "INSERT INTO tblpet (petID) VALUES (%s)"
@@ -305,10 +305,10 @@ class Appointment:
             self.cursor.execute(query, values)
             connection.commit()
         
-        #if ownerID does not exists but petID exists
-        elif Pet.checkPetID(petID) & Owner.checkOwnerID(ownerID) == False:
+        #if ownerID does not exists but petObjectID exists
+        elif petObject.checkPetID(petID) & ownerObject.checkOwnerID(ownerID) == False:
             # generate serviceID
-            idOwner = Owner.generateID()
+            idOwner = ownerObject.generateID()
             ownerID = idOwner
             # insert idService to tblservice serviceID
             query = "INSERT INTO tblowner (ownerID) VALUES (%s)"
@@ -429,3 +429,5 @@ class Appointment_Service:
         print("Appointment Service added.")
 
 #new
+petObject = Pet()
+ownerObject = Owner()
