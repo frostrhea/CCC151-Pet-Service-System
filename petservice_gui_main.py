@@ -221,44 +221,17 @@ class MainWindow(QtWidgets.QMainWindow):
         app_availtype = self.gui_pet.chooseAvailType.currentText()
         app_status = self.gui_pet.chooseStatus.currentText()
         
-        self.appObject.addAppointment(app_date, app_time, app_availtype, app_status, pet_name, pet_species, pet_breed, owner_name, owner_number)
+        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
         
         self.setStandardItemModel()
-        self.gui_pet.historyTable.model().layoutChanged.emit()
-        self.gui_pet.ownerTable.model().layoutChanged.emit()
-        self.gui_pet.petTable.model().layoutChanged.emit()
-        self.gui_pet.enterPName.clear()
-        self.gui_pet.enterSpecies.clear()
-        self.gui_pet.enterBreed.clear()
-        self.gui_pet.enterOName.clear()
-        self.gui_pet.enterOName_2.clear()
-        
-    def delete_appointment_row(self):
-        selected_rows = self.gui_pet.historyTable.currentIndex().row()
-        column_index = 0
-        appointment = self.gui_pet.historyTable.model().index(selected_rows, column_index).data()
-        reply = QtWidgets.QMessageBox.question(self, "Delete Confirmation", "Are you sure you want to delete this appointment?",
-                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
-        if reply == QtWidgets.QMessageBox.Yes:
-            self.appObject.deleteAppointment(appointment)
-
-        self.historyModel = self.setSModel(self.appObject.returnAppointmentData(), self.historyModel)
-        self.setStandardItemModel()
-        self.gui_pet.historyTable.model().layoutChanged.emit()
-
-    # not done
-    def search_appointment_button_clicked(self):
-        search_appointment = self.gui_pet.searchInputApp.text()
-        SResults = self.servObject.searchAppointment(search_appointment)
-        if SResults:
-            self.clearModel(self.appModel)
-            self.appModel = self.setSModel(SResults, self.appModel)
-            self.appModel.setHorizontalHeaderLabels(self.appObject.columns)
-            self.gui_pet.historyTable.setModel(self.appModel)
-            self.adjustTableColumns(self.gui_pet.historyTable)
-            self.gui_pet.historyTable.model().layoutChanged.emit()
-        else:
-            QtWidgets.QMessageBox.information(self, "No Results", f"No results found for appointment'{search_appointment}'.")
+        self.gui_ssis.historyTable.model().layoutChanged.emit()
+        self.gui_ssis.ownerTable.model().layoutChanged.emit()
+        self.gui_ssis.petTable.model().layoutChanged.emit()
+        self.gui_ssis.enterPName.clear()
+        self.gui_ssis.enterSpecies.clear()
+        self.gui_ssis.enterBreed.clear()
+        self.gui_ssis.enterOName.clear()
+        self.gui_ssis.enterOName_2.clear()
         
 
 
