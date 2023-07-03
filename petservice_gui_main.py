@@ -144,8 +144,32 @@ class MainWindow(QtWidgets.QMainWindow):
             else:
                 pass
 
-    #SERVICE PAGE ---------------------------------------------------------------------------------------- 
-
+    #APPOINTMENT PAGE ---------------------------------------------------------------------------------------- 
+    def add_appointment_button_clicked(self):
+        pet_name = self.gui_pet.enterPName.text()
+        pet_species = self.gui_pet.enterSpecies.text()
+        pet_breed = self.gui_pet.enterBreed.text()
+        
+        owner_name = self.gui_pet.enterOName.text()
+        owner_number = self.gui_pet.enterOName_2.text()
+        
+        app_date = self.gui_pet.dateEdit.text()
+        app_time = self.gui_pet.timeEdit.text()
+        app_availtype = self.gui_pet.chooseAvailType.currentText()
+        app_status = self.gui_pet.chooseStatus.currentText()
+        
+        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
+        
+        self.setStandardItemModel()
+        self.gui_ssis.historyTable.model().layoutChanged.emit()
+        self.gui_ssis.ownerTable.model().layoutChanged.emit()
+        self.gui_ssis.petTable.model().layoutChanged.emit()
+        self.gui_ssis.enterPName.clear()
+        self.gui_ssis.enterSpecies.clear()
+        self.gui_ssis.enterBreed.clear()
+        self.gui_ssis.enterOName.clear()
+        self.gui_ssis.enterOName_2.clear()
+        
 
 
 if __name__ == '__main__':
