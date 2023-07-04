@@ -45,6 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.deleteOwnerButton.clicked.connect(self.delete_owner_row)
         self.gui_pet.searchPetButton.clicked.connect(self.search_pet_button_clicked)
         self.gui_pet.searchOwnerButton.clicked.connect(self.search_owner_button_clicked)
+        self.gui_pet.petTable.doubleClicked.connect(self.pet_table_cell_edit)
         
     
     def history_button_clicked(self):
@@ -91,11 +92,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 header.resizeSection(6, 150)
                 
         elif table == self.gui_pet.petTable:
-                header.resizeSection(0, 50)  
+                header.resizeSection(0, 0)  
                 header.resizeSection(1, 100)
                 header.resizeSection(2, 70)
                 header.resizeSection(3, 100)
-                header.resizeSection(4, 70)
+                header.resizeSection(4, 100)
         elif table == self.gui_pet.ownerTable:
                 header.resizeSection(0, 70)  
                 header.resizeSection(1, 180)
@@ -234,17 +235,18 @@ class MainWindow(QtWidgets.QMainWindow):
         selected_items = self.gui_pet.serviceList.selectedItems()
         for item in selected_items:
             service_names.append(item.text())
-        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status, service_names, selected_items)
+        #self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status, service_names, selected_items)
+        self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
         
         self.setStandardItemModel()
-        self.gui_ssis.historyTable.model().layoutChanged.emit()
-        self.gui_ssis.ownerTable.model().layoutChanged.emit()
-        self.gui_ssis.petTable.model().layoutChanged.emit()
-        self.gui_ssis.enterPName.clear()
-        self.gui_ssis.enterSpecies.clear()
-        self.gui_ssis.enterBreed.clear()
-        self.gui_ssis.enterOName.clear()
-        self.gui_ssis.enterOName_2.clear()
+        self.gui_pet.historyTable.model().layoutChanged.emit()
+        self.gui_pet.ownerTable.model().layoutChanged.emit()
+        self.gui_pet.petTable.model().layoutChanged.emit()
+        self.gui_pet.enterPName.clear()
+        self.gui_pet.enterSpecies.clear()
+        self.gui_pet.enterBreed.clear()
+        self.gui_pet.enterOName.clear()
+        self.gui_pet.enterOName_2.clear()
       
     def delete_appointment_row(self):
         selected_rows = self.gui_pet.historyTable.currentIndex().row()
@@ -327,6 +329,29 @@ class MainWindow(QtWidgets.QMainWindow):
             self.gui_pet.ownerTable.model().layoutChanged.emit()
         else:
             QtWidgets.QMessageBox.information(self, "No Results", f"No results found for pet'{search_owner}'.")
+       
+    #unique key is set at column 0 but since giremove man from table, nagkaproblem sya     
+    def pet_table_cell_edit(self, index):
+        row = index.row()
+        column = index.column()
+        columnName = self.petModel.horizontalHeaderItem(column).text()
+        item = self.gui_pet.petTable.model().item(row, column)
+        current_value = item.text()
+        unique_key = self.gui_pet.petTable.model().item(row, 0).text()
+        new_value, ok = QtWidgets.QInputDialog.getText(self, "Update Pet", "Enter new text:", text=current_value)
+
+        if ok and new_value and new_value != current_value:
+            reply = QtWidgets.QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
+                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            if reply == QtWidgets.QMessageBox.Yes:
+                self.petObject.updatePet(unique_key, columnName, new_value)
+                self.setStandardItemModel()
+                self.gui_pet.petTable.model().layoutChanged.emit()
+            else:
+                pass
+
+
+
 
 
 if __name__ == '__main__':
