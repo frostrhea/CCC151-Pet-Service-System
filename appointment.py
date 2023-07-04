@@ -5,7 +5,7 @@ try:
     connection = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="gag0p1n4s",
         database="dbpetservice"
     )
     if connection.is_connected():
@@ -262,12 +262,17 @@ class Service:
         return result
     
     #return service id when given service name
-    def returnID (self, name):
+    def returnID(self, names):
         query = "SELECT serviceID FROM tblservice WHERE name = %s"
-        values = (name,)
-        self.cursor.executemany(query, values)
-        result = self.cursor.fetchall()
-        return result
+        results = []
+
+        for name in names:
+            self.cursor.execute(query, (name,))
+            result = self.cursor.fetchall()
+            results.extend(result)
+
+        return results
+
 
 class Appointment:
 
@@ -305,7 +310,7 @@ class Appointment:
         #add to tblappointment_service
         for x in serviceIDs:
             query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
-            values = (id, x)
+            values = [(id, x)]
             self.cursor.execute(query, values)
             connection.commit()
             print("Appointment_Service added.")
