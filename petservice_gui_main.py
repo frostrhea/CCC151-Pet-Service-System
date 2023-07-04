@@ -46,6 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.searchPetButton.clicked.connect(self.search_pet_button_clicked)
         self.gui_pet.searchOwnerButton.clicked.connect(self.search_owner_button_clicked)
         self.gui_pet.petTable.doubleClicked.connect(self.pet_table_cell_edit)
+        self.gui_pet.ownerTable.doubleClicked.connect(self.owner_table_cell_edit)
         
     
     def history_button_clicked(self):
@@ -98,9 +99,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 header.resizeSection(3, 100)
                 header.resizeSection(4, 100)
         elif table == self.gui_pet.ownerTable:
-                header.resizeSection(0, 70)  
-                header.resizeSection(1, 180)
-                header.resizeSection(2, 120)
+                header.resizeSection(0, 0)  
+                header.resizeSection(1, 220)
+                header.resizeSection(2, 150)
 
 
     def clearModel(self, model, rows=0, cols=0):
@@ -330,7 +331,7 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             QtWidgets.QMessageBox.information(self, "No Results", f"No results found for pet'{search_owner}'.")
        
-    #unique key is set at column 0 but since giremove man from table, nagkaproblem sya     
+    #fixed 
     def pet_table_cell_edit(self, index):
         row = index.row()
         column = index.column()
@@ -347,6 +348,31 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.petObject.updatePet(unique_key, columnName, new_value)
                 self.setStandardItemModel()
                 self.gui_pet.petTable.model().layoutChanged.emit()
+            else:
+                pass
+    
+    #wip
+    def owner_table_cell_edit(self, index):
+        row = index.row()
+        column = index.column()
+        columnName = self.ownerModel.horizontalHeaderItem(column).text()
+        item = self.gui_pet.ownerTable.model().item(row, column)
+        current_value = item.text()
+        unique_key = self.gui_pet.ownerTable.model().item(row, 0).text()
+        new_value, ok = QtWidgets.QInputDialog.getText(self, "Update Owner Information", "Enter new text:", text=current_value)
+
+        if ok and new_value and new_value != current_value:
+            reply = QtWidgets.QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
+                                                QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+            if reply == QtWidgets.QMessageBox.Yes:
+                if column == 2:
+                    self.ownerObject.updateOwner(unique_key, "phoneNumber", new_value)
+                    self.setStandardItemModel()
+                    self.gui_pet.ownerTable.model().layoutChanged.emit()
+                else:
+                    self.ownerObject.updateOwner(unique_key, columnName, new_value)
+                    self.setStandardItemModel()
+                    self.gui_pet.ownerTable.model().layoutChanged.emit()
             else:
                 pass
 

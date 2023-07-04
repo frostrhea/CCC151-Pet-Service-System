@@ -130,12 +130,12 @@ class Owner:
         print("Owner deleted.")
 
     #update
-    def updateOwner (self, id, name, phoneNum):
-        query = "UPDATE tblowner SET name = %s, phoneNum = %s WHERE ownerID = %s"
-        values = (name, phoneNum, id)
-        self.cursor.execute(query, values)
+    def updateOwner (self, unique_key, column, new_value):
+        update_query = f"UPDATE tblowner SET `{column}`= %s where `ownerID` = %s"
+        #print (column)
+        self.cursor.execute(update_query, (new_value, unique_key))
         connection.commit()
-        print("Owner updated.")
+        print(f"Row updated successfully: {unique_key} with new change: {new_value}")
 
     #display
     def displayOwner (self):
