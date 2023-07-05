@@ -13,41 +13,6 @@ try:
 except mysql.connector.Error as error:
     print("Error connecting to MySQL database:", error)
 
-#
-#
-# galibog pa ko unsaon pagbutang sa Services Availed
-# unsaon pagkabako sa connection sa service na nakuha sa Pet 
-# sa appointment_service?
-# tas checkan pd niya ang appointmentID sa appointment_service to
-# retrieve yung petID at ownerID?
-# if mag match kay ibutang sa list?
-# pero unsaon add 
-#
-#
-
-def getServiceID(serviceName):
-    serviceIDs = []
-    for serviceName in serviceName:
-            serviceID = serviceObject.returnID(serviceName)
-            serviceIDs.extend(serviceID) 
-    return serviceIDs
-
-def insertAppointmentHistory(id, date, time, availType, status, petID, ownerID):
-    insertAppointmentHistory.cursor = connection.cursor(buffered=True)
-    query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-    value = (id, date, time, availType, status, petID, ownerID)
-    insertAppointmentHistory.cursor.execute(query, value)
-    connection.commit()
-    print("Appointment added.")
-
-def insertAppointmentService(id, serviceIDs):
-    insertAppointmentService.cursor = connection.cursor(buffered=True)
-    serviceIDs = [x[0] for x in serviceIDs]
-    query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
-    values = [(id, x) for x in serviceIDs]
-    insertAppointmentService.cursor.executemany(query, values)
-    connection.commit()
-    print("Appointment_Service added.")
 
 class Owner:
 
@@ -70,16 +35,16 @@ class Owner:
     def checkOwnerID (self, ownerID):
         query = "SELECT ownerID FROM tblowner"
         self.cursor.execute(query)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
-    # check if all owner details exists in tblowner by owner name
+    # check if all owner details exists in tblowner by owner name and number
     def checkOwner (self, name, phoneNum):
         query = "SELECT * FROM tblowner WHERE name = %s AND phoneNumber = %s"
         values = (name, phoneNum)
         self.cursor.execute(query, values)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
@@ -140,7 +105,7 @@ class Owner:
         values = (name, phoneNum)
         self.cursor.execute(query, values)
         result = self.cursor.fetchone()
-        if result is not None:
+        if result:
             ownerID = result[0]
             return ownerID
         else:
@@ -168,7 +133,7 @@ class Pet:
     def checkPetID (self, petID):
         query = "SELECT petID FROM tblpet"
         self.cursor.execute(query)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
         
@@ -178,7 +143,7 @@ class Pet:
         query = "SELECT * FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
         values = (name, species, breed)
         self.cursor.execute(query, values)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
@@ -238,9 +203,9 @@ class Pet:
         values = (name, species, breed)
         self.cursor.execute(query, values)
         result = self.cursor.fetchone()
-        if result is not None:
-            ownerID = result[0]
-            return ownerID
+        if result:
+            petID = result[0]
+            return petID
         else:
             return None 
     
@@ -357,29 +322,33 @@ class Appointment:
                 id = random.randint(1000, 9999)
         return id
 
-    
+
     #add (add information then add to appHistory) 
     def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceName):
         #generate appointmentID
         id = self.generateID() #?
-        
+
+        #check
+        owner = ownerObject.checkOwner(ownerName, phoneNum)
+        pet = petObject.checkPet(petName, petSpecies, petBreed)
+
         # check if owner and pet exists
-        if (ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed)):
+        if owner and pet:
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
 
         # check if owner exists but pet does not
-        elif (ownerObject.checkOwner(ownerName, phoneNum) and not petObject.checkPet(petName, petSpecies, petBreed)):
+        if owner and not pet:
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
  
         #check if pet exists but owner does not
-        elif (not ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed)):
+        if not owner and pet:
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
         
         #check if neither owner nor pet exists
-        else: # (not ownerObject.checkOwner(ownerName, phoneNum)) and (not petObject.checkPet(petName, petSpecies, petBreed)):
+        if not owner and not pet:
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
 
