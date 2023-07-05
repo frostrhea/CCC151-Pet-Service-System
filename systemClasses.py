@@ -95,7 +95,6 @@ class Appointment:
         connection.commit()
 
         print("Appointment_Service added.")
-
         
     def deleteAppointment (self, id):  
         query = "DELETE FROM tblappointment_history WHERE appointmentID = %s"
