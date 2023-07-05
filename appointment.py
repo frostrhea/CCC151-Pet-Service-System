@@ -272,7 +272,7 @@ class Service:
             results.extend(result)
 
         return results
-
+ 
 
 class Appointment:
 
