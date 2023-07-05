@@ -323,11 +323,21 @@ class Pet:
         return result
 
     #search
-    def searchPet (self, value):
+    def searchPet(self, value):
         value = str(value).lower() + '%'
-        self.cursor.execute("SELECT * FROM tblpet WHERE LOWER(`petID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`species`) LIKE %s OR LOWER(`breed`) LIKE %s OR LOWER(`ownerID`) LIKE %s", 
-                    (f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}"))
+        self.cursor.execute("""
+            SELECT p.petID, p.name, p.species, p.breed, o.name 
+            FROM tblpet p 
+            INNER JOIN tblowner o ON p.ownerID = o.ownerID
+            WHERE LOWER(p.petID) LIKE %s
+            oR LOWER(p.name) LIKE %s 
+            OR LOWER(p.species) LIKE %s 
+            OR LOWER(p.breed) LIKE %s 
+            OR LOWER(o.name) LIKE %s
+        """, (f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}"))
         searchResults = self.cursor.fetchall()
+
+
         
         for x in searchResults:
             print(x)
