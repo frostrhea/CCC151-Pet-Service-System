@@ -372,7 +372,7 @@ class Appointment:
         elif (ownerObject.checkOwner(ownerName, phoneNum) and not petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
-
+ 
         #check if pet exists but owner does not
         elif (not ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
