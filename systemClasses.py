@@ -35,7 +35,7 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceNames):
+    def addAppointment (self,petName, petSpecies, petBreed, ownerName, phoneNum, date, time, availType, status):
         #generate appointmentID
         id = self.generateID() #?
 
@@ -130,12 +130,12 @@ class Owner:
         print("Owner deleted.")
 
     #update
-    def updateOwner (self, id, name, phoneNum):
-        query = "UPDATE tblowner SET name = %s, phoneNum = %s WHERE ownerID = %s"
-        values = (name, phoneNum, id)
-        self.cursor.execute(query, values)
+    def updateOwner (self, unique_key, column, new_value):
+        update_query = f"UPDATE tblowner SET `{column}`= %s where `ownerID` = %s"
+        #print (column)
+        self.cursor.execute(update_query, (new_value, unique_key))
         connection.commit()
-        print("Owner updated.")
+        print(f"Row updated successfully: {unique_key} with new change: {new_value}")
 
     #display
     def displayOwner (self):
@@ -171,7 +171,7 @@ class Owner:
 class Pet:
 
     def __init__(self):
-        self.columns = ['ID', 'Name', 'Species', 'Breed', 'Owner ID'] #Owner ID is foreign key
+        self.columns = [ 'ID', 'Name', 'Species', 'Breed', 'Owner Name'] #Owner ID is foreign key
         self.cursor = connection.cursor(buffered=True)
 
     # generate Random Unique ID   
@@ -215,12 +215,17 @@ class Pet:
         print("Pet deleted.")
 
     #update
-    def updatePet (self, id, name, species, breed):
-        query = "UPDATE tblpet SET name = %s, species = %s, breed = %s WHERE petID = %s"
-        values = (name, species, breed, id)
-        self.cursor.execute(query, values)
+    def updatePet(self, unique_key, column, new_value):
+        if column == "Owner Name":
+            update_query = f"UPDATE `tblpet` SET `ownerID` = (SELECT `ownerID` FROM `tblowner` WHERE `name` = %s) WHERE `petID` = %s"
+        else:
+            update_query = f"UPDATE `tblpet` SET `{column}` = %s WHERE `petID` = %s"
+            
+        self.cursor.execute(update_query, (new_value, unique_key))
         connection.commit()
-        print("Pet updated.")
+        print(f"Row updated successfully: {unique_key} with new change: {new_value}")
+
+
 
     #display
     def displayPet (self):
@@ -248,9 +253,19 @@ class Pet:
         return result
     
     def returnPetData (self):
-        self.cursor.execute("SELECT * FROM tblpet")
+        #self.cursor.execute("SELECT name, species, breed, ownerID FROM tblpet")
+        self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, o.name FROM tblpet p INNER JOIN tblowner o ON p.ownerID = o.ownerID")
         result = self.cursor.fetchall()
         return result 
+    
+    # Get the ownerID corresponding to the petID
+    def getOwnerID(self, petID):
+        self.cursor.execute("SELECT ownerID FROM tblpet WHERE petID = %s", (petID,))
+        result = self.cursor.fetchone()
+        if result is not None:
+            owner_id = result[0]
+        return owner_id
+
     
 #----------------------------------------------------------------------------------------------
 class Service:
@@ -298,7 +313,7 @@ class Service:
     #update
     def updateService (self, unique_key, column, new_value):
         update_query = f"UPDATE tblservice SET `{column}`= %s where `serviceID` = %s"
-        print (column)
+        #print (column)
         self.cursor.execute(update_query, (new_value, unique_key))
         connection.commit()
         print(f"Row updated successfully: {unique_key} with new change: {new_value}")
