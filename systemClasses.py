@@ -107,9 +107,24 @@ class Appointment:
     
     #need changes
     def searchAppointment (self, value):
-        value = str(value).lower() + '%'
-        self.cursor.execute("SELECT * FROM tblappointment_history WHERE LOWER(`ID`) LIKE %s OR LOWER(`name`) LIKE %s OR LOWER(`cost`) LIKE %s", 
-                    (f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}"))
+        value = '%' + str(value).lower() + '%'
+        self.cursor.execute("""
+                    SELECT ah.appointmentID, ah.date, ah.time, ah.availType, ah.status, p.name, o.name, a.appointmentID, s.name
+                    FROM tblappointment_history ah
+                    INNER JOIN tblappointment_service a ON ah.appointmentID = a.appointmentID
+                    INNER JOIN tblpet p ON ah.petID = p.petID
+                    INNER JOIN tblservice s ON a.serviceID = s.serviceID
+                    INNER JOIN tblowner o ON ah.ownerID = o.ownerID
+                    WHERE LOWER(ah.appointmentID) LIKE %s
+                    OR LOWER(ah.date) LIKE %s
+                    OR LOWER(ah.time) LIKE %s
+                    OR LOWER(ah.availType) LIKE %s
+                    OR LOWER(ah.status) LIKE %s
+                    OR LOWER(p.name) LIKE %s
+                    OR LOWER(o.name) LIKE %s
+                    OR LOWER(s.name) LIKE %s
+                """, 
+                    (f"{value}", f"{value}", f"{value}", f"{value}", f"{value}", f"{value}", f"{value}", f"{value}"))
         searchResults = self.cursor.fetchall()
         
         for x in searchResults:
@@ -127,7 +142,6 @@ class Appointment:
                     INNER JOIN tblservice s ON a.serviceID = s.serviceID
                     INNER JOIN tblowner o ON ah.ownerID = o.ownerID
                 """)
-        #self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, o.name FROM tblpet p INNER JOIN tblowner o ON p.ownerID = o.ownerID")
         result = self.cursor.fetchall()
         return result
         
