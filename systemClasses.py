@@ -19,7 +19,7 @@ except mysql.connector.Error as error:
 class Appointment:
 
     def __init__(self):
-        self.columns = ['ID', 'Date', 'Time', 'Avail Type', 'Status', 'Pet ID', 'Owner ID'] #Pet ID and Service ID are foreign keys
+        self.columns = ['App ID', 'Date', 'Time', 'Avail Type', 'Status', 'Pet Name', 'Owner Name', 'App ID', 'Service Availed'] #Pet ID and Service ID are foreign keys
         self.cursor = connection.cursor(buffered=True)
 
     # generate Random Unique ID
@@ -35,24 +35,68 @@ class Appointment:
 
     
     #add (add information then add to appHistory) 
-    def addAppointment (self,petName, petSpecies, petBreed, ownerName, phoneNum, date, time, availType, status):
-        #generate appointmentID
-        id = self.generateID() #?
+    def addAppointment(self, petName, petSpecies, petBreed, ownerName, phoneNum, date, time, availType, status, serviceNames):
+        # generate appointmentID
+        id = self.generateID()  # ?
 
-        ownerID =ownerObject.addOwner(ownerName, phoneNum)
-        petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+        owner = ownerObject.checkOwner(ownerName, phoneNum)
+        pet = petObject.checkPet(petName, petSpecies, petBreed)
+
+        # check if owner and pet exists
+        if owner and pet:
+            ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
+            petID = petObject.returnPetID(petName, petSpecies, petBreed)
+
+        # check if owner exists but pet does not
+        if owner and not pet:
+            ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
+            petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
         
-        
+        #check if neither owner nor pet exists
+        if not owner and not pet:
+            ownerID = ownerObject.addOwner(ownerName, phoneNum)
+            petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+
+
         date_obj = datetime.datetime.strptime(date, '%d/%m/%Y')
         date = date_obj.strftime('%Y-%m-%d')
         time_obj = datetime.datetime.strptime(time, '%I:%M %p')
         time = time_obj.strftime('%H:%M:%S')
-        
+
+        # Get service IDs
+        serviceIDs = []
+        if len(serviceNames) == 1:
+            serviceName = serviceNames[0]
+            serviceID = servObject.returnID(serviceName)
+            if serviceID:
+                serviceIDs.append(serviceID)
+            else:
+                print(f"Service ID not found for service name: {serviceName}")
+        else:
+            for serviceName in serviceNames:
+                serviceID = servObject.returnID(serviceName)
+                if serviceID:
+                    serviceIDs.append(serviceID)
+                else:
+                    print(f"Service ID not found for service name: {serviceName}")
+
+
+        # insert into tblappointment_history
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
         self.cursor.execute(query, values)
         connection.commit()
         print("Appointment added.")
+
+        # add to tblappointment_service
+        serviceIDs = [x[0] for x in serviceIDs]
+        query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
+        values = [(id, x[0]) for x in serviceIDs]
+        self.cursor.executemany(query, values)
+        connection.commit()
+
+        print("Appointment_Service added.")
+
         
     def deleteAppointment (self, id):  
         query = "DELETE FROM tblappointment_history WHERE appointmentID = %s"
@@ -74,7 +118,16 @@ class Appointment:
     
     #return History (return all appointments)
     def returnAppointmentData (self):
-        self.cursor.execute("SELECT * FROM tblappointment_history")
+        #self.cursor.execute("SELECT * FROM tblappointment_history ah INNER JOIN tblappointment_service s ON ah.appointmentID = s.appointmentID")
+        self.cursor.execute("""
+                    SELECT ah.appointmentID, ah.date, ah.time, ah.availType, ah.status, p.name, o.name, a.appointmentID, s.name
+                    FROM tblappointment_history ah
+                    INNER JOIN tblappointment_service a ON ah.appointmentID = a.appointmentID
+                    INNER JOIN tblpet p ON ah.petID= p.petID
+                    INNER JOIN tblservice s ON a.serviceID = s.serviceID
+                    INNER JOIN tblowner o ON ah.ownerID = o.ownerID
+                """)
+        #self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, o.name FROM tblpet p INNER JOIN tblowner o ON p.ownerID = o.ownerID")
         result = self.cursor.fetchall()
         return result
         
@@ -166,6 +219,28 @@ class Owner:
         self.cursor.execute("SELECT * FROM tblowner")
         result = self.cursor.fetchall()
         return result 
+    
+    #return owner ID by name and phone number
+    def returnOwnerID (self, name, phoneNum):
+        query = "SELECT ownerID FROM tblowner WHERE name = %s AND phoneNumber = %s"
+        values = (name, phoneNum)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchone()
+        if result:
+            ownerID = result[0]
+            return ownerID
+        else:
+            return None 
+    
+    # check if all owner details exists in tblowner by owner name and number
+    def checkOwner (self, name, phoneNum):
+        query = "SELECT * FROM tblowner WHERE name = %s AND phoneNumber = %s"
+        values = (name, phoneNum)
+        self.cursor.execute(query, values)
+        if self.cursor.fetchone():
+                return True
+        return False
+    
     
   
 class Pet:
@@ -265,6 +340,33 @@ class Pet:
         if result is not None:
             owner_id = result[0]
         return owner_id
+    
+    #return pet ID by pet name and pet breed and species
+    def returnPetID (self, name, species, breed):
+        query = "SELECT petID FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
+        values = (name, species, breed)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
+    
+    # check if PetID already exists in tblpet
+    def checkPetID (self, petID):
+        query = "SELECT petID FROM tblpet"
+        self.cursor.execute(query)
+        if self.cursor.fetchone():
+                return True
+        return False
+        
+
+    # check if all pet details exists in tblpet by pet name
+    def checkPet (self, name, species, breed):
+        query = "SELECT * FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
+        values = (name, species, breed)
+        self.cursor.execute(query, values)
+        if self.cursor.fetchone():
+                return True
+        return False
+    
 
     
 #----------------------------------------------------------------------------------------------
@@ -295,7 +397,8 @@ class Service:
         return False
     
     #add
-    def addService (self, id, name, cost): 
+    def addService (self, name, cost): 
+        id = self.generateID()
         query = "INSERT INTO tblservice (serviceID, name, cost) VALUES (%s, %s, %s)"
         values = (id, name, cost)
         self.cursor.execute(query, values)
@@ -342,6 +445,23 @@ class Service:
         service_names = [str(name[0]) for name in result]
         return service_names
     
+    #return service id when given service name
+    def returnID(self, names):
+        query = "SELECT serviceID FROM tblservice WHERE name = %s"
+        results = []
+
+        if isinstance(names, str):
+            # Handle a single name
+            self.cursor.execute(query, (names,))
+            results = self.cursor.fetchall()
+        elif isinstance(names, list):
+            # Handle a list of names
+            self.cursor.executemany(query, [(name,) for name in names])
+            results = self.cursor.fetchall()
+
+        return results
+
+
     
 ownerObject = Owner()
 petObject = Pet()

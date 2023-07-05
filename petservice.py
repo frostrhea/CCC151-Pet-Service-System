@@ -428,7 +428,7 @@ class Ui_MainWindow(object):
         self.frame_8.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_8.setObjectName("frame_8")
         self.addServiceButton = QtWidgets.QPushButton(self.frame_8)
-        self.addServiceButton.setGeometry(QtCore.QRect(110, 240, 144, 25))
+        self.addServiceButton.setGeometry(QtCore.QRect(100, 210, 144, 25))
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setBold(True)
@@ -460,44 +460,8 @@ class Ui_MainWindow(object):
 "    border-style: outset;\n"
 "}")
         self.addServiceButton.setObjectName("addServiceButton")
-        self.horizontalLayoutWidget_12 = QtWidgets.QWidget(self.frame_8)
-        self.horizontalLayoutWidget_12.setGeometry(QtCore.QRect(30, 100, 281, 41))
-        self.horizontalLayoutWidget_12.setObjectName("horizontalLayoutWidget_12")
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_12)
-        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_12.setSpacing(36)
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.label_servID = QtWidgets.QLabel(self.horizontalLayoutWidget_12)
-        font = QtGui.QFont()
-        font.setFamily("Helvetica")
-        font.setPointSize(10)
-        self.label_servID.setFont(font)
-        self.label_servID.setToolTipDuration(1)
-        self.label_servID.setStyleSheet("color: #353fb0")
-        self.label_servID.setObjectName("label_servID")
-        self.horizontalLayout_12.addWidget(self.label_servID)
-        self.enterservIDName = QtWidgets.QLineEdit(self.horizontalLayoutWidget_12)
-        font = QtGui.QFont()
-        font.setPointSize(-1)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        self.enterservIDName.setFont(font)
-        self.enterservIDName.setToolTipDuration(1)
-        self.enterservIDName.setStyleSheet("QLineEdit {\n"
-"    border: 1px solid #dddff8;\n"
-"    border-radius: 6px;\n"
-"    padding: 2px 10px;\n"
-"    background-color: white;\n"
-"    font: 14px;\n"
-"    color: #353fb0;\n"
-"}\n"
-"")
-        self.enterservIDName.setClearButtonEnabled(False)
-        self.enterservIDName.setObjectName("enterservIDName")
-        self.horizontalLayout_12.addWidget(self.enterservIDName)
         self.horizontalLayoutWidget_11 = QtWidgets.QWidget(self.frame_8)
-        self.horizontalLayoutWidget_11.setGeometry(QtCore.QRect(30, 140, 281, 41))
+        self.horizontalLayoutWidget_11.setGeometry(QtCore.QRect(30, 110, 281, 41))
         self.horizontalLayoutWidget_11.setObjectName("horizontalLayoutWidget_11")
         self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_11)
         self.horizontalLayout_11.setContentsMargins(0, 0, 0, 0)
@@ -542,7 +506,7 @@ class Ui_MainWindow(object):
         self.label_service.setStyleSheet("color: #353fb0")
         self.label_service.setObjectName("label_service")
         self.horizontalLayoutWidget_13 = QtWidgets.QWidget(self.frame_8)
-        self.horizontalLayoutWidget_13.setGeometry(QtCore.QRect(30, 180, 281, 41))
+        self.horizontalLayoutWidget_13.setGeometry(QtCore.QRect(30, 150, 281, 41))
         self.horizontalLayoutWidget_13.setObjectName("horizontalLayoutWidget_13")
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_13)
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
@@ -1834,7 +1798,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.historyButton.clicked.connect(self.stackedWidget.show) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1848,8 +1812,6 @@ class Ui_MainWindow(object):
         self.deleteAppButton.setText(_translate("MainWindow", "Delete"))
         self.backPetServiceButton_2.setText(_translate("MainWindow", "Back"))
         self.addServiceButton.setText(_translate("MainWindow", "Add Service"))
-        self.label_servID.setText(_translate("MainWindow", "ID:"))
-        self.enterservIDName.setPlaceholderText(_translate("MainWindow", "  Enter service ID"))
         self.label_Sname.setText(_translate("MainWindow", "Name:"))
         self.enterSName.setPlaceholderText(_translate("MainWindow", "  Enter name of service"))
         self.label_service.setText(_translate("MainWindow", "Services"))
