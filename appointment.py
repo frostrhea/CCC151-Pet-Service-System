@@ -333,24 +333,24 @@ class Appointment:
         
         # check if owner and pet exists
         if ownerObject.checkOwner(ownerName, phoneNum) & petObject.checkPet(petName, petSpecies, petBreed):
-            ownerID = ownerObject.checkOwnerID(ownerName, phoneNum) 
-            petID = petObject.checkPetID(petName, petSpecies, petBreed)
+            ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
+            petID = petObject.returnPetID(petName, petSpecies, petBreed)
 
         # check if owner exists but pet does not
         elif ownerObject.checkOwner(ownerName, phoneNum) & (not petObject.checkPet(petName, petSpecies, petBreed)):
-            ownerID = ownerObject.checkOwnerID(ownerName, phoneNum)
+            ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
         
         #check if pet exists but owner does not
         elif (not ownerObject.checkOwner(ownerName, phoneNum)) & petObject.checkPet(petName, petSpecies, petBreed):
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
-            petID = petObject.checkPetID(petName, petSpecies, petBreed)
+            petID = petObject.returnPetID(petName, petSpecies, petBreed)
         
         #check if neither owner nor pet exists
         else:
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
-            
+
         #get serviceID
         serviceIDs = []
         for serviceName in serviceName:
