@@ -50,6 +50,15 @@ class Owner:
                 return True
         return False
     
+    # check if all owner details exists in tblowner by owner name
+    def checkOwner (self, name, phoneNum):
+        query = "SELECT * FROM tblowner WHERE name = %s AND phoneNumber = %s"
+        values = (name, phoneNum)
+        self.cursor.execute(query, values)
+        if self.cursor.fetchone:
+                return True
+        return False
+    
     #add 
     def addOwner (self, name, phoneNum):
         id = self.generateID() #?
@@ -101,6 +110,14 @@ class Owner:
         result = self.cursor.fetchall()
         return result
     
+    #return owner ID by name and phone number
+    def returnOwnerID (self, name, phoneNum):
+        query = "SELECT ownerID FROM tblowner WHERE name = %s AND phoneNumber = %s"
+        values = (name, phoneNum)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
+
   
 class Pet:
 
@@ -126,8 +143,17 @@ class Pet:
         if self.cursor.fetchone:
                 return True
         return False
+        
 
-
+    # check if all pet details exists in tblpet by pet name
+    def checkPet (self, name, species, breed):
+        query = "SELECT * FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
+        values = (name, species, breed)
+        self.cursor.execute(query, values)
+        if self.cursor.fetchone:
+                return True
+        return False
+    
     #add
     def addPet (self, name, species, breed, ownerID):
         id = self.generateID() #?
@@ -174,6 +200,14 @@ class Pet:
     def returnPet (self, id):
         query = "SELECT name FROM tblpet WHERE petID = %s"
         values = (id)
+        self.cursor.execute(query, values)
+        result = self.cursor.fetchall()
+        return result
+    
+    #return pet ID by pet name and pet breed and species
+    def returnPetID (self, name, species, breed):
+        query = "SELECT petID FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
+        values = (name, species, breed)
         self.cursor.execute(query, values)
         result = self.cursor.fetchall()
         return result
@@ -297,10 +331,26 @@ class Appointment:
         #generate appointmentID
         id = self.generateID() #?
         
-        #add owner and pet; retrieve ownerID and petID
-        ownerID = ownerObject.addOwner(ownerName, phoneNum)
-        petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+        # check if owner and pet exists
+        if ownerObject.checkOwner(ownerName, phoneNum) & petObject.checkPet(petName, petSpecies, petBreed):
+            ownerID = ownerObject.checkOwnerID(ownerName, phoneNum) 
+            petID = petObject.checkPetID(petName, petSpecies, petBreed)
 
+        # check if owner exists but pet does not
+        elif ownerObject.checkOwner(ownerName, phoneNum) & (not petObject.checkPet(petName, petSpecies, petBreed)):
+            ownerID = ownerObject.checkOwnerID(ownerName, phoneNum)
+            petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+        
+        #check if pet exists but owner does not
+        elif (not ownerObject.checkOwner(ownerName, phoneNum)) & petObject.checkPet(petName, petSpecies, petBreed):
+            ownerID = ownerObject.addOwner(ownerName, phoneNum)
+            petID = petObject.checkPetID(petName, petSpecies, petBreed)
+        
+        #check if neither owner nor pet exists
+        else:
+            ownerID = ownerObject.addOwner(ownerName, phoneNum)
+            petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
+            
         #get serviceID
         serviceIDs = []
         for serviceName in serviceName:
