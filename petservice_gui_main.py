@@ -40,6 +40,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.gui_pet.addAppButton.clicked.connect(self.add_appointment_button_clicked)
         self.gui_pet.deleteAppButton.clicked.connect(self.delete_appointment_row)
+        self.gui_pet.searchAppButton.clicked.connect(self.search_appointment_button_clicked)
         
         #INFORMATION TAB
         self.gui_pet.deletePetButton.clicked.connect(self.delete_pet_row)
@@ -264,12 +265,12 @@ class MainWindow(QtWidgets.QMainWindow):
         # not done
     def search_appointment_button_clicked(self):
         search_appointment = self.gui_pet.searchInputApp.text()
-        SResults = self.servObject.searchAppointment(search_appointment)
+        SResults = self.appObject.searchAppointment(search_appointment)
         if SResults:
-            self.clearModel(self.appModel)
-            self.appModel = self.setSModel(SResults, self.appModel)
-            self.appModel.setHorizontalHeaderLabels(self.appObject.columns)
-            self.gui_pet.historyTable.setModel(self.appModel)
+            self.clearModel(self.historyModel)
+            self.historyModel = self.setSModel(SResults, self.historyModel)
+            self.historyModel.setHorizontalHeaderLabels(self.appObject.columns)
+            self.gui_pet.historyTable.setModel(self.historyModel)
             self.adjustTableColumns(self.gui_pet.historyTable)
             self.gui_pet.historyTable.model().layoutChanged.emit()
         else:
