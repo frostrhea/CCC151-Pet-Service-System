@@ -327,24 +327,28 @@ class Appointment:
     def addAppointment (self, date, time, availType, status, petName, petSpecies, petBreed, ownerName, phoneNum, serviceName):
         #generate appointmentID
         id = self.generateID() #?
-    
+
+        #check
+        owner = ownerObject.checkOwner(ownerName, phoneNum)
+        pet = petObject.checkPet(petName, petSpecies, petBreed)
+        
         # check if owner and pet exists
-        if ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed):
+        if owner and pet:
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
 
         # check if owner exists but pet does not
-        if ownerObject.checkOwner(ownerName, phoneNum) and not petObject.checkPet(petName, petSpecies, petBreed):
+        if owner and not pet:
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
  
         #check if pet exists but owner does not
-        if not ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed):
+        if not owner and pet:
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
         
         #check if neither owner nor pet exists
-        if not ownerObject.checkOwner(ownerName, phoneNum) and not petObject.checkPet(petName, petSpecies, petBreed):
+        if not owner and not pet:
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
 
