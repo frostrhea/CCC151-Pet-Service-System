@@ -305,24 +305,25 @@ class Appointment:
         serviceIDs = []
         for serviceName in serviceName:
             serviceID = serviceObject.returnID(serviceName)
-            serviceIDs.append(serviceID) 
+            serviceIDs.extend(serviceID) 
 
-        #add to tblappointment_service
-        for x in serviceIDs:
-            query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
-            values = [(id, x)]
-            self.cursor.execute(query, values)
-            connection.commit()
-            print("Appointment_Service added.")
-
-        #loop display service names by appointment ID
-        #servappObject.displayServiceByAppointment(id)
-
+        #insert into tblappointment_history
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
         values = (id, date, time, availType, status, petID, ownerID)
         self.cursor.execute(query, values)
         connection.commit()
         print("Appointment added.")
+
+        #add to tblappointment_service
+        serviceIDs = [x[0] for x in serviceIDs]
+
+        query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
+        values = [(id, x) for x in serviceIDs]
+     
+        self.cursor.executemany(query, values)
+        connection.commit()
+        
+        print("Appointment_Service added.")
 
     #delete (delete information then delete from appHistory)
     def deleteAppointment (self, id):  
