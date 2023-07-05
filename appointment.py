@@ -35,7 +35,7 @@ class Owner:
     def checkOwnerID (self, ownerID):
         query = "SELECT ownerID FROM tblowner"
         self.cursor.execute(query)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
@@ -44,7 +44,7 @@ class Owner:
         query = "SELECT * FROM tblowner WHERE name = %s AND phoneNumber = %s"
         values = (name, phoneNum)
         self.cursor.execute(query, values)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
@@ -133,7 +133,7 @@ class Pet:
     def checkPetID (self, petID):
         query = "SELECT petID FROM tblpet"
         self.cursor.execute(query)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
         
@@ -143,7 +143,7 @@ class Pet:
         query = "SELECT * FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
         values = (name, species, breed)
         self.cursor.execute(query, values)
-        if self.cursor.fetchone:
+        if self.cursor.fetchone():
                 return True
         return False
     
@@ -331,7 +331,7 @@ class Appointment:
         #check
         owner = ownerObject.checkOwner(ownerName, phoneNum)
         pet = petObject.checkPet(petName, petSpecies, petBreed)
-        
+
         # check if owner and pet exists
         if owner and pet:
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
