@@ -33,7 +33,7 @@ class Appointment:
                 id = random.randint(1000, 9999)
         return id
 
-    
+    # ISSUE ADD APPOINTMENT TO APPOINTMENT_SERVICE IF TUPLE
     #add (add information then add to appHistory) 
     def addAppointment(self, petName, petSpecies, petBreed, ownerName, phoneNum, date, time, availType, status, serviceNames):
         # generate appointmentID
@@ -61,7 +61,7 @@ class Appointment:
         date_obj = datetime.datetime.strptime(date, '%d/%m/%Y')
         date = date_obj.strftime('%Y-%m-%d')
         time_obj = datetime.datetime.strptime(time, '%I:%M %p')
-        time = time_obj.strftime('%H:%M:%S')
+        time = time_obj.strftime('%H:%M')
 
         # Get service IDs
         serviceIDs = []
@@ -79,7 +79,6 @@ class Appointment:
                     serviceIDs.append(serviceID)
                 else:
                     print(f"Service ID not found for service name: {serviceName}")
-
 
         # insert into tblappointment_history
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
@@ -105,7 +104,7 @@ class Appointment:
         connection.commit()
         print("Appointment deleted.")
     
-    #need changes
+    #done
     def searchAppointment (self, value):
         value = '%' + str(value).lower() + '%'
         self.cursor.execute("""
@@ -130,6 +129,19 @@ class Appointment:
         for x in searchResults:
             print(x)
         return searchResults
+    
+    #update
+    def updateAppointment(self, unique_key, column, new_value):
+        update_query = ""
+        
+        if column == "Service ID":
+            update_query = f"UPDATE `tblappointment_service` SET `serviceID` = %s WHERE `appointmentID` = %s"
+        else: 
+            update_query = f"UPDATE `tblappointment_history` SET `{column.lower()}` = %s WHERE `appointmentID` = %s"
+
+        self.cursor.execute(update_query, (new_value, unique_key))
+        connection.commit()
+        print(f"Row updated successfully: {unique_key} with new change: {new_value}")
     
     #return History (return all appointments)
     def returnAppointmentData (self):
@@ -229,6 +241,16 @@ class Owner:
         result = self.cursor.fetchall()
         return result
     
+    def checkOwnerExists (self, name):
+        query = "SELECT name FROM tblowner WHERE name = %s"
+        value = (name,)
+        self.cursor.execute(query, value)
+        if self.cursor.fetchone():
+            return True 
+        else:
+            return False
+        
+    
     def returnOwnerData (self):
         self.cursor.execute("SELECT * FROM tblowner")
         result = self.cursor.fetchall()
@@ -273,15 +295,6 @@ class Pet:
             if id == x[0]:
                 id = random.randint(1000, 9999)
         return id
-    
-    # check if PetID already exists in tblpet
-    def checkPetID (self, petID):
-        query = "SELECT petID FROM tblpet"
-        self.cursor.execute(query)
-        if self.cursor.fetchone:
-                return True
-        return False
-
 
     #add
     def addPet (self, name, species, breed, ownerID):
@@ -336,12 +349,11 @@ class Pet:
             OR LOWER(o.name) LIKE %s
         """, (f"%{value}", f"%{value}", f"%{value}", f"%{value}", f"%{value}"))
         searchResults = self.cursor.fetchall()
-
-
         
         for x in searchResults:
             print(x)
         return searchResults
+
 
     #return pet name
     def returnPetName (self, id):
@@ -390,6 +402,22 @@ class Pet:
         if self.cursor.fetchone():
                 return True
         return False
+    
+    def checkPetExists(self, name):
+        query = "SELECT name FROM tblpet WHERE name = %s"
+        value = (name,)
+        self.cursor.execute(query, value)
+        if self.cursor.fetchone():
+            return True 
+        else:
+            return False
+        
+    def petNamesforPopulation(self):
+        query = "SELECT name FROM tblpet"
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()
+        pet_names = [name[0] for name in result]
+        return pet_names
     
 
     

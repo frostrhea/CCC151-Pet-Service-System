@@ -1,6 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
-from PyQt5.QtWidgets import  QListWidgetItem, QAbstractItemView
+from PyQt5.QtWidgets import  QListWidgetItem, QAbstractItemView, QInputDialog, QMessageBox
+from datetime import datetime
 from petservice import Ui_MainWindow
 import systemClasses as classObject  #set file here
 
@@ -41,12 +42,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.addAppButton.clicked.connect(self.add_appointment_button_clicked)
         self.gui_pet.deleteAppButton.clicked.connect(self.delete_appointment_row)
         self.gui_pet.searchAppButton.clicked.connect(self.search_appointment_button_clicked)
+        self.gui_pet.searchInputApp.returnPressed.connect(self.search_appointment_button_clicked)
+        self.gui_pet.historyTable.doubleClicked.connect(self.history_table_cell_edit)
         
         #INFORMATION TAB
         self.gui_pet.deletePetButton.clicked.connect(self.delete_pet_row)
         self.gui_pet.deleteOwnerButton.clicked.connect(self.delete_owner_row)
         self.gui_pet.searchPetButton.clicked.connect(self.search_pet_button_clicked)
+        self.gui_pet.searchInputPet.returnPressed.connect(self.search_pet_button_clicked)
         self.gui_pet.searchOwnerButton.clicked.connect(self.search_owner_button_clicked)
+        self.gui_pet.searchInputOwner.returnPressed.connect(self.search_owner_button_clicked)
         self.gui_pet.petTable.doubleClicked.connect(self.pet_table_cell_edit)
         self.gui_pet.ownerTable.doubleClicked.connect(self.owner_table_cell_edit)
         
@@ -69,7 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 item = QtGui.QStandardItem(text)
                 model.setItem(row_id, col_id, item)
                 #print(f"text: {text}")
-                if col_id in [0, 1, 2, 3, 4, 5, 6, 7 , 8]:
+                if col_id in [0, 1, 2, 3, 4, 5, 6, 7, 8]:
                     item.setEditable(False)
                 if col_id in [0, 1, 2, 3, 4, 5, 6, 7 , 8]:
                     item.setTextAlignment(QtCore.Qt.AlignCenter)
@@ -236,7 +241,6 @@ class MainWindow(QtWidgets.QMainWindow):
          # Get the selected service names
         service_names = [item.text() for item in self.gui_pet.serviceList.selectedItems() if item.text()]
         self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status, service_names)
-        #self.appObject.addAppointment(pet_name, pet_species, pet_breed, owner_name, owner_number, app_date, app_time, app_availtype, app_status)
         
         self.setStandardItemModel()
         self.gui_pet.historyTable.model().layoutChanged.emit()
@@ -262,7 +266,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.historyTable.model().layoutChanged.emit()  
         
         
-        # not done
+        # done
     def search_appointment_button_clicked(self):
         search_appointment = self.gui_pet.searchInputApp.text()
         SResults = self.appObject.searchAppointment(search_appointment)
@@ -275,6 +279,82 @@ class MainWindow(QtWidgets.QMainWindow):
             self.gui_pet.historyTable.model().layoutChanged.emit()
         else:
             QtWidgets.QMessageBox.information(self, "No Results", f"No results found for appointment'{search_appointment}'.")
+            
+    def history_table_cell_edit(self, index):
+        row = index.row()
+        column = index.column()
+        columnName = self.historyModel.horizontalHeaderItem(column).text()
+        item = self.gui_pet.historyTable.model().item(row, column)
+        current_value = item.text()
+        unique_key = self.gui_pet.historyTable.model().item(row, 0).text()
+        
+        availType = ["Reservation", "Walk-in"]
+        status = ["Pending", "Canceled", "Completed"]
+        
+        if column in [0, 5, 6, 8]:
+            QtWidgets.QMessageBox.warning(self, "Non-editable column", "This column is non-editable.")
+            return
+        
+        elif column in [1]:  # Date column
+            new_value, ok = QtWidgets.QInputDialog.getText(self, "Update Appointment", "Enter new date (YYYY-MM-DD):", text=current_value)
+            
+            if ok and new_value:
+                try:
+                    # Parse the new date value and convert it to the desired format
+                    new_date = datetime.strptime(new_value, "%Y-%m-%d").strftime("%Y-%m-%d")
+                    self.appObject.updateAppointment(unique_key, columnName, new_date)
+                    self.setStandardItemModel()
+                    self.gui_pet.historyTable.model().layoutChanged.emit()
+                except ValueError:
+                    QtWidgets.QMessageBox.warning(self, "Invalid date format", "Please enter the date in the format YYYY-MM-DD.")
+        
+        elif column in [2]:  # Time column
+            new_value, ok = QtWidgets.QInputDialog.getText(self, "Update Appointment", "Enter new time (HH:MM):", text=current_value)
+            
+            if ok and new_value:
+                try:
+                    # Parse the new time value and convert it to the desired format
+                    new_time = datetime.strptime(new_value, "%H:%M").strftime("%H:%M")
+                    self.appObject.updateAppointment(unique_key, columnName, new_time)
+                    self.setStandardItemModel()
+                    self.gui_pet.historyTable.model().layoutChanged.emit()
+                except ValueError:
+                    QtWidgets.QMessageBox.warning(self, "Invalid time format", "Please enter the time in the format HH:MM.")
+    
+        elif column in [3, 4, 8]:
+            if column == 3:
+                current_index = availType.index(current_value) if current_value in availType else 0
+                new_value, ok = QInputDialog.getItem(self, "Update Appointment", "Select avail type:", availType, current=current_index)
+            if column == 4:
+                current_index = status.index(current_value) if current_value in status else 0
+                new_value, ok = QInputDialog.getItem(self, "Update Appointment", "Select status:", status, current=current_index)
+            elif column == 8:
+                serv_names = self.servObject.returnServiceNames()
+                current_index = serv_names.index(current_value) if current_value in serv_names else 0
+                new_value, ok = QtWidgets.QInputDialog.getItem(self, "Update Appointment", "Select Service:", serv_names, current=current_index)
+            
+            if ok and new_value and new_value != current_value:
+                reply = QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
+                                            QMessageBox.Yes | QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    self.appObject.updateAppointment(unique_key, columnName, new_value)
+                    self.setStandardItemModel()
+                    self.gui_pet.historyTable.model().layoutChanged.emit()
+                else:
+                    pass
+                
+        else: 
+            new_value, ok = QInputDialog.getText(self, "Update Appointment", "Enter new text:", text=current_value)
+
+            if ok and new_value and new_value != current_value:
+                reply = QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
+                                            QMessageBox.Yes | QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                        self.appObject.updateAppointment(unique_key, columnName, new_value)
+                        self.setStandardItemModel()
+                        self.gui_pet.historyTable.model().layoutChanged.emit()
+            else:
+                pass
 
 
     #INFORMATION TAB --------------------------------------------------------------------------------
@@ -344,9 +424,17 @@ class MainWindow(QtWidgets.QMainWindow):
             reply = QtWidgets.QMessageBox.question(self, "Save Changes", "Do you want to save the changes?", 
                                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if reply == QtWidgets.QMessageBox.Yes:
-                self.petObject.updatePet(unique_key, columnName, new_value)
-                self.setStandardItemModel()
-                self.gui_pet.petTable.model().layoutChanged.emit()
+                if column == 4:
+                    if self.ownerObject.checkOwnerExists(new_value) == False:
+                        QtWidgets.QMessageBox.warning(self, "Owner Unavailable", "Owner does not exist.")
+                    else:
+                        self.petObject.updatePet(unique_key, columnName, new_value)
+                        self.setStandardItemModel()
+                        self.gui_pet.petTable.model().layoutChanged.emit()
+                else:
+                    self.petObject.updatePet(unique_key, columnName, new_value)
+                    self.setStandardItemModel()
+                    self.gui_pet.petTable.model().layoutChanged.emit()
             else:
                 pass
     
