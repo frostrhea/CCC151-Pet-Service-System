@@ -332,6 +332,7 @@ class Appointment:
         self.cursor.execute(query, values)
         connection.commit()
         print("Appointment deleted.")
+        servappObject.deleteAppointment_Service(id)
 
     #delete when Status:Pending
     def deletePendingAppointment (self, id):
@@ -434,6 +435,14 @@ class Appointment_Service:
         self.cursor.execute(query, values)
         result = self.cursor.fetchall()
         return result
+    
+    #delete row by appointment ID
+    def deleteAppointment_Service (self, appointmentID):
+        query = "DELETE FROM tblappointment_service WHERE appointmentID = %s"
+        values = (appointmentID)
+        self.cursor.execute(query, values)
+        connection.commit()
+        print("Appointment Service deleted.")
 
 ownerObject = Owner()
 petObject = Pet()
