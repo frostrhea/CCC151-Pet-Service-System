@@ -25,6 +25,30 @@ except mysql.connector.Error as error:
 #
 #
 
+def getServiceID(serviceName):
+    serviceIDs = []
+    for serviceName in serviceName:
+            serviceID = serviceObject.returnID(serviceName)
+            serviceIDs.extend(serviceID) 
+    return serviceIDs
+
+def insertAppointmentHistory(id, date, time, availType, status, petID, ownerID):
+    insertAppointmentHistory.cursor = connection.cursor(buffered=True)
+    query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    value = (id, date, time, availType, status, petID, ownerID)
+    insertAppointmentHistory.cursor.execute(query, value)
+    connection.commit()
+    print("Appointment added.")
+
+def insertAppointmentService(id, serviceIDs):
+    insertAppointmentService.cursor = connection.cursor(buffered=True)
+    serviceIDs = [x[0] for x in serviceIDs]
+    query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
+    values = [(id, x) for x in serviceIDs]
+    insertAppointmentService.cursor.executemany(query, values)
+    connection.commit()
+    print("Appointment_Service added.")
+
 class Owner:
 
     def __init__(self):
@@ -115,8 +139,12 @@ class Owner:
         query = "SELECT ownerID FROM tblowner WHERE name = %s AND phoneNumber = %s"
         values = (name, phoneNum)
         self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        return result
+        result = self.cursor.fetchone()
+        if result is not None:
+            ownerID = result[0]
+            return ownerID
+        else:
+            return None 
 
   
 class Pet:
@@ -209,8 +237,12 @@ class Pet:
         query = "SELECT petID FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
         values = (name, species, breed)
         self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        return result
+        result = self.cursor.fetchone()
+        if result is not None:
+            ownerID = result[0]
+            return ownerID
+        else:
+            return None 
     
 class Service:
 
@@ -332,22 +364,22 @@ class Appointment:
         id = self.generateID() #?
         
         # check if owner and pet exists
-        if ownerObject.checkOwner(ownerName, phoneNum) & petObject.checkPet(petName, petSpecies, petBreed):
+        if (ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum) 
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
 
         # check if owner exists but pet does not
-        elif ownerObject.checkOwner(ownerName, phoneNum) & (not petObject.checkPet(petName, petSpecies, petBreed)):
+        elif (ownerObject.checkOwner(ownerName, phoneNum) and not petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.returnOwnerID(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
-        
+
         #check if pet exists but owner does not
-        elif (not ownerObject.checkOwner(ownerName, phoneNum)) & petObject.checkPet(petName, petSpecies, petBreed):
+        elif (not ownerObject.checkOwner(ownerName, phoneNum) and petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.returnPetID(petName, petSpecies, petBreed)
         
         #check if neither owner nor pet exists
-        else:
+        else: # (not ownerObject.checkOwner(ownerName, phoneNum)) and (not petObject.checkPet(petName, petSpecies, petBreed)):
             ownerID = ownerObject.addOwner(ownerName, phoneNum)
             petID = petObject.addPet(petName, petSpecies, petBreed, ownerID)
 
@@ -359,21 +391,19 @@ class Appointment:
 
         #insert into tblappointment_history
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        values = (id, date, time, availType, status, petID, ownerID)
-        self.cursor.execute(query, values)
+        value = (id, date, time, availType, status, petID, ownerID)
+        self.cursor.execute(query, value)
         connection.commit()
         print("Appointment added.")
 
         #add to tblappointment_service
         serviceIDs = [x[0] for x in serviceIDs]
-
         query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
         values = [(id, x) for x in serviceIDs]
-     
         self.cursor.executemany(query, values)
         connection.commit()
-        
         print("Appointment_Service added.")
+
 
     #delete (delete information then delete from appHistory)
     def deleteAppointment (self, id):  
