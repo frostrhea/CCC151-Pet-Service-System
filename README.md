@@ -18,5 +18,5 @@ A Pet Service System that will be used by the admin with the purpose of storing 
 - MySQL Workbench version 8.0.33
 
 ### Group 10 Members:
-- Guingao, Rhea Salve
-- Sevilla, Mary Angeline
+- [Guingao, Rhea Salve](https://github.com/frostrhea)
+- [Sevilla, Mary Angeline](https://github.com/Airplanejuju)
