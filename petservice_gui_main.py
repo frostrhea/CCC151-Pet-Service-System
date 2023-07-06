@@ -36,7 +36,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setAvailTypeSelection()
         self.setStatusSelection()
         self.setServiceSelection()
-        #self.gui_pet.serviceList.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.setPrevPetSelection()
         self.gui_pet.serviceList.setSelectionMode(QtWidgets.QAbstractItemView.MultiSelection)
         
         self.gui_pet.addAppButton.clicked.connect(self.add_appointment_button_clicked)
@@ -96,8 +96,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 header.resizeSection(2, 100)
                 header.resizeSection(3, 120)
                 header.resizeSection(4, 140)
-                header.resizeSection(5, 180)
-                header.resizeSection(6, 200)
+                header.resizeSection(5, 160)
+                header.resizeSection(6, 199)
                 header.resizeSection(7, 0)
                 header.resizeSection(8, 200)
                 
@@ -109,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 header.resizeSection(4, 100)
         elif table == self.gui_pet.ownerTable:
                 header.resizeSection(0, 0)  
-                header.resizeSection(1, 220)
+                header.resizeSection(1, 218)
                 header.resizeSection(2, 150)
 
 
@@ -161,10 +161,30 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.serviceList.clear()
         self.gui_pet.serviceList.addItems(self.servObject.returnServiceNames()) 
         
-    def handle_service_selection(self):
-        selected_items = []
-        for item in self.gui_pet.serviceList.selectedItems():
-            selected_items.append(item.text())
+    def setPrevPetSelection(self):
+        self.gui_pet.choosePrevPets.clear()
+        self.gui_pet.choosePrevPets.addItems(self.petObject.returnPetName()) 
+        self.gui_pet.choosePrevPets.currentIndexChanged.connect(self.populatePetData)
+
+    def populatePetData(self, selectedpet):
+        selected_pet = self.gui_pet.choosePrevPets.currentText()
+        pet_data = self.petObject.getPetDataFromSelectedPet(selected_pet)
+        print(selected_pet)
+        if pet_data:
+            pet_name = pet_data[0]
+            pet_species = pet_data[1]
+            pet_breed = pet_data[2]
+            owner_name = pet_data[3]
+            owner_number = pet_data[4]
+
+            # Populate the QLineEdits with the retrieved data
+            self.gui_pet.enterPName.setText(pet_name)
+            self.gui_pet.enterSpecies.setText(pet_species)
+            self.gui_pet.enterBreed.setText(pet_breed)
+            self.gui_pet.enterOName.setText(owner_name)
+            self.gui_pet.enterOName_2.setText(owner_number)
+
+
       
     #SERVICE PAGE ---------------------------------------------------------------------------------------- 
     def add_service_button_clicked(self):

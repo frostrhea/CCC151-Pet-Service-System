@@ -348,12 +348,11 @@ class Pet:
 
 
     #return pet name
-    def returnPetName (self, id):
-        query = "SELECT name FROM tblpet WHERE petID = %s"
-        values = (id, )
-        self.cursor.execute(query, values)
+    def returnPetName (self):
+        self.cursor.execute("SELECT name FROM tblpet")
         result = self.cursor.fetchall()
-        return result
+        pet_names = [str(name[0]) for name in result]
+        return pet_names
     
     def returnPetData (self):
         #self.cursor.execute("SELECT name, species, breed, ownerID FROM tblpet")
@@ -398,12 +397,17 @@ class Pet:
         else:
             return False
         
-    def petNamesforPopulation(self):
-        query = "SELECT name FROM tblpet"
-        self.cursor.execute(query)
-        result = self.cursor.fetchall()
-        pet_names = [name[0] for name in result]
-        return pet_names
+    def getPetDataFromSelectedPet(self, selected_pet):
+        query = '''
+            SELECT p.name, p.species, p.breed, o.name, o.phoneNumber
+            FROM tblpet p
+            INNER JOIN tblowner o ON p.ownerID = o.ownerID
+            WHERE p.name = %s
+        '''
+        self.cursor.execute(query, (selected_pet,))
+        result = self.cursor.fetchone()
+        print(result)
+        return result
     
 
     

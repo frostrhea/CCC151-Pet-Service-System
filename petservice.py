@@ -850,12 +850,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background-color: #cdd1f5;\n"
+"    background-color: #dddff8;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical:hover {\n"
-"    background-color: #dddff8;\n"
+"    background-color: #cdd1f5;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
@@ -876,12 +876,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    background-color: #cdd1f5;\n"
+"    background-color: #dddff8;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #dddff8;\n"
+"    background-color: #cdd1f5;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal,\n"
@@ -1029,12 +1029,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QScrollBar::handle:vertical {\n"
-"    background-color: #cdd1f5;\n"
+"    background-color: #dddff8;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:vertical:hover {\n"
-"    background-color: #dddff8;\n"
+"    background-color: #cdd1f5;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:vertical,\n"
@@ -1055,12 +1055,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal {\n"
-"    background-color: #cdd1f5;\n"
+"    background-color: #dddff8;\n"
 "    border-radius: 6px;\n"
 "}\n"
 "\n"
 "QScrollBar::handle:horizontal:hover {\n"
-"    background-color: #dddff8;\n"
+"    background-color: #cdd1f5;\n"
 "}\n"
 "\n"
 "QScrollBar::add-line:horizontal,\n"
@@ -1148,7 +1148,7 @@ class Ui_MainWindow(object):
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(30, 60, 301, 41))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(30, 90, 301, 31))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -1184,7 +1184,7 @@ class Ui_MainWindow(object):
         self.enterPName.setObjectName("enterPName")
         self.horizontalLayout.addWidget(self.enterPName)
         self.horizontalLayoutWidget_3 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(30, 100, 301, 41))
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(30, 120, 301, 31))
         self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -1220,7 +1220,7 @@ class Ui_MainWindow(object):
         self.enterSpecies.setObjectName("enterSpecies")
         self.horizontalLayout_3.addWidget(self.enterSpecies)
         self.horizontalLayoutWidget_4 = QtWidgets.QWidget(self.frame)
-        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(30, 140, 301, 41))
+        self.horizontalLayoutWidget_4.setGeometry(QtCore.QRect(30, 150, 301, 31))
         self.horizontalLayoutWidget_4.setObjectName("horizontalLayoutWidget_4")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_4)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -1257,7 +1257,7 @@ class Ui_MainWindow(object):
         self.enterBreed.setObjectName("enterBreed")
         self.horizontalLayout_4.addWidget(self.enterBreed)
         self.label_petInfo = QtWidgets.QLabel(self.frame)
-        self.label_petInfo.setGeometry(QtCore.QRect(10, 20, 291, 41))
+        self.label_petInfo.setGeometry(QtCore.QRect(10, 10, 291, 41))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(14)
@@ -1265,6 +1265,70 @@ class Ui_MainWindow(object):
         self.label_petInfo.setToolTipDuration(1)
         self.label_petInfo.setStyleSheet("color: #353fb0")
         self.label_petInfo.setObjectName("label_petInfo")
+        self.horizontalLayoutWidget_12 = QtWidgets.QWidget(self.frame)
+        self.horizontalLayoutWidget_12.setGeometry(QtCore.QRect(30, 50, 301, 41))
+        self.horizontalLayoutWidget_12.setObjectName("horizontalLayoutWidget_12")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_12)
+        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_12.setSpacing(5)
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.label_prevPets = QtWidgets.QLabel(self.horizontalLayoutWidget_12)
+        font = QtGui.QFont()
+        font.setFamily("Helvetica")
+        font.setPointSize(10)
+        self.label_prevPets.setFont(font)
+        self.label_prevPets.setToolTipDuration(1)
+        self.label_prevPets.setStyleSheet("color: #353fb0")
+        self.label_prevPets.setObjectName("label_prevPets")
+        self.horizontalLayout_12.addWidget(self.label_prevPets)
+        self.choosePrevPets = QtWidgets.QComboBox(self.horizontalLayoutWidget_12)
+        font = QtGui.QFont()
+        font.setPointSize(-1)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(50)
+        self.choosePrevPets.setFont(font)
+        self.choosePrevPets.setToolTipDuration(1)
+        self.choosePrevPets.setStyleSheet("QComboBox {\n"
+"    border: 1px solid #dddff8;\n"
+"    border-radius: 6px;\n"
+"    padding: 2px 10px;\n"
+"    background-color: #ebedfb;\n"
+"    font: 14px;\n"
+"    color: #353fb0;\n"
+"    font: Helvetica;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    width: 20px;\n"
+"    height: 20px;\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: right;\n"
+"    border-left-width: 0px;\n"
+"    border-left-color: #dddff8;\n"
+"    border-left-style: solid;\n"
+"    border-top-right-radius: 6px;\n"
+"    border-bottom-right-radius: 6px;\n"
+"    background-color: #ebedfb;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(D:/Documents/codes/python/Pet Service/CCC151-Pet-Service-System/down-arrow.png);\n"
+"    width: 15px;  \n"
+"    height: 15px;\n"
+"}\n"
+"\n"
+"QComboBox::item {\n"
+"    background-color: #ebedfb;\n"
+"    color:  #353fb0;\n"
+"}\n"
+"\n"
+"")
+        self.choosePrevPets.setObjectName("choosePrevPets")
+        self.choosePrevPets.addItem("")
+        self.choosePrevPets.addItem("")
+        self.horizontalLayout_12.addWidget(self.choosePrevPets)
+        self.horizontalLayout_12.setStretch(1, 1)
         self.frame_2 = QtWidgets.QFrame(self.infoFrame)
         self.frame_2.setGeometry(QtCore.QRect(390, 30, 341, 201))
         self.frame_2.setStyleSheet("QFrame {\n"
@@ -1279,7 +1343,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
         self.label_ownerInfo = QtWidgets.QLabel(self.frame_2)
-        self.label_ownerInfo.setGeometry(QtCore.QRect(10, 20, 281, 41))
+        self.label_ownerInfo.setGeometry(QtCore.QRect(10, 10, 281, 41))
         font = QtGui.QFont()
         font.setFamily("Helvetica")
         font.setPointSize(14)
@@ -1405,27 +1469,54 @@ class Ui_MainWindow(object):
 "QDateEdit::drop-down {\n"
 "    subcontrol-origin: padding;\n"
 "    subcontrol-position: right;\n"
-"    width: 20px;\n"
+"    width: 16px;\n"
 "    border-left: 1px solid #dddff8;\n"
 "    border-top-right-radius: 6px;\n"
 "    border-bottom-right-radius: 6px;\n"
 "    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,\n"
 "                                stop:0 #f6faff,\n"
 "                                stop:1 #e9f1fe);\n"
-"    margin-right: 2px;\n"
-"}\n"
-"\n"
-"QDateEdit::down-arrow {\n"
-"    image: url(path/to/down_arrow_icon.png); #need change\n"
-"    width: 16px;\n"
-"    height: 16px;\n"
 "}\n"
 "\n"
 "\n"
+"QCalendarWidget QAbstractItemView {\n"
+"    background-color: #f6faff;\n"
+"    color: #353fb0;\n"
+"    selection-background-color: #b5d8f0; /* Background color of selected date */\n"
+"    selection-color: #353fb0;\n"
+"    border-radius: 6px;\n"
+"}\n"
 "\n"
+"QCalendarWidget QWidget#qt_calendar_navigationbar {\n"
+"    background-color: #e9f1fe;\n"
+"}\n"
 "\n"
+"QCalendarWidget QToolButton {\n"
+"    background-color: #e9f1fe;\n"
+"    color: #353fb0;\n"
+"    font-weight: bold;\n"
+"}\n"
 "\n"
+"QCalendarWidget QSpinBox {\n"
+"    color: #353fb0;\n"
+"    border-radius: 8px;\n"
+"}\n"
+"\n"
+"QCalendarWidget QSpinBox::up-button {\n"
+"    subcontrol-origin: border;\n"
+"    subcontrol-position: top right;\n"
+"}\n"
+"\n"
+"QCalendarWidget QSpinBox::down-button {\n"
+"    subcontrol-origin: border;\n"
+"    subcontrol-position: bottom right;\n"
+"}\n"
 "")
+        self.dateEdit.setDateTime(QtCore.QDateTime(QtCore.QDate(2023, 7, 7), QtCore.QTime(10, 0, 0)))
+        self.dateEdit.setMinimumDateTime(QtCore.QDateTime(QtCore.QDate(2010, 9, 14), QtCore.QTime(0, 0, 0)))
+        self.dateEdit.setCalendarPopup(True)
+        self.dateEdit.setTimeSpec(QtCore.Qt.LocalTime)
+        self.dateEdit.setDate(QtCore.QDate(2023, 7, 7))
         self.dateEdit.setObjectName("dateEdit")
         self.horizontalLayout_6.addWidget(self.dateEdit)
         self.horizontalLayoutWidget_7 = QtWidgets.QWidget(self.frame_5)
@@ -1478,6 +1569,12 @@ class Ui_MainWindow(object):
 "QTimeEdit::down-arrow:hover {\n"
 "    image: url(path/to/down_arrow_icon_hover.png);\n"
 "}")
+        self.timeEdit.setWrapping(False)
+        self.timeEdit.setButtonSymbols(QtWidgets.QAbstractSpinBox.UpDownArrows)
+        self.timeEdit.setAccelerated(False)
+        self.timeEdit.setCalendarPopup(False)
+        self.timeEdit.setTimeSpec(QtCore.Qt.LocalTime)
+        self.timeEdit.setTime(QtCore.QTime(8, 0, 0))
         self.timeEdit.setObjectName("timeEdit")
         self.horizontalLayout_7.addWidget(self.timeEdit)
         self.horizontalLayoutWidget_8 = QtWidgets.QWidget(self.frame_5)
@@ -1798,7 +1895,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.stackedWidget.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         self.historyButton.clicked.connect(self.stackedWidget.show) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1838,12 +1935,17 @@ class Ui_MainWindow(object):
         self.label_breed.setText(_translate("MainWindow", "Breed:"))
         self.enterBreed.setPlaceholderText(_translate("MainWindow", "  Enter species of pet"))
         self.label_petInfo.setText(_translate("MainWindow", "Pet Information"))
+        self.label_prevPets.setText(_translate("MainWindow", "Previous Pets:"))
+        self.choosePrevPets.setCurrentText(_translate("MainWindow", "rwe"))
+        self.choosePrevPets.setItemText(0, _translate("MainWindow", "rwe"))
+        self.choosePrevPets.setItemText(1, _translate("MainWindow", "fewf"))
         self.label_ownerInfo.setText(_translate("MainWindow", "Owner Information"))
         self.label_Pname_2.setText(_translate("MainWindow", "Name:"))
         self.enterOName.setPlaceholderText(_translate("MainWindow", "  Enter name of owner"))
         self.label_Pname_3.setText(_translate("MainWindow", "Phone Number:"))
         self.enterOName_2.setPlaceholderText(_translate("MainWindow", "  Enter phone number"))
         self.label_date.setText(_translate("MainWindow", "Date:"))
+        self.dateEdit.setToolTip(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.label_date_2.setText(_translate("MainWindow", "Time:"))
         self.label_availType.setText(_translate("MainWindow", "Avail Type:"))
         self.chooseAvailType.setCurrentText(_translate("MainWindow", "rwe"))
