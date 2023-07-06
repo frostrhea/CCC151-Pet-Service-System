@@ -239,7 +239,7 @@ class MainWindow(QtWidgets.QMainWindow):
         app_status = self.gui_pet.chooseStatus.currentText()
         
          # Get the selected service names
-        service_names = [item.text() for item in self.gui_pet.serviceList.selectedItems() if item.text()]
+        service_names = (item.text() for item in self.gui_pet.serviceList.selectedItems() if item.text())
         
         if not (pet_name and pet_species and pet_breed and owner_name and owner_number and app_date and app_time and app_availtype and app_status and service_names):
             QMessageBox.warning(self, "Missing Information", "Please fill in all fields.")

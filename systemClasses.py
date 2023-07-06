@@ -33,7 +33,7 @@ class Appointment:
                 id = random.randint(1000, 9999)
         return id
 
-    # ISSUE ADD APPOINTMENT TO APPOINTMENT_SERVICE IF TUPLE
+    
     #add (add information then add to appHistory) 
     def addAppointment(self, petName, petSpecies, petBreed, ownerName, phoneNum, date, time, availType, status, serviceNames):
         # generate appointmentID
@@ -65,36 +65,29 @@ class Appointment:
 
         # Get service IDs
         serviceIDs = []
-        if len(serviceNames) == 1:
-            serviceName = serviceNames[0]
+        for serviceName in serviceNames:
             serviceID = servObject.returnID(serviceName)
             if serviceID:
-                serviceIDs.append(serviceID)
+                serviceIDs.append(serviceID[0])
             else:
                 print(f"Service ID not found for service name: {serviceName}")
-        else:
-            for serviceName in serviceNames:
-                serviceID = servObject.returnID(serviceName)
-                if serviceID:
-                    serviceIDs.append(serviceID)
-                else:
-                    print(f"Service ID not found for service name: {serviceName}")
 
         # insert into tblappointment_history
         query = "INSERT INTO tblappointment_history (appointmentID, date, time, availType, status, petID, ownerID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-        values = (id, date, time, availType, status, petID, ownerID)
-        self.cursor.execute(query, values)
+        value = (id, date, time, availType, status, petID, ownerID)
+        print(value)
+        self.cursor.execute(query, value)
         connection.commit()
         print("Appointment added.")
 
         # add to tblappointment_service
         serviceIDs = [x[0] for x in serviceIDs]
         query = "INSERT INTO tblappointment_service (appointmentID, serviceID) VALUES (%s, %s)"
-        values = [(id, x[0]) for x in serviceIDs]
+        values = [(id, x) for x in serviceIDs]
         self.cursor.executemany(query, values)
         connection.commit()
-
         print("Appointment_Service added.")
+        
         
     def deleteAppointment (self, id):  
         query = "DELETE FROM tblappointment_history WHERE appointmentID = %s"
@@ -357,7 +350,7 @@ class Pet:
     #return pet name
     def returnPetName (self, id):
         query = "SELECT name FROM tblpet WHERE petID = %s"
-        values = (id)
+        values = (id, )
         self.cursor.execute(query, values)
         result = self.cursor.fetchall()
         return result
@@ -377,20 +370,14 @@ class Pet:
         return owner_id
     
     #return pet ID by pet name and pet breed and species
-    def returnPetID (self, name, species, breed):
+    def returnPetID(self, name, species, breed):
         query = "SELECT petID FROM tblpet WHERE name = %s AND species = %s AND breed = %s"
         values = (name, species, breed)
         self.cursor.execute(query, values)
-        result = self.cursor.fetchall()
-        return result
-    
-    # check if PetID already exists in tblpet
-    def checkPetID (self, petID):
-        query = "SELECT petID FROM tblpet"
-        self.cursor.execute(query)
-        if self.cursor.fetchone():
-                return True
-        return False
+        result = self.cursor.fetchone()  # Use fetchone() to retrieve a single row
+        if result:
+            return result[0]  # Access the first element of the tuple
+        return None  # Handle case when no petID is found
         
 
     # check if all pet details exists in tblpet by pet name
@@ -511,6 +498,7 @@ class Service:
             results = self.cursor.fetchall()
 
         return results
+
 
 
     
