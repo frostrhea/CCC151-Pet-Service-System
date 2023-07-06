@@ -1083,7 +1083,7 @@ QTabBar::tab:hover {
 </string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -1264,12 +1264,12 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle:vertical {
-    background-color: #cdd1f5;
+    background-color: #dddff8;
     border-radius: 6px;
 }
 
 QScrollBar::handle:vertical:hover {
-    background-color: #dddff8;
+    background-color: #cdd1f5;
 }
 
 QScrollBar::add-line:vertical,
@@ -1290,12 +1290,12 @@ QScrollBar:horizontal {
 }
 
 QScrollBar::handle:horizontal {
-    background-color: #cdd1f5;
+    background-color: #dddff8;
     border-radius: 6px;
 }
 
 QScrollBar::handle:horizontal:hover {
-    background-color: #dddff8;
+    background-color: #cdd1f5;
 }
 
 QScrollBar::add-line:horizontal,
@@ -1492,12 +1492,12 @@ QScrollBar:vertical {
 }
 
 QScrollBar::handle:vertical {
-    background-color: #cdd1f5;
+    background-color: #dddff8;
     border-radius: 6px;
 }
 
 QScrollBar::handle:vertical:hover {
-    background-color: #dddff8;
+    background-color: #cdd1f5;
 }
 
 QScrollBar::add-line:vertical,
@@ -1518,12 +1518,12 @@ QScrollBar:horizontal {
 }
 
 QScrollBar::handle:horizontal {
-    background-color: #cdd1f5;
+    background-color: #dddff8;
     border-radius: 6px;
 }
 
 QScrollBar::handle:horizontal:hover {
-    background-color: #dddff8;
+    background-color: #cdd1f5;
 }
 
 QScrollBar::add-line:horizontal,
@@ -1678,9 +1678,9 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>60</y>
+          <y>90</y>
           <width>301</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
@@ -1744,9 +1744,9 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>100</y>
+          <y>120</y>
           <width>301</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1810,9 +1810,9 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>140</y>
+          <y>150</y>
           <width>301</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -1877,7 +1877,7 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>20</y>
+          <y>10</y>
           <width>291</width>
           <height>41</height>
          </rect>
@@ -1897,6 +1897,105 @@ QPushButton:hover {
         <property name="text">
          <string>Pet Information</string>
         </property>
+       </widget>
+       <widget class="QWidget" name="horizontalLayoutWidget_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>50</y>
+          <width>301</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="0,1">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_prevPets">
+           <property name="font">
+            <font>
+             <family>Helvetica</family>
+             <pointsize>10</pointsize>
+            </font>
+           </property>
+           <property name="toolTipDuration">
+            <number>1</number>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color: #353fb0</string>
+           </property>
+           <property name="text">
+            <string>Previous Pets:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="choosePrevPets">
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>50</weight>
+             <italic>false</italic>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="toolTipDuration">
+            <number>1</number>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QComboBox {
+    border: 1px solid #dddff8;
+    border-radius: 6px;
+    padding: 2px 10px;
+	background-color: #ebedfb;
+	font: 14px;
+	color: #353fb0;
+	font: Helvetica;
+}
+
+QComboBox::drop-down {
+    width: 20px;
+    height: 20px;
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    border-left-width: 0px;
+    border-left-color: #dddff8;
+    border-left-style: solid;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background-color: #ebedfb;
+}
+
+QComboBox::down-arrow {
+	image: url(D:/Documents/codes/python/Pet Service/CCC151-Pet-Service-System/down-arrow.png);
+	width: 15px;  
+    height: 15px;
+}
+
+QComboBox::item {
+    background-color: #ebedfb;
+	color:  #353fb0;
+}
+
+</string>
+           </property>
+           <property name="currentText">
+            <string>rwe</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>rwe</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fewf</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </widget>
       <widget class="QFrame" name="frame_2">
@@ -1928,7 +2027,7 @@ QPushButton:hover {
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>20</y>
+          <y>10</y>
           <width>281</width>
           <height>41</height>
          </rect>
@@ -2150,6 +2249,9 @@ QPushButton:hover {
          </item>
          <item>
           <widget class="QDateEdit" name="dateEdit">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="toolTipDuration">
             <number>1</number>
            </property>
@@ -2166,27 +2268,82 @@ QPushButton:hover {
 QDateEdit::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: right;
-    width: 20px;
+    width: 16px;
     border-left: 1px solid #dddff8;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
                                 stop:0 #f6faff,
                                 stop:1 #e9f1fe);
-    margin-right: 2px;
-}
-
-QDateEdit::down-arrow {
-    image: url(path/to/down_arrow_icon.png); #need change
-    width: 16px;
-    height: 16px;
 }
 
 
+QCalendarWidget QAbstractItemView {
+    background-color: #f6faff;
+    color: #353fb0;
+    selection-background-color: #b5d8f0; /* Background color of selected date */
+    selection-color: #353fb0;
+	border-radius: 6px;
+}
 
+QCalendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: #e9f1fe;
+}
 
+QCalendarWidget QToolButton {
+    background-color: #e9f1fe;
+    color: #353fb0;
+    font-weight: bold;
+}
 
+QCalendarWidget QSpinBox {
+    color: #353fb0;
+	border-radius: 8px;
+}
+
+QCalendarWidget QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+}
+
+QCalendarWidget QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right;
+}
 </string>
+           </property>
+           <property name="dateTime">
+            <datetime>
+             <hour>10</hour>
+             <minute>0</minute>
+             <second>0</second>
+             <year>2023</year>
+             <month>7</month>
+             <day>7</day>
+            </datetime>
+           </property>
+           <property name="minimumDateTime">
+            <datetime>
+             <hour>0</hour>
+             <minute>0</minute>
+             <second>0</second>
+             <year>2010</year>
+             <month>9</month>
+             <day>14</day>
+            </datetime>
+           </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
+           <property name="timeSpec">
+            <enum>Qt::LocalTime</enum>
+           </property>
+           <property name="date">
+            <date>
+             <year>2023</year>
+             <month>7</month>
+             <day>7</day>
+            </date>
            </property>
           </widget>
          </item>
@@ -2264,6 +2421,28 @@ QTimeEdit::down-arrow {
 QTimeEdit::down-arrow:hover {
     image: url(path/to/down_arrow_icon_hover.png);
 }</string>
+           </property>
+           <property name="wrapping">
+            <bool>false</bool>
+           </property>
+           <property name="buttonSymbols">
+            <enum>QAbstractSpinBox::UpDownArrows</enum>
+           </property>
+           <property name="accelerated">
+            <bool>false</bool>
+           </property>
+           <property name="calendarPopup">
+            <bool>false</bool>
+           </property>
+           <property name="timeSpec">
+            <enum>Qt::LocalTime</enum>
+           </property>
+           <property name="time">
+            <time>
+             <hour>8</hour>
+             <minute>0</minute>
+             <second>0</second>
+            </time>
            </property>
           </widget>
          </item>
