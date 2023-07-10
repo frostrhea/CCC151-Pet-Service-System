@@ -462,6 +462,8 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.gui_pet.petTable.model().layoutChanged.emit()
             else:
                 pass
+            
+        self.setPrevPetSelection()
     
     #wip
     def owner_table_cell_edit(self, index):
