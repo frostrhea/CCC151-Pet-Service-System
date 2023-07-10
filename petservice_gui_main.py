@@ -391,6 +391,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if reply == QtWidgets.QMessageBox.Yes:
             self.petObject.deletePet(pet)
 
+        self.setPrevPetSelection()
         self.historyModel = self.setSModel(self.petObject.returnPetData(), self.petModel)
         self.setStandardItemModel()
         self.gui_pet.petTable.model().layoutChanged.emit()  
