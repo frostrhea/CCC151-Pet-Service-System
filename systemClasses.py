@@ -145,6 +145,7 @@ class Appointment:
                     INNER JOIN tblpet p ON ah.petID= p.petID
                     INNER JOIN tblservice s ON a.serviceID = s.serviceID
                     INNER JOIN tblowner o ON ah.ownerID = o.ownerID
+                    ORDER BY ah.date DESC, ah.time DESC
                 """)
         result = self.cursor.fetchall()
         return result
@@ -476,13 +477,13 @@ class Service:
 
     #return service data
     def returnServiceData (self):
-        self.cursor.execute("SELECT * FROM tblservice")
+        self.cursor.execute("SELECT * FROM tblservice ORDER BY `name` ASC")
         result = self.cursor.fetchall()
         return result 
     
     #return names in name column
     def returnServiceNames (self):
-        self.cursor.execute("SELECT `name` FROM tblservice")
+        self.cursor.execute("SELECT `name` FROM tblservice ORDER BY `name` ASC")
         result = self.cursor.fetchall()
         service_names = [str(name[0]) for name in result]
         return service_names

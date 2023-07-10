@@ -166,7 +166,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.gui_pet.choosePrevPets.addItems(self.petObject.returnPetName()) 
         self.gui_pet.choosePrevPets.currentIndexChanged.connect(self.populatePetData)
 
-    def populatePetData(self, selectedpet):
+    def populatePetData(self, selected_pet):
         selected_pet = self.gui_pet.choosePrevPets.currentText()
         pet_data = self.petObject.getPetDataFromSelectedPet(selected_pet)
         print(selected_pet)
