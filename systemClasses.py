@@ -356,8 +356,8 @@ class Pet:
         return pet_names
     
     def returnPetData (self):
-        #self.cursor.execute("SELECT name, species, breed, ownerID FROM tblpet")
-        self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, o.name FROM tblpet p INNER JOIN tblowner o ON p.ownerID = o.ownerID")
+        self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, COALESCE(o.name, NULL) FROM tblpet p LEFT JOIN tblowner o ON p.ownerID = o.ownerID")
+        #self.cursor.execute("SELECT p.petID, p.name, p.species, p.breed, o.name FROM tblpet p INNER JOIN tblowner o ON p.ownerID = o.ownerID")
         result = self.cursor.fetchall()
         return result 
     
